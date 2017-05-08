@@ -1,40 +1,607 @@
-﻿<!DOCTYPE html>
-<html>
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
-</head>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Trang chủ | ShopTheThao</title>
+    <link href="/Assets/Client/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Assets/Client/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/Assets/Client/css/prettyPhoto.css" rel="stylesheet">
+    <link href="/Assets/Client/css/price-range.css" rel="stylesheet">
+    <link href="/Assets/Client/css/animate.css" rel="stylesheet">
+    <link href="/Assets/Client/css/main.css" rel="stylesheet">
+    <link href="/Assets/Client/css/responsive.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/Assets/Client/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/Assets/Client/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/Assets/Client/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/Assets/Client/images/ico/apple-touch-icon-57-precomposed.png">
+</head><!--/head-->
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <header id="header">
+        <!--header-->
+        <div class="header_top">
+            <!--header_top-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="contactinfo">
+                            <ul class="nav nav-pills">
+                                <li><a href="#"><i class="fa fa-phone"></i> +84 1629594513</a></li>
+                                <li><a href="#"><i class="fa fa-envelope"></i> info@shopthethao.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="social-icons pull-right">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+        </div><!--/header_top-->
+        <div class="header-middle">
+            <!--header-middle-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="logo pull-left">
+                            <a href="index.html"><img src="/Assets/Client/images/home/logo.png" alt="" /></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="shop-menu pull-right">
+                            <ul class="nav navbar-nav">
+                                <li><button type="button" data-toggle="modal" class="btn" data-target="#myModalRes" style="background-color:white;padding:8px 12px;color:#696763;font-family:'Roboto', sans-serif;font-weight:300;padding-right:0px;"><i class="fa fa-user"></i> Đăng kí</button></li>
+                                <li><button type="button" data-toggle="modal" class="btn" data-target="#myModalLogin" style="background-color:white;padding:8px 12px;color:#696763;font-family:'Roboto', sans-serif;font-weight:300;padding-right:0px;"><i class="fa fa-lock"></i> Đăng nhập</button></li>
+                                <li><button type="button" data-toggle="modal" class="btn" data-target="#myModalCart" style="background-color:white;padding:8px 12px;color:#696763;font-family:'Roboto', sans-serif;font-weight:300;padding-right:0px;"><i class="fa fa-shopping-cart"></i> Giỏ hàng</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header-middle-->
+        <!-- Modal thong bao-->
+        <div class="modal fade" id="myModalNoti" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog-login" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Thông báo</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div style="padding:5px 50px;">
+                            <img src="images/home/success.png" />
+                            <label style="padding-left:20px;font-size:18px;">... thành công</label>
+                        </div>
+                        <!-- /.box -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" style="background-color:#fe980f;color:white;">Thoát</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+        <!-- /modal thong bao -->
+        <!-- Modal dang nhap-->
+        <div class="modal fade" id="myModalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog-login" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Đăng nhập</h4>
+                        <p style="margin:0px;">Bạn chưa có tài khoản. Nhấn vào đây để <a href="">Đăng ký</a></p>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p style="color:red;">Tài khoản hoặc mật khẩu chưa chính xác!</p>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="login-form">
+                                    <!--login form-->
+                                    <form action="#">
+                                        <div class="form-group row" style="padding:0px 10px;margin-bottom:0px;">
+                                            <label for="example-text-input" class="col-2 col-form-label">Tài khoản</label>
+                                            <div class="col-10">
+                                                <input class="form-control" type="text" placeholder="Tài khoản" id="example-text-input">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" style="padding:0px 10px;margin-bottom:0px;">
+                                            <label for="example-text-input" class="col-2 col-form-label">Mật khẩu</label>
+                                            <div class="col-10">
+                                                <input class="form-control" type="text" placeholder="Mật khẩu" id="example-text-input">
+                                            </div>
+                                        </div>
+                                        <span>
+                                            <input type="checkbox" class="checkbox">
+                                            Nhớ mật khẩu
+                                        </span>
+                                    </form>
+                                </div><!--/login form-->
+                            </div>
+                            </row>
+                        </div>
+                        <!-- /.box -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" style="background-color:#fe980f;color:white;">Đăng nhập</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /modal dang nhap -->
+        <!-- Modal dang ky-->
+        <div class="modal fade" id="myModalRes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog-res" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Đăng ký tài khoản</h4>
+                        <p style="margin:0px;">Bạn đã có tài khoản. Nhấn vào đây để <a href="">Đăng nhập</a></p>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p style="color:red;">Số điện thoại không đúng</p>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="login-form row">
+                                    <!--login form-->
+                                    <form action="#">
+                                        <div class="col-sm-6">
+                                            <div class="form-group row" style="padding:0px 10px;margin-bottom:0px;">
+                                                <label for="example-text-input" class="col-2 col-form-label">Tài khoản</label>
+                                                <div class="col-10">
+                                                    <input class="form-control" type="text" placeholder="Tài khoản" id="example-text-input">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" style="padding:0px 10px;margin-bottom:0px;">
+                                                <label for="example-text-input" class="col-2 col-form-label">Mật khẩu</label>
+                                                <div class="col-10">
+                                                    <input class="form-control" type="text" placeholder="Mật khẩu" id="example-text-input">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" style="padding:0px 10px;margin-bottom:0px;">
+                                                <label for="example-text-input" class="col-2 col-form-label">Họ tên</label>
+                                                <div class="col-10">
+                                                    <input class="form-control" type="text" placeholder="Họ tên" id="example-text-input">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" style="padding:0px 10px;margin-bottom:0px;">
+                                                <label for="example-text-input" class="col-2 col-form-label">Email</label>
+                                                <div class="col-10">
+                                                    <input class="form-control" type="text" placeholder="Email" id="example-text-input">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group row" style="padding:0px 10px;margin-bottom:0px;">
+                                                <label for="example-text-input" class="col-2 col-form-label">Số điện thoại</label>
+                                                <div class="col-10">
+                                                    <input class="form-control" type="text" placeholder="Số điện thoại" id="example-text-input">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" style="padding:0px 10px;margin-bottom:0px;">
+                                                <label for="example-text-input" class="col-2 col-form-label">Giới tính</label>
+                                                <div class="col-10">
+                                                    <label style="padding:7px;">
+                                                        <span>
+                                                            <input type="radio" class="checkbox">
+                                                            <label>Nam</label>
+                                                        </span>
+                                                    </label>
+                                                    <label style="padding:7px;">
+                                                        <span>
+                                                            <input type="radio" class="checkbox">
+                                                            <label>Nữ</label>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" style="padding:0px 10px;margin-bottom:0px;">
+                                                <label for="example-text-input" class="col-2 col-form-label">Ngày sinh</label>
+                                                <div class="col-10">
+                                                    <input class="form-control" type="date" id="example-text-input">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" style="padding:0px 10px;margin-bottom:0px;">
+                                                <label for="example-text-input" class="col-2 col-form-label">Địa chỉ</label>
+                                                <div class="col-10">
+                                                    <input class="form-control" type="text" placeholder="Địa chỉ" id="example-text-input">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <span>
+                                                <input type="checkbox" class="checkbox">
+                                                Khi bạn nhấn Đăng ký, bạn đã đồng ý thực hiện mọi giao dịch mua bán theo <a href> điều kiện sử dụng và chính sách của ShopTheThao.</a>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div><!--/login form-->
+                            </div>
+                            </row>
+                        </div>
+                        <!-- /.box -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" style="background-color:#fe980f;color:white;">Đăng ký</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /modal dang ky -->
+        <!-- Modal giỏ hàng-->
+        <div class="modal fade" id="myModalCart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modla-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Giỏ hàng</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive cart_info">
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <td class="image"><b>Sản phẩm</b></td>
+                                        <td class="description"></td>
+                                        <td class="price"><b>Giá</b></td>
+                                        <td class="quantity"><b>Số lượng</b></td>
+                                        <td class="total"><b>Tổng tiền</b></td>
+                                        <td></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="cart_product">
+                                            <a href=""><img src="/Assets/Client/images/cart/one.png" alt=""></a>
+                                        </td>
+                                        <td class="cart_description" style="padding-left:20px;">
+                                            <h4><a href="">Colorblock Scuba</a></h4>
+                                            <p>Web ID: 1089772</p>
+                                        </td>
+                                        <td class="cart_price">
+                                            <p>500.000 VNĐ</p>
+                                        </td>
+                                        <td class="cart_quantity">
+                                            <div class="cart_quantity_button">
+                                                <a class="cart_quantity_up" href=""> + </a>
+                                                <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+                                                <a class="cart_quantity_down" href=""> - </a>
+                                            </div>
+                                        </td>
+                                        <td class="cart_total">
+                                            <p class="cart_total_price">500.000 VNĐ</p>
+                                        </td>
+                                        <td class="cart_delete">
+                                            <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cart_product">
+                                            <a href=""><img src="/Assets/Client/images/cart/two.png" alt=""></a>
+                                        </td>
+                                        <td class="cart_description" style="padding-left:20px;">
+                                            <h4><a href="">Colorblock Scuba</a></h4>
+                                            <p>Web ID: 1089772</p>
+                                        </td>
+                                        <td class="cart_price">
+                                            <p>500.000 VNĐ</p>
+                                        </td>
+                                        <td class="cart_quantity">
+                                            <div class="cart_quantity_button">
+                                                <a class="cart_quantity_up" href=""> + </a>
+                                                <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+                                                <a class="cart_quantity_down" href=""> - </a>
+                                            </div>
+                                        </td>
+                                        <td class="cart_total">
+                                            <p class="cart_total_price">500.000 VNĐ</p>
+                                        </td>
+                                        <td class="cart_delete">
+                                            <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cart_product">
+                                            <a href=""><img src="/Assets/Client/images/cart/three.png" alt=""></a>
+                                        </td>
+                                        <td class="cart_description" style="padding-left:20px;">
+                                            <h4><a href="">Colorblock Scuba</a></h4>
+                                            <p>Web ID: 1089772</p>
+                                        </td>
+                                        <td class="cart_price">
+                                            <p>250.000 VNĐ</p>
+                                        </td>
+                                        <td class="cart_quantity">
+                                            <div class="cart_quantity_button">
+                                                <a class="cart_quantity_up" href=""> + </a>
+                                                <input class="cart_quantity_input" type="text" name="quantity" value="2" autocomplete="off" size="2">
+                                                <a class="cart_quantity_down" href=""> - </a>
+                                            </div>
+                                        </td>
+                                        <td class="cart_total">
+                                            <p class="cart_total_price">500.000 VNĐ</p>
+                                        </td>
+                                        <td class="cart_delete">
+                                            <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModalFianlCart" style="background-color:#fe980f;color:white;disdisplay:none;">Thanh toán</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /modal gio hang -->
+        <!-- Modal xac nhan thong tin giao hang-->
+        <div class="modal fade" id="myModalFinalCart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Xác nhận thông tin mua hàng</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p style="color:red;">Số điện thoại không đúng</p>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="login-form row">
+                                    <!--login form-->
+                                    <form action="#">
+                                        <div class="col-sm-6">
+                                            <div class="form-group row" style="padding:0px 10px;margin-bottom:0px;">
+                                                <label for="example-text-input" class="col-2 col-form-label">Họ tên</label>
+                                                <div class="col-10">
+                                                    <input class="form-control" type="text" placeholder="Họ tên" id="example-text-input">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" style="padding:0px 10px;margin-bottom:0px;">
+                                                <label for="example-text-input" class="col-2 col-form-label">Email</label>
+                                                <div class="col-10">
+                                                    <input class="form-control" type="text" placeholder="Email" id="example-text-input">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" style="padding:0px 10px;margin-bottom:0px;">
+                                                <label for="example-text-input" class="col-2 col-form-label">Số điện thoại</label>
+                                                <div class="col-10">
+                                                    <input class="form-control" type="text" placeholder="Số điện thoại" id="example-text-input">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group row" style="padding:0px 10px;margin-bottom:0px;">
+                                                <label for="example-text-input" class="col-2 col-form-label">Ngày sinh</label>
+                                                <div class="col-10">
+                                                    <input class="form-control" type="date" id="example-text-input">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" style="padding:0px 10px;margin-bottom:0px;">
+                                                <label for="example-text-input" class="col-2 col-form-label">Địa chỉ</label>
+                                                <div class="col-10">
+                                                    <input class="form-control" type="text" placeholder="Địa chỉ" id="example-text-input">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" style="padding:0px 10px;margin-bottom:0px;">
+                                                <label for="example-text-input" class="col-2 col-form-label">Tổng tiền</label>
+                                                <div class="col-10">
+                                                    <p style="font-size:24px;color:#fe980f;"><b>1.450.000 VNĐ</b></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <span>
+                                                <input type="checkbox" class="checkbox">
+                                                Khi bạn nhấn Hoàn tất, bạn đã đồng ý thực hiện mọi giao dịch mua bán theo <a href> điều kiện sử dụng và chính sách của ShopTheThao.</a>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div><!--/login form-->
+                            </div>
+                            </row>
+                        </div>
+                        <!-- /.box -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" style="background-color:#fe980f;color:white;">Hoàn tất</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Modal xac nhan thong tin giao hang -->
+        <div class="header-bottom">
+            <!--header-bottom-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="mainmenu pull-left">
+                            <ul class="nav navbar-nav collapse navbar-collapse">
+                                <li><a href="index.html" class="active">Trang chủ</a></li>
+                                <li><a href="contact-us.html">Giới thiệu</a></li>
+                                <li><a href="shop.html">Cửa hàng</a></li>
+                                <li><a href="contact-us.html">Liên hệ</a></li>
+                                <li><a href="contact-us.html">Góp ý</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="search_box pull-right">
+                            <input type="text" placeholder="Từ khoá tìm kiếm" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header-bottom-->
+    </header><!--/header-->
+    <section id="slider">
+        <!--slider-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#slider-carousel" data-slide-to="1"></li>
+                            <li data-target="#slider-carousel" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="col-sm-6">
+                                    <h1><span>SHOP</span>-THETHAO</h1>
+                                    <h2>Mẫu mã đẹp, chất lượng</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                    <button type="button" class="btn btn-default get">Mua ngay</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <img src="/Assets/Client/images/home/girl1.jpg" class="girl img-responsive" alt="" />
+                                    <img src="/Assets/Client/images/home/pricing.png" class="pricing" alt="" />
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="col-sm-6">
+                                    <h1><span>SHOP</span>-THETHAO</h1>
+                                    <h2>Mẫu mã đẹp, chất lượng</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                    <button type="button" class="btn btn-default get">Mua ngay</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <img src="/Assets/Client/images/home/girl2.jpg" class="girl img-responsive" alt="" />
+                                    <img src="/Assets/Client/images/home/pricing.png" class="pricing" alt="" />
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="col-sm-6">
+                                    <h1><span>SHOP</span>-THETHAO</h1>
+                                    <h2>Mẫu mã đẹp, chất lượng</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                    <button type="button" class="btn btn-default get">Mua ngay</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <img src="/Assets/Client/images/home/girl3.jpg" class="girl img-responsive" alt="" />
+                                    <img src="/Assets/Client/images/home/pricing.png" class="pricing" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--/slider-->
+    <section>
+        @RenderBody();
+    </section>
+    <footer id="footer">
+        <!--Footer-->
+        <div class="footer-widget">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="companyinfo">
+                            <h2><span>Shop</span>-thethao</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Giới thiệu</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="#">Về Shopthethao</a></li>
+                                <li><a href="#">Chính sách và quy định</a></li>
+                                <li><a href="#">Chính sách bảo mật</a></li>
+                                <li><a href="#">Sơ đồ Website</a></li>
+                                <li><a href="#">Liên hệ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Trợ giúp</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="#">Hướng dẫn mua hàng</a></li>
+                                <li><a href="#">Hướng dẫn thanh toán</a></li>
+                                <li><a href="#">Hướng dẫn đổi hàng</a></li>
+                                <li><a href="#">Quy trình xử lý khiếu nại</a></li>
+                                <li><a href="#">Tài khoản và đơn hàng</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Khách hàng</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="#">Đăng kí tài khoản</a></li>
+                                <li><a href="#">Đăng nhập</a></li>
+                                <li><a href="#">Bảo mật thông tin</a></li>
+                                <li><a href="#">Khuyến mãi</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-sm-offset-1">
+                        <div class="single-widget">
+                            <h2>Nhận thông báo</h2>
+                            <form action="#" class="searchform">
+                                <input type="text" placeholder="Xin vui lòng nhập Email" />
+                                <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
+                                <p>Get the most recent updates from <br />our site and be updated your self...</p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <p class="pull-left">Copyright © 2017 SHOP-THETHAO Inc. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer><!--/Footer-->
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
-
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="/Assets/Client/js/jquery.js"></script>
+    <script src="/Assets/Client/js/bootstrap.min.js"></script>
+    <script src="/Assets/Client/js/jquery.scrollUp.min.js"></script>
+    <script src="/Assets/Client/js/price-range.js"></script>
+    <script src="/Assets/Client/js/jquery.prettyPhoto.js"></script>
+    <script src="/Assets/Client/js/main.js"></script>
 </body>
 </html>
+
