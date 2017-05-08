@@ -1,0 +1,326 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+        <!-- Content Header (Page header) -->
+<!-- <section class="content-header">
+  <h1>
+    Data Tables
+    <small>advanced tables</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="#">Tables</a></li>
+    <li class="active">Data tables</li>
+  </ol>
+</section> -->
+<div class="page-header">
+    <div class="container-fluid">
+        <div class="pull-right" style="padding:25px 0px 0px 0px;">
+            <button type="button" data-toggle="tooltip" title="Xóa" class="btn btn-danger" onclick="confirm('Xóa/Gỡ bỏ sẽ không phục hồi lại được! Bạn có chắc chắn muốn thực hiện việc này?') ? $('#form-product').submit() : false;"><i class="fa fa-trash-o"></i></button>
+        </div>
+        <h1>Đơn đặt hàng</h1>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-list"></i> Danh sách đơn đặt hàng</h3>
+        </div>
+        <div class="panel-body">
+            <div class="well">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label" for="input-name">Mã đơn hàng</label>
+                            <input type="text" name="filter_name" value="" placeholder="Mã đơn hàng" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="input-model">Tên sản phẩm</label>
+                            <input type="text" name="filter_name" value="" placeholder="Tên sản phẩm" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label" for="input-price">Mã khách hàng</label>
+                            <input type="text" name="filter_price" value="" placeholder="Mã khách hàng" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="input-quantity">Ngày đặt hàng</label>
+                            <input type="date" value="" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label" for="input-status">Mã sản phẩm</label>
+                            <input type="text" name="filter_quantity" value="" placeholder="Mã sản phẩm" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="input-quantity">Trạng thái</label>
+                            <select name="filter_status" class="form-control">
+                                <option value="*"></option>
+                                <option value="1">Đã giao hàng</option>
+                                <option value="0">Chưa giao hàng</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-search"></i> Tìm kiếm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-sm-12" style="padding:0px;">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <td style="width: 1px;" class="text-center"><input type="checkbox" /></td>
+                                <td class="text-center">Mã đơn hàng</td>
+                                <td class="text-center"><a href="#" class="asc">Tên sản phẩm</a></td>
+                                <td class="text-center"><a href="#">Mã sản phẩm:</a></td>
+                                <td class="text-center"><a href="#">Mã khách hàng</a></td>
+                                <td class="text-center"><a href="#">Ngày đặt hàng</a></td>
+                                <td class="text-center"><a href="#">Trạng thái</a></td>
+                                <td class="text-center">Thao tác</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center"><input type="checkbox" /></td>
+                                <td class="text-center">DH-01</td>
+                                <td class="text-center">BALO B2B01 B.GREY</td>
+                                <td class="text-center">S-01</td>
+                                <td class="text-center">KHV-04</td>
+                                <td class="text-center">30/04/2017</td>
+                                <td class="text-center">Đã giao</td>
+                                <td class="text-center">
+                                    <button type="button" data-toggle="modal" class="btn btn-info" data-target="#myModal3"><i class="fa fa-eye"></i></button>
+                                    <button type="button" data-toggle="modal" class="btn btn-primary" data-target="#myModal2"><i class="fa fa-pencil"></i></button>
+                                    <button type="button" data-toggle="tooltip" title="Xóa" class="btn btn-danger" onclick="confirm('Xóa/Gỡ bỏ sẽ không phục hồi lại được! Bạn có chắc chắn muốn thực hiện việc này?') ? $('#form-product').submit() : false;"><i class="fa fa-trash-o"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center"><input type="checkbox" /></td>
+                                <td class="text-center">DH-01</td>
+                                <td class="text-center">BALO B2B01 B.GREY</td>
+                                <td class="text-center">S-01</td>
+                                <td class="text-center">KHV-04</td>
+                                <td class="text-center">30/04/2017</td>
+                                <td class="text-center">Chưa giao</td>
+                                <td class="text-center">
+                                    <button type="button" data-toggle="modal" class="btn btn-info" data-target="#myModal3"><i class="fa fa-eye"></i></button>
+                                    <button type="button" data-toggle="modal" class="btn btn-primary" data-target="#myModal2"><i class="fa fa-pencil"></i></button>
+                                    <button type="button" data-toggle="tooltip" title="Xóa" class="btn btn-danger" onclick="confirm('Xóa/Gỡ bỏ sẽ không phục hồi lại được! Bạn có chắc chắn muốn thực hiện việc này?') ? $('#form-product').submit() : false;"><i class="fa fa-trash-o"></i></button>
+                                </td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center"><input type="checkbox" /></td>
+                                <td class="text-center">DH-01</td>
+                                <td class="text-center">BALO B2B01 B.GREY</td>
+                                <td class="text-center">S-01</td>
+                                <td class="text-center">KHV-04</td>
+                                <td class="text-center">30/04/2017</td>
+                                <td class="text-center">Đã giao</td>
+                                <td class="text-center">
+                                    <button type="button" data-toggle="modal" class="btn btn-info" data-target="#myModal3"><i class="fa fa-eye"></i></button>
+                                    <button type="button" data-toggle="modal" class="btn btn-primary" data-target="#myModal2"><i class="fa fa-pencil"></i></button>
+                                    <button type="button" data-toggle="tooltip" title="Xóa" class="btn btn-danger" onclick="confirm('Xóa/Gỡ bỏ sẽ không phục hồi lại được! Bạn có chắc chắn muốn thực hiện việc này?') ? $('#form-product').submit() : false;"><i class="fa fa-trash-o"></i></button>
+                                </td>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- Modal chi tiet don dat hang-->
+                    <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title">Đơn đặt hàng</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="box-body">
+                                                <label style="font-size:18px;"><b>Chi tiết đơn hàng</b></label>
+                                            </div><!-- /.box-body -->
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <!-- form start -->
+                                            <form role="form">
+                                                <div class="box-body">
+                                                    <div class="form-group">
+                                                        <label><b>Mã đơn hàng</b></label>
+                                                        <p>DH-92</p>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label><b>Tên nhà sản phẩm</b></label>
+                                                        <p>1. Áo thun</p>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label><b>Tổng tiền</b></label>
+                                                        <p>1.250.000 VNĐ</p>
+                                                    </div>
+                                                </div><!-- /.box-body -->
+                                            </form>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <!-- form start -->
+                                            <form role="form">
+                                                <div class="box-body">
+                                                    <div class="form-group">
+                                                        <label><b>Ngày đặt hàng</b></label>
+                                                        <p>30/04/2017</p>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label><b>Mã nhà sản phẩm</b></label>
+                                                        <p>1. AT-01</p>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label><b>Ngày giao hàng dự kiến</b></label>
+                                                        <p>3/5/2017</p>
+                                                    </div>
+                                                </div><!-- /.box-body -->
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="box-body">
+                                                <label style="font-size:18px;"><b>Chi tiết khách hàng</b></label>
+                                            </div><!-- /.box-body -->
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <!-- form start -->
+                                            <form role="form">
+                                                <div class="box-body">
+                                                    <div class="form-group">
+                                                        <label><b>Tên khách hàng</b></label>
+                                                        <p>Phạm Nhanh</p>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label><b>Số điện thoại</b></label>
+                                                        <p>01629594513</p>
+                                                    </div>
+                                                </div><!-- /.box-body -->
+                                            </form>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <!-- form start -->
+                                            <form role="form">
+                                                <div class="box-body">
+                                                    <div class="form-group">
+                                                        <label><b>Mã khách hàng</b></label>
+                                                        <p>KHV-04</p>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label><b>Địa chỉ giao hàng</b></label>
+                                                        <p>477/3/9 Âu Cơ, phường Phú Trung, quận Tân Phú, TP.HCM</p>
+                                                    </div>
+                                                </div><!-- /.box-body -->
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.box -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal sua don dat hang-->
+                    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title">Chỉnh sửa đơn đặt hàng</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <!-- form start -->
+                                            <form role="form">
+                                                <div class="box-body">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Ngày giao hàng</label>
+                                                        <input type="date" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Trạng thái</label>
+                                                        <select name="filter_status" class="form-control">
+                                                            <option value="*"></option>
+                                                            <option value="1">Đã giao</option>
+                                                            <option value="0">Chưa giao</option>
+                                                        </select>
+                                                    </div>
+                                                </div><!-- /.box-body -->
+                                            </form>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <!-- form start -->
+                                            <form role="form">
+                                                <div class="box-body">
+                                                    <div class="form-group">
+                                                        <label>Số điện thoại</label>
+                                                        <input type="text" class="form-control" placeholder="Nhập mã nhà sản xuất">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Email</label>
+                                                        <input type="email" class="form-control">
+                                                    </div>
+                                                </div><!-- /.box-body -->
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <form role="form">
+                                                <div class="box-body">
+                                                    <div class="form-group">
+                                                        <label>Địa chỉ giao hàng</label>
+                                                        <input type="text" class="form-control" placeholder="Nhập địa chỉ giao hàng">
+                                                    </div>
+                                                </div><!-- /.box-body -->
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.box -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
+                                    <button type="button" class="btn btn-primary">Sửa</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 text-left">Hiển thị từ 1 đến 10 trong 22 (3 trang)</div>
+                    <div class="col-sm-6 text-right">
+                        <ul class="pagination" style="margin:0px;">
+                            <li class="disabled"><a href="#">&laquo;</a></li>
+                            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                            <li class=""><a href="#">2 <span class="sr-only">(current)</span></a></li>
+                            <li class=""><a href="#">3 <span class="sr-only">(current)</span></a></li>
+                            <li class=""><a href="#">4 <span class="sr-only">(current)</span></a></li>
+                            <li class="disabled"><a href="#">&raquo;</a></li>
+                        </ul>
+                    </div>
+                </div><!-- /.row -->
+    </section><!-- /.content -->
+</div>
+

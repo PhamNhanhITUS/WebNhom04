@@ -1,0 +1,233 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<!-- <section class="content-header">
+  <h1>
+    Data Tables
+    <small>advanced tables</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="#">Tables</a></li>
+    <li class="active">Data tables</li>
+  </ol>
+</section> -->
+<div class="page-header">
+    <div class="container-fluid">
+        <div class="pull-right" style="padding:25px 0px 0px 0px;">
+            <button type="button" data-toggle="modal" class="btn btn-primary" data-target="#myModal1"><i class="fa fa-plus"></i></button>
+            <button type="button" data-toggle="tooltip" title="Xóa" class="btn btn-danger" onclick="confirm('Xóa/Gỡ bỏ sẽ không phục hồi lại được! Bạn có chắc chắn muốn thực hiện việc này?') ? $('#form-product').submit() : false;"><i class="fa fa-trash-o"></i></button>
+        </div>
+        <h1>Loại sản phẩm</h1>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Thêm loại sản phẩm mới</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <!-- form start -->
+                        <form role="form">
+                            <div class="box-body">
+                                <div class="form-group" style="margin-bottom:0px;">
+                                    <label>Tên loại sản phẩm</label>
+                                    <input type="text" class="form-control" placeholder="Nhập tên loại sản phẩm">
+                                </div>
+                            </div><!-- /.box-body -->
+                        </form>
+                    </div>
+                    <div class="col-sm-6">
+                        <!-- form start -->
+                        <form role="form">
+                            <div class="box-body">
+                                <div class="form-group" style="margin-bottom:0px;">
+                                    <label>Mã loại</label>
+                                    <input type="email" class="form-control" placeholder="Nhập mã loại sản phẩm">
+                                </div>
+                            </div><!-- /.box-body -->
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="box-body">
+                            <div class="form-group" style="margin-bottom:0px;">
+                                <label>Mô tả loại sản phẩm</label>
+                                <input type="text" class="form-control" placeholder="Nhập mô tả loại sản phẩm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-primary">Thêm</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-list"></i> Danh sách loại sản phẩm</h3>
+        </div>
+        <div class="panel-body">
+            <div class="well">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <label class="control-label" for="input-name">Tên loại sản phẩm</label>
+                            <input type="text" name="filter_name" value="" placeholder="Tên loại sản phẩm" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label" for="input-price">Mã loại sản phẩm</label>
+                            <select name="filter_status" class="form-control">
+                                <option value="*"></option>
+                                <option value="1">AT</option>
+                                <option value="0">GI</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <button type="button" class="btn btn-primary pull-right"><i class="fa fa-search"></i> Tìm kiếm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-sm-12" style="padding:0px;">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <td style="width: 1px;" class="text-center"><input type="checkbox" /></td>
+                                <td class="text-center">ID</td>
+                                <td class="text-center"><a href="#" class="asc">Tên loại sản phẩm</a></td>
+                                <td class="text-center"><a href="#">Mã loại sản phẩm</a></td>
+                                <td class="text-center"><a href="#">Mô tả loại sản phẩm</a></td>
+                                <td class="text-center"><a href="#">Thao tác</a></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center"><input type="checkbox" /></td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">Áo thun Adidas</td>
+                                <td class="text-center">S-01</td>
+                                <td class="text-center">Áo thun adidas chính hãng được nhập khẩu từ nước ngoài</td>
+                                <td class="text-center">
+                                    <button type="button" data-toggle="modal" class="btn btn-primary" data-target="#myModal2"><i class="fa fa-pencil"></i></button>
+                                    <button type="button" data-toggle="tooltip" title="Xóa" class="btn btn-danger" onclick="confirm('Xóa/Gỡ bỏ sẽ không phục hồi lại được! Bạn có chắc chắn muốn thực hiện việc này?') ? $('#form-product').submit() : false;"><i class="fa fa-trash-o"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center"><input type="checkbox" /></td>
+                                <td class="text-center">2</td>
+                                <td class="text-center">Áo thun Adidas</td>
+                                <td class="text-center">S-01</td>
+                                <td class="text-center">Áo thun adidas chính hãng được nhập khẩu từ nước ngoài</td>
+                                <td class="text-center">
+                                    <button type="button" data-toggle="modal" class="btn btn-primary" data-target="#myModal2"><i class="fa fa-pencil"></i></button>
+                                    <button type="button" data-toggle="tooltip" title="Xóa" class="btn btn-danger" onclick="confirm('Xóa/Gỡ bỏ sẽ không phục hồi lại được! Bạn có chắc chắn muốn thực hiện việc này?') ? $('#form-product').submit() : false;"><i class="fa fa-trash-o"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center"><input type="checkbox" /></td>
+                                <td class="text-center">3</td>
+                                <td class="text-center">Áo thun Adidas</td>
+                                <td class="text-center">S-01</td>
+                                <td class="text-center">Áo thun adidas chính hãng được nhập khẩu từ nước ngoài</td>
+                                <td class="text-center">
+                                    <button type="button" data-toggle="modal" class="btn btn-primary" data-target="#myModal2"><i class="fa fa-pencil"></i></button>
+                                    <button type="button" data-toggle="tooltip" title="Xóa" class="btn btn-danger" onclick="confirm('Xóa/Gỡ bỏ sẽ không phục hồi lại được! Bạn có chắc chắn muốn thực hiện việc này?') ? $('#form-product').submit() : false;"><i class="fa fa-trash-o"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Modal sua loai san pham-->
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Chỉnh sửa loại sản phẩm mới</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <!-- form start -->
+                                <form role="form">
+                                    <div class="box-body">
+                                        <div class="form-group" style="margin-bottom:0px;">
+                                            <label>Tên loại sản phẩm</label>
+                                            <input type="text" class="form-control" placeholder="Nhập tên loại sản phẩm">
+                                        </div>
+                                    </div><!-- /.box-body -->
+                                </form>
+                            </div>
+                            <div class="col-sm-6">
+                                <!-- form start -->
+                                <form role="form">
+                                    <div class="box-body">
+                                        <div class="form-group" style="margin-bottom:0px;">
+                                            <label>Mã loại</label>
+                                            <input type="email" class="form-control" placeholder="Nhập mã loại sản phẩm">
+                                        </div>
+                                    </div><!-- /.box-body -->
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="box-body">
+                                    <div class="form-group" style="margin-bottom:0px;">
+                                        <label>Mô tả loại sản phẩm</label>
+                                        <input type="text" class="form-control" placeholder="Nhập mô tả loại sản phẩm">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
+                        <button type="button" class="btn btn-primary">Sửa</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 text-left">Hiển thị từ 1 đến 10 trong 22 (3 trang)</div>
+            <div class="col-sm-6 text-right">
+                <ul class="pagination" style="margin:0px;">
+                    <li class="disabled"><a href="#">&laquo;</a></li>
+                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                    <li class=""><a href="#">2 <span class="sr-only">(current)</span></a></li>
+                    <li class=""><a href="#">3 <span class="sr-only">(current)</span></a></li>
+                    <li class=""><a href="#">4 <span class="sr-only">(current)</span></a></li>
+                    <li class="disabled"><a href="#">&raquo;</a></li>
+                </ul>
+            </div>
+        </div><!-- /.row -->
+    </section><!-- /.content -->
+</div>
+
