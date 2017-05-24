@@ -88,6 +88,8 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -461,6 +463,8 @@
     <Content Include="Assets\Client\js\jquery.scrollUp.min.js" />
     <Content Include="Assets\Client\js\main.js" />
     <Content Include="Assets\Client\js\price-range.js" />
+    <Content Include="Assets\Client\js\validator.js" />
+    <Content Include="Assets\Client\js\validator.min.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -484,6 +488,16 @@
     <Content Include="Areas\Admin\Views\System\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Information\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Models\shopthethao.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>shopthethao.edmx</DependentUpon>
+      <LastGenOutput>shopthethao.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\shopthethao.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>shopthethao.edmx</DependentUpon>
+      <LastGenOutput>shopthethao.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -501,6 +515,51 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Admin.cs">
+      <DependentUpon>shopthethao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChiTietDonDatHang.cs">
+      <DependentUpon>shopthethao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DonDatHang.cs">
+      <DependentUpon>shopthethao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HangSanXuat.cs">
+      <DependentUpon>shopthethao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoaiSanPham.cs">
+      <DependentUpon>shopthethao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoaiTaiKhoan.cs">
+      <DependentUpon>shopthethao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SanPham.cs">
+      <DependentUpon>shopthethao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\shopthethao.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>shopthethao.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\shopthethao.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>shopthethao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\shopthethao.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>shopthethao.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>shopthethao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TaiKhoan.cs">
+      <DependentUpon>shopthethao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TinhTrang.cs">
+      <DependentUpon>shopthethao.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -520,6 +579,18 @@
     <Content Include="Views\Error404\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <EntityDeploy Include="Models\shopthethao.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>shopthethao.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\shopthethao.edmx.diagram">
+      <DependentUpon>shopthethao.edmx</DependentUpon>
+    </Content>
+    <Content Include="Views\Shared\_PartialModalLogin.cshtml" />
+    <Content Include="Views\Shared\_PartialModalRegister.cshtml" />
+    <Content Include="Views\Shared\_PartialModalNoti.cshtml" />
+    <Content Include="Views\Shared\_PartialModalCart.cshtml" />
+    <Content Include="Views\Shared\_PartialModalInfo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -531,7 +602,9 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Assets\Admin\build\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

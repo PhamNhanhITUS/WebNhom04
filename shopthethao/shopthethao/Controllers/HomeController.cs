@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using shopthethao.Models;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace shopthethao.Controllers
 {
@@ -11,7 +14,126 @@ namespace shopthethao.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            ViewBag.Product = ProductAll();
             return View();
+        }
+        public static string CreateMD5(string input)
+        {
+            // Use input string to calculate MD5 hash
+            MD5 md5 = System.Security.Cryptography.MD5.Create();
+            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
+            byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+            // Convert the byte array to hexadecimal string
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < hashBytes.Length; i++)
+            {
+                sb.Append(hashBytes[i].ToString("X2"));
+            }
+            return sb.ToString();
+        }
+        public static string EncodePassword(string originalPassword)
+        {
+            //Declarations
+            Byte[] originalBytes;
+            Byte[] encodedBytes;
+            MD5 md5;
+
+            //Instantiate MD5CryptoServiceProvider, get bytes for original password and compute hash (encoded password)
+            md5 = new MD5CryptoServiceProvider();
+            originalBytes = ASCIIEncoding.Default.GetBytes(originalPassword);
+            encodedBytes = md5.ComputeHash(originalBytes);
+
+            //Convert encoded bytes back to a 'readable' string
+            return BitConverter.ToString(encodedBytes);
+        }
+
+        [HttpPost]
+        public ActionResult Login(FormCollection fc)
+        {
+            string taikhoan = fc[0].ToString();
+            string matkhau = CreateMD5(fc[1].ToString());
+            using (shopthethaoEntities db = new shopthethaoEntities())
+            {
+                var t = db.TaiKhoans.Where(u => u.TenDangNhap == taikhoan && u.MatKhau == matkhau && u.BiXoa == false).SingleOrDefault();
+                if (t != null)
+                {
+                    Session["TenDangNhap"] = t.TenHienThi;
+                    Session["DangNhapThanhCong"] = "";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    Session["LoiDangNhap"] = "";
+                    return RedirectToAction("Index");
+                }
+            }
+           
+        }
+        [HttpPost]
+        public ActionResult Register(FormCollection fc)
+        {
+            string matKhauMaHoa = CreateMD5(fc["MatKhau"].ToString());
+            using (shopthethaoEntities db = new shopthethaoEntities())
+            {
+                string tenDangNhap = fc["TenDangNhap"].ToString();
+                string email = fc["Email"].ToString();
+                string dienThoai = fc["DienThoai"].ToString();
+                var src = db.TaiKhoans.Where(u => u.TenDangNhap == tenDangNhap && u.BiXoa == false).SingleOrDefault();
+                if (src != null)
+                {
+                    Session["KTDangKy"] = "Tên đăng nhập đã được đăng ký";
+                    return RedirectToAction("Index");
+                }
+                else if (db.TaiKhoans.Where(u => u.Email == email).SingleOrDefault() != null)
+                {
+                    Session["KTDangKy"] = "Email đã đã được đăng ký";
+                    return RedirectToAction("Index");
+                }
+                else if (db.TaiKhoans.Where(u => u.DienThoai == dienThoai).SingleOrDefault() != null)
+                {
+                    Session["KTDangKy"] = "Số diện đã được đăng ký";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TaiKhoan taiKhoan = new TaiKhoan
+                    {
+                        TenDangNhap = fc["TenDangNhap"].ToString(),
+                        MatKhau = matKhauMaHoa.ToString(),
+                        TenHienThi = fc["TenHienThi"].ToString(),
+                        Email = fc["Email"].ToString(),
+                        DienThoai = fc["DienThoai"].ToString(),
+                        GioiTinh = Boolean.Parse(fc["GioiTinh"]),
+                        NgaySinh = DateTime.Parse(fc["NgaySinh"]),
+                        DiaChi = fc["DiaChi"].ToString(),
+                        MaLoaiTaiKhoan = 1,
+                        BiXoa = false
+                    };
+                    db.TaiKhoans.Add(taiKhoan);
+                    db.SaveChanges();
+
+                    if (db.SaveChanges() == 0)
+                    {
+                        Session["DangKyThanhCong"] = "";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        Session["DangKyThatBai"] = "";
+                        return RedirectToAction("Index");
+                    }
+                }
+                    
+            }
+        }
+
+        public List<SanPham> ProductAll()
+        {
+            using (shopthethaoEntities db = new shopthethaoEntities())
+            {
+                return db.SanPhams.OrderBy(y => y.SoLuongBan).ToList();
+            }
         }
     }
 }
