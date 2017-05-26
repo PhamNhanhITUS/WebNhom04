@@ -7,80 +7,82 @@
     var newProduct_2 = (List<shopthethao.Models.SanPham>)ViewBag.NewProduct_2;
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12 padding-right">
-            <div class="features_items">
-                <!--features_items-->
-                <h2 class="title text-center">Sản phẩm bán chạy</h2>
-                @foreach (var item in bestProduct)
-                {
-                    <div class="col-sm-3">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="/Assets/Client/images/home/product1.jpg" alt="" />
-                                    <h4>@item.TenSanPham</h4>
-                                    <h5>@item.GiaSanPham VNĐ</h5>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+@Html.Partial("~/Views/Shared/_PartialSlide.cshtml")
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 padding-right">
+                <div class="features_items">
+                    <!--features_items-->
+                    <h2 class="title text-center">Sản phẩm bán chạy</h2>
+                    @foreach (var item in bestProduct)
+                    {
+                        <div class="col-sm-3">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><img src="/Assets/Client/images/home/product1.jpg" alt="" /></a>
+                                        <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><h4>@item.TenSanPham</h4></a>
+                                        <h5>@item.GiaSanPham VNĐ</h5>
+                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                }
-                
-            </div><!--features_items-->
-            <div class="recommended_items">
-                <!--recommended_items-->
-                <h2 class="title text-center">Sản phẩm mới</h2>
-                <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            @foreach (var item in newProduct_1)
-                            {
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="/Assets/Client/images/home/product1.jpg" alt="" />
-                                                <h4>@item.TenSanPham</h4>
-                                                <h5>@item.GiaSanPham VNĐ</h5>
-                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
+                    }
 
-                        </div>
-                        <div class="item">
-                            @foreach (var item in newProduct_2)
-                            {
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="/Assets/Client/images/home/product1.jpg" alt="" />
-                                                <h4>@item.TenSanPham</h4>
-                                                <h5>@item.GiaSanPham VNĐ</h5>
-                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                </div><!--features_items-->
+                <div class="recommended_items">
+                    <!--recommended_items-->
+                    <h2 class="title text-center">Sản phẩm mới</h2>
+                    <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                @foreach (var item in newProduct_1)
+                                {
+                                    <div class="col-sm-3">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><img src="/Assets/Client/images/home/product1.jpg" alt="" /></a>
+                                                    <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><h4>@item.TenSanPham</h4></a>
+                                                    <h5>@item.GiaSanPham VNĐ</h5>
+                                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            }
+                                }
+
+                            </div>
+                            <div class="item">
+                                @foreach (var item in newProduct_2)
+                                {
+                                    <div class="col-sm-3">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <a href=""><img src="/Assets/Client/images/home/product1.jpg" alt="" /></a>
+                                                    <a href=""><h4>@item.TenSanPham</h4></a>
+                                                    <h5>@item.GiaSanPham VNĐ</h5>
+                                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
                         </div>
+                        <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
                     </div>
-                    <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                    <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                </div>
-            </div><!--/recommended_items-->
+                </div><!--/recommended_items-->
+            </div>
         </div>
     </div>
-</div>
-}
+</section>
 
