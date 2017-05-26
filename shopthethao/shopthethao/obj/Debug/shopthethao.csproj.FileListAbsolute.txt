@@ -47,6 +47,5 @@ C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\System.Web
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\System.Web.Webpages.Razor.xml
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\System.Web.Helpers.xml
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\System.Web.Mvc.xml
-C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\obj\Debug\shopthethao.csprojResolveAssemblyReference.cache
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\obj\Debug\shopthethao.dll
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\obj\Debug\shopthethao.pdb

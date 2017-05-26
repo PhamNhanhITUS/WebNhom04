@@ -14,7 +14,9 @@ namespace shopthethao.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            ViewBag.Product = ProductAll();
+            ViewBag.BestProduct = BestProduct();
+            ViewBag.NewProduct_1 = NewProduct_1();
+            ViewBag.NewProduct_2 = NewProduct_2();
             return View();
         }
         public static string CreateMD5(string input)
@@ -128,11 +130,25 @@ namespace shopthethao.Controllers
             }
         }
 
-        public List<SanPham> ProductAll()
+        public List<SanPham> BestProduct()
         {
             using (shopthethaoEntities db = new shopthethaoEntities())
             {
-                return db.SanPhams.OrderBy(y => y.SoLuongBan).ToList();
+                return db.SanPhams.OrderBy(y => y.SoLuongBan).Take(8).ToList();
+            }
+        }
+        public List<SanPham> NewProduct_1()
+        {
+            using (shopthethaoEntities db = new shopthethaoEntities())
+            {
+                return db.SanPhams.OrderByDescending(y => y.MaSanPham).Take(4).ToList();
+            }
+        }
+        public List<SanPham> NewProduct_2()
+        {
+            using (shopthethaoEntities db = new shopthethaoEntities())
+            {
+                return db.SanPhams.OrderByDescending(y => y.MaSanPham).Skip(4).Take(4).ToList();
             }
         }
     }

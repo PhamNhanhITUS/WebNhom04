@@ -33,8 +33,8 @@ namespace shopthethao.Controllers
         }
         public ActionResult Category(int? id)
         {
-            var list = db.LoaiSanPhams.Where(u=>u.MaLoaiSanPham == id).ToList();
-            return View(list);
+            ViewBag.Category = db.LoaiSanPhams.Where(u=>u.MaLoaiSanPham == id).ToList();
+            return View();
         }
         public List<HangSanXuat> ShowManufacturer()
         {
@@ -42,8 +42,8 @@ namespace shopthethao.Controllers
         }
         public ActionResult Manufacturer(int? id)
         {
-            var list =  db.HangSanXuats.Where(u=>u.MaHangSanXuat == id).ToList();
-            return View(list);
+            ViewBag.Manufacturer =  db.HangSanXuats.Where(u=>u.MaHangSanXuat == id).ToList();
+            return View();
         }
     }
 }
