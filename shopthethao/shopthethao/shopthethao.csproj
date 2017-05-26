@@ -596,6 +596,8 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Shared\_PartialSlide.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Product\Category.cshtml" />
+    <Content Include="Views\Product\Manufacturer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

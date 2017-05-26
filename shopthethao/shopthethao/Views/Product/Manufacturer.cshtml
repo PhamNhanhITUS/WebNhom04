@@ -1,9 +1,8 @@
-﻿@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@model IEnumerable<shopthethao.Models.SanPham>
+
+@{
     var showCategory = (List<shopthethao.Models.LoaiSanPham>)ViewBag.ShowCategory;
     var showManufacturer = (List<shopthethao.Models.HangSanXuat>)ViewBag.ShowManufacturer;
-    var showProduct = (List<shopthethao.Models.SanPham>)ViewBag.ShowProduct;
 
 }
 
@@ -21,16 +20,16 @@
                     <h2>Loại sản phẩm</h2>
                     <div class="panel-group category-products" id="accordian">
                         <!--category-productsr-->
-                    @foreach (var item in showCategory)
-                    {
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title"><a href="@Url.Action("Category", "Product", new { id = @item.MaLoaiSanPham})">@item.TenLoaiSanPham</a></h4>
+                        @foreach (var item in showCategory)
+                        {
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title"><a href="@Url.Action("Category", "Product", new { id = @item.MaLoaiSanPham})">@item.TenLoaiSanPham</a></h4>
+                                </div>
                             </div>
-                        </div>
-                    }
-                        
-                        
+                        }
+
+
                     </div><!--/category-productsr-->
 
                     <div class="brands_products">
@@ -38,10 +37,10 @@
                         <h2>Thương hiệu</h2>
                         <div class="brands-name">
                             <ul class="nav nav-pills nav-stacked">
-                               @foreach (var item in showManufacturer)
-                               {
-                                <li><a href="@Url.Action("Manufacturer", "Product", new { id = @item.MaHangSanXuat})"> <span class="pull-right"></span>@item.TenHangSanXuat</a></li>
-                               }
+                                @foreach (var item in showManufacturer)
+                                {
+                                    <li><a href="@Url.Action("Manufacturer", "Product", new { id = @item.MaHangSanXuat})"> <span class="pull-right"></span>@item.TenHangSanXuat</a></li>
+                                }
                             </ul>
                         </div>
                     </div><!--/brands_products-->
@@ -67,32 +66,32 @@
                 <div class="features_items">
                     <!--features_items-->
                     <h2 class="title text-center">Features Items</h2>
-                @foreach (var item in showProduct)
-                {
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="/Assets/Client/images/home/product4.jpg" alt="" />
-                                    <h4>@item.TenSanPham</h4>
-                                    <h5>@item.GiaSanPham VNĐ</h5>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-sm-4">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <img src="/Assets/Client/images/home/product4.jpg" alt="" />
+                                        <h4>@item.TenSanPham</h4>
+                                        <h5>@item.GiaSanPham VNĐ</h5>
+                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                    </div>
+                                    <img src="/Assets/Client/images/home/new.png" class="new" alt="" />
                                 </div>
-                                <img src="/Assets/Client/images/home/new.png" class="new" alt="" />
                             </div>
                         </div>
-                    </div>
-                }
-                </div>    
-                    <ul class="pagination">
-                        <li class="active"><a href="">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
-                        <li><a href="">4</a></li>
-                        <li><a href="">5</a></li>
-                        <li><a href="">&raquo;</a></li>
-                    </ul>
-                </div><!--features_items-->
-            </div>
+                    }
+                </div>
+                <ul class="pagination">
+                    <li class="active"><a href="">1</a></li>
+                    <li><a href="">2</a></li>
+                    <li><a href="">3</a></li>
+                    <li><a href="">4</a></li>
+                    <li><a href="">5</a></li>
+                    <li><a href="">&raquo;</a></li>
+                </ul>
+            </div><!--features_items-->
         </div>
+    </div>
 </section>

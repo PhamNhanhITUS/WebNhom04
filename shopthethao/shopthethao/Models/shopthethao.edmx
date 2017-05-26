@@ -76,6 +76,7 @@
           <Property Name="MaLoaiSanPham" Type="int" />
           <Property Name="MaHangSanXuat" Type="int" />
           <Property Name="MaTinhTrang" Type="int" />
+          <Property Name="TrangThai" Type="nchar" MaxLength="32" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -320,6 +321,7 @@
           <NavigationProperty Name="ChiTietDonDatHangs" Relationship="Self.FK_ChiTietDonDatHang_SanPham" FromRole="SanPham" ToRole="ChiTietDonDatHang" />
           <NavigationProperty Name="HangSanXuat" Relationship="Self.FK_SanPham_HangSanXuat" FromRole="SanPham" ToRole="HangSanXuat" />
           <NavigationProperty Name="LoaiSanPham" Relationship="Self.FK_SanPham_LoaiSanPham" FromRole="SanPham" ToRole="LoaiSanPham" />
+          <Property Name="TrangThai" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="TaiKhoan">
           <Key>
@@ -551,6 +553,7 @@
           <EntitySetMapping Name="SanPhams">
             <EntityTypeMapping TypeName="shopthethaoModel.SanPham">
               <MappingFragment StoreEntitySet="SanPham">
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
                 <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
                 <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
                 <ScalarProperty Name="GiaSanPham" ColumnName="GiaSanPham" />

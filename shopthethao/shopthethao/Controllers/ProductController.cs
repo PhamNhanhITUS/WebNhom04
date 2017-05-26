@@ -15,6 +15,7 @@ namespace shopthethao.Controllers
         {
             ViewBag.ShowCategory = ShowCategory();
             ViewBag.ShowManufacturer = ShowManufacturer();
+            ViewBag.ShowProduct = ShowProduct();
             return View();
         }
         public ActionResult Detail(int? id)
@@ -27,14 +28,18 @@ namespace shopthethao.Controllers
             var p = db.SanPhams.First(x => x.MaSanPham == id);
             return View(p);
         }
+        public List<SanPham> ShowProduct()
+        {
+            return db.SanPhams.ToList();
+        }
         public List<LoaiSanPham> ShowCategory()
         {
             return db.LoaiSanPhams.ToList();
         }
         public ActionResult Category(int? id)
         {
-            ViewBag.Category = db.LoaiSanPhams.Where(u=>u.MaLoaiSanPham == id).ToList();
-            return View();
+            var list = db.LoaiSanPhams.Where(u=>u.MaLoaiSanPham == id).ToList();
+            return View(list);
         }
         public List<HangSanXuat> ShowManufacturer()
         {
@@ -42,8 +47,8 @@ namespace shopthethao.Controllers
         }
         public ActionResult Manufacturer(int? id)
         {
-            ViewBag.Manufacturer =  db.HangSanXuats.Where(u=>u.MaHangSanXuat == id).ToList();
-            return View();
+            var list = db.HangSanXuats.Where(u=>u.MaHangSanXuat == id).ToList();
+            return View(list);
         }
     }
 }
