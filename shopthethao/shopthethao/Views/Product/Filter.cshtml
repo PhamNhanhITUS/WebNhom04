@@ -1,0 +1,53 @@
+﻿@model PagedList.IPagedList<shopthethao.Models.SanPham>
+@using PagedList.Mvc;
+@using shopthethao.Models
+
+@{
+    ViewBag.Title = "Filter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="advertisement">
+    <div class="container">
+        <img src="/Assets/Client/images/shop/advertisement.jpg" alt="" />
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                @Html.Partial("~/Views/Shared/_PartialCatalogue.cshtml")
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                <div class="features_items">
+                    <!--features_items-->
+                    <h2 class="title text-center">Danh sách sản phẩm</h2>
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-sm-4">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><img src="/Assets/Client/images/home/product1.jpg" alt="" /></a>
+                                        <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><h4>@item.TenSanPham</h4></a>
+                                        <h5>@item.GiaSanPham VNĐ</h5>
+                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                    </div>
+                                    <img src="/Assets/Client/images/home/new.png" class="new" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <ul class="pagination">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </ul>
+            </div><!--features_items-->
+        </div>
+    </div>
+</section>
+
+
+

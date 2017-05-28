@@ -32,6 +32,7 @@ namespace shopthethao.Models
         public Nullable<int> MaLoaiSanPham { get; set; }
         public Nullable<int> MaHangSanXuat { get; set; }
         public Nullable<int> MaTinhTrang { get; set; }
+        public string TrangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDonDatHang> ChiTietDonDatHangs { get; set; }

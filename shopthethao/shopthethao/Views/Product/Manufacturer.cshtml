@@ -1,9 +1,10 @@
-﻿@model IEnumerable<shopthethao.Models.SanPham>
-
+﻿@model PagedList.IPagedList<shopthethao.Models.SanPham>
+@using PagedList.Mvc;
+@using shopthethao.Models
 @{
-    var showCategory = (List<shopthethao.Models.LoaiSanPham>)ViewBag.ShowCategory;
-    var showManufacturer = (List<shopthethao.Models.HangSanXuat>)ViewBag.ShowManufacturer;
-
+    ViewBag.Title = "Manufacturer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   
 }
 
 <section id="advertisement">
@@ -16,80 +17,32 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
-                <div class="left-sidebar">
-                    <h2>Loại sản phẩm</h2>
-                    <div class="panel-group category-products" id="accordian">
-                        <!--category-productsr-->
-                        @foreach (var item in showCategory)
-                        {
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><a href="@Url.Action("Category", "Product", new { id = @item.MaLoaiSanPham})">@item.TenLoaiSanPham</a></h4>
-                                </div>
-                            </div>
-                        }
-
-
-                    </div><!--/category-productsr-->
-
-                    <div class="brands_products">
-                        <!--brands_products-->
-                        <h2>Thương hiệu</h2>
-                        <div class="brands-name">
-                            <ul class="nav nav-pills nav-stacked">
-                                @foreach (var item in showManufacturer)
-                                {
-                                    <li><a href="@Url.Action("Manufacturer", "Product", new { id = @item.MaHangSanXuat})"> <span class="pull-right"></span>@item.TenHangSanXuat</a></li>
-                                }
-                            </ul>
-                        </div>
-                    </div><!--/brands_products-->
-
-                    <div class="price-range">
-                        <!--price-range-->
-                        <h2>Bộ lọc</h2>
-                        <div class="well">
-                            <input type="text" class="span2" value="" data-slider-min="100" data-slider-max="1500" data-slider-step="100" data-slider-value="[100,500]" id="sl2"><br />
-                            <b>100.000 VNĐ</b> <b class="pull-right">1.500.000 VNĐ</b>
-                        </div>
-                    </div><!--/price-range-->
-
-                    <div class="shipping text-center">
-                        <!--shipping-->
-                        <img src="/Assets/Client/images/home/shipping.jpg" alt="" />
-                    </div><!--/shipping-->
-
-                </div>
+                @Html.Partial("~/Views/Shared/_PartialCatalogue.cshtml")
             </div>
 
             <div class="col-sm-9 padding-right">
                 <div class="features_items">
                     <!--features_items-->
-                    <h2 class="title text-center">Features Items</h2>
-                    @foreach (var item in Model)
-                    {
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img src="/Assets/Client/images/home/product4.jpg" alt="" />
-                                        <h4>@item.TenSanPham</h4>
-                                        <h5>@item.GiaSanPham VNĐ</h5>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                    <h2 class="title text-center">Danh sách sản phẩm</h2>
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-sm-4">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><img src="/Assets/Client/images/home/product1.jpg" alt="" /></a>
+                                            <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><h4>@item.TenSanPham</h4></a>
+                                            <h5>@item.GiaSanPham VNĐ</h5>
+                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                        </div>
+                                        <img src="/Assets/Client/images/home/new.png" class="new" alt="" />
                                     </div>
-                                    <img src="/Assets/Client/images/home/new.png" class="new" alt="" />
                                 </div>
                             </div>
-                        </div>
-                    }
+                        }
                 </div>
                 <ul class="pagination">
-                    <li class="active"><a href="">1</a></li>
-                    <li><a href="">2</a></li>
-                    <li><a href="">3</a></li>
-                    <li><a href="">4</a></li>
-                    <li><a href="">5</a></li>
-                    <li><a href="">&raquo;</a></li>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
                 </ul>
             </div><!--features_items-->
         </div>

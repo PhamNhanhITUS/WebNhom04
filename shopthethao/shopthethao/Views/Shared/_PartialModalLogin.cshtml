@@ -8,8 +8,8 @@
                 <p style="margin:0px;">Bạn chưa có tài khoản. Nhấn vào đây để <a href="">Đăng ký</a></p>
             </div>
             <div class="modal-body">
-                <form data-toggle="validator" role="form" action="Home/Login" method="post">
-                    <div class="row">
+                <form data-toggle="validator" role="form" action="@Url.Action("Login","Home")" method="post">
+                    <div class="row" role="form">
 
                         <div class="col-sm-12">
                             <div class="login-form">
@@ -41,8 +41,8 @@
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-default" style="background-color:#fe980f;color:white;">Đăng nhập</button>
                     </div>
-                </form>
-            </div>
+                   </form>
+</div>
         </div>
     </div>
 </div>

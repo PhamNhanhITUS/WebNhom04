@@ -1,4 +1,5 @@
-﻿using shopthethao.Models;
+﻿using PagedList;
+using shopthethao.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,21 +12,25 @@ namespace shopthethao.Controllers
     {
         //GET: Product
        shopthethaoEntities db = new shopthethaoEntities();
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ViewBag.ShowCategory = ShowCategory();
             ViewBag.ShowManufacturer = ShowManufacturer();
             ViewBag.ShowProduct = ShowProduct();
-            return View();
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+            return View(ShowProduct().ToPagedList(pageNumber, pageSize));
         }
         public ActionResult Detail(int? id)
         {
+            
             if (id.HasValue == false)
             {
                 return RedirectToAction("Index", "Product");
             }
 
             var p = db.SanPhams.First(x => x.MaSanPham == id);
+            ViewBag.Detail = db.SanPhams.Where(x => x.MaLoaiSanPham == p.MaLoaiSanPham).Take(4).ToList();
             return View(p);
         }
         public List<SanPham> ShowProduct()
@@ -36,19 +41,71 @@ namespace shopthethao.Controllers
         {
             return db.LoaiSanPhams.ToList();
         }
-        public ActionResult Category(int? id)
+        public ActionResult Category(int? id, int? page)
         {
-            var list = db.LoaiSanPhams.Where(u=>u.MaLoaiSanPham == id).ToList();
-            return View(list);
+            ViewBag.ShowCategory = ShowCategory();
+            ViewBag.ShowManufacturer = ShowManufacturer();
+            var list = db.SanPhams.Where(u => u.MaLoaiSanPham == id).ToList();
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
         public List<HangSanXuat> ShowManufacturer()
         {
             return db.HangSanXuats.ToList();
         }
-        public ActionResult Manufacturer(int? id)
+        public ActionResult Manufacturer(int? id, int? page)
         {
-            var list = db.HangSanXuats.Where(u=>u.MaHangSanXuat == id).ToList();
-            return View(list);
+            ViewBag.ShowCategory = ShowCategory();
+            ViewBag.ShowManufacturer = ShowManufacturer();
+            var list = db.SanPhams.Where(u => u.MaHangSanXuat == id).ToList();
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
+
+        [HttpGet]
+        public ActionResult Search(string Keyword, int? page)
+        {
+            ViewBag.ShowCategory = ShowCategory();
+            ViewBag.ShowManufacturer = ShowManufacturer();
+
+            var list = db.SanPhams.Where(x => x.TenSanPham.ToLower().Contains(Keyword) || x.TenSanPham.Contains(Keyword) || x.TenSanPham.ToLower().StartsWith(Keyword) || x.TenSanPham.StartsWith(Keyword)).ToList();
+
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
+        }
+
+        [HttpPost]
+        public ActionResult Filter(FormCollection fc, int? page)
+        {
+            int toPrice;
+            int formPrice;
+            if(fc["txtPrice"].ToString() == null)
+            {
+                toPrice = 100000;
+                formPrice = 1500000;
+            }
+            else
+            {
+                string[] txtPrice = fc["txtPrice"].ToString().Split(',');
+                toPrice = int.Parse(txtPrice[0] + "000");
+                formPrice = int.Parse(txtPrice[1] + "000");
+            }
+            
+            int category = int.Parse(fc["cbbCategory"]);
+            int manufacturer = int.Parse(fc["cbbManufacture"]);
+            
+            ViewBag.ShowCategory = ShowCategory();
+            ViewBag.ShowManufacturer = ShowManufacturer();
+
+            var list = db.SanPhams.Where(x => x.MaLoaiSanPham == category || x.MaHangSanXuat == manufacturer || (x.GiaSanPham > toPrice && x.GiaSanPham < formPrice)).ToList();
+
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
+        }
+
     }
 }

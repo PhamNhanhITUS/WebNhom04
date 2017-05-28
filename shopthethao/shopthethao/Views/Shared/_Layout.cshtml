@@ -105,7 +105,7 @@
             <!--header-bottom-->
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-9">
+                    <div class="col-sm-8">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                                 <span class="sr-only">Toggle navigation</span>
@@ -124,17 +124,21 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-sm-3">
-                        <div class="search_box pull-right">
-                            <input type="text" placeholder="Từ khoá tìm kiếm" />
-                        </div>
+                    <div class="col-sm-4">
+
+                        @using (Html.BeginForm("Search", "Product", FormMethod.Get))
+                        {
+                            <div class="search_box pull-right">
+                                <input type="text" name="Keyword" placeholder="Từ khoá tìm kiếm" /><button type="submit" style="height:35px;width:45px;border:0px;background:#FE980F;color:white;"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
         </div><!--/header-bottom-->
     </header><!--/header-->
     <section>
-        @RenderBody();
+        @RenderBody()
     </section>
     <footer id="footer">
         <!--Footer-->

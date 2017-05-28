@@ -1,0 +1,76 @@
+﻿@using shopthethao.Models
+@{ 
+    var showCategory = (List<shopthethao.Models.LoaiSanPham>)ViewBag.ShowCategory;
+    var showManufacturer = (List<shopthethao.Models.HangSanXuat>)ViewBag.ShowManufacturer;
+}
+
+    <div class="left-sidebar">
+        <h2>Loại sản phẩm</h2>
+        <div class="panel-group category-products" id="accordian">
+            <!--category-productsr-->
+            @foreach (var item in showCategory)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a href="@Url.Action("Category", "Product", new { id = @item.MaLoaiSanPham})">@item.TenLoaiSanPham</a></h4>
+                    </div>
+                </div>
+            }
+        </div><!--/category-productsr-->
+
+        <div class="brands_products">
+            <!--brands_products-->
+            <h2>Thương hiệu</h2>
+            <div class="brands-name">
+                <ul class="nav nav-pills nav-stacked">
+                    @foreach (var item in showManufacturer)
+                    {
+                        <li><a href="@Url.Action("Manufacturer", "Product", new { id = @item.MaHangSanXuat})"> <span class="pull-right"></span>@item.TenHangSanXuat</a></li>
+                    }
+                </ul>
+            </div>
+        </div><!--/brands_products-->
+
+        <div class="price-range">
+            <!--price-range-->
+            <h2>Bộ lọc</h2>
+        @using (Html.BeginForm("Filter", "Product", FormMethod.Post, new Dictionary<string, object> {
+        { "enctype", "multipart/form-data" },
+        { "data-bind", "submit: saveData"},
+        { "id", "validator"}
+        })){
+                <div class="well" style="height:250px;">
+                    <div class="form-group">
+                        <select class="form-control" name="cbbCategory" style="background:white;border-radius:0px;border:1px solid #FE980F;" title="Loại sản phẩm">
+                            <option value="0">[Tất cả] Loại sản phẩm</option>
+                            @foreach (var item in showCategory)
+                            {
+                                <option value="@item.MaLoaiSanPham">@item.TenLoaiSanPham</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="cbbManufacture" style="background:white;border-radius:0px;border:1px solid #FE980F;" title="Loại sản phẩm">
+                            <option value="0">[Tất cả] Hãng sản xuất</option>
+                            @foreach (var item in showManufacturer)
+                            {
+                                <option value="@item.MaHangSanXuat">@item.TenHangSanXuat</option>
+                            }
+                        </select>
+                    </div>
+                    <input type="text" class="span2" name="txtPrice" data-slider-min="100" data-slider-max="1500" data-slider-step="100" data-slider-value="[100,400]" id="sl2" required><br />
+                    <b>100.000 VNĐ</b> <b class="pull-right">1.500.000 VNĐ</b>
+                    <div class="form-group" style="margin:15px 0px 0px 0px;">
+                        <button type="submit" class="form-control  pull-right" style="background-color:#FE980F; color:white;border-radius:0px;width:70px;">Lọc</button>
+                    </div>
+                </div>
+        }
+        </div><!--/price-range-->
+
+        <div class="shipping text-center">
+            <!--shipping-->
+            <img src="/Assets/Client/images/home/shipping.jpg" alt="" />
+        </div><!--/shipping-->
+
+    </div>
+

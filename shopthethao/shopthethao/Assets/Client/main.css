@@ -262,7 +262,7 @@ a#scrollUp i{
   height: 35px;
   outline: medium none;
   padding-left: 10px;
-  width: 235px;
+  width: 255px;
   background-repeat: no-repeat;
   background-position: 130px;
 }
@@ -1172,7 +1172,7 @@ h2.title {
 
 .view-product img {
   border: 1px solid #F7F7F0;
-  height: 480px;
+  height: 380px;
   width: 100%;
 }
 

@@ -8,7 +8,7 @@
                 <p style="margin:0px;">Bạn đã có tài khoản. Nhấn vào đây để <a href="">Đăng nhập</a></p>
             </div>
             <div class="modal-body">
-                <form data-toggle="validator" role="form" action="Home/Register" method="post">
+                <form data-toggle="validator" role="form" action="@Url.Action("Register", "Home")" method="post">
                     <div class="row">
                         <div class="col-sm-12">
                             <p style="color:red;">@if (Session["KTDangKy"] != null) { @Session["KTDangKy"]; }</p>
