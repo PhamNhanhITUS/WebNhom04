@@ -8,6 +8,12 @@
 
 <section>
     <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                <li class="active">Chi tiết sản phẩm</li>
+            </ol>
+        </div>
         <div class="row">
             <div class="col-sm-12 padding-right">
                 <div class="product-details">
@@ -55,17 +61,18 @@
                                 <p>Mã sản phẩm: @Model.MaSanPham</p>
                                 <img src="/Assets/Client/images/product-details/rating.png" alt="" />
                                 <div>
-                                    <span>
-                                        <p>
-                                            <span>@Model.GiaSanPham VNĐ</span>
-                                        </p>
-                                        <label>Số lượng:</label>
-                                        <input type="text" value="3" />
-                                        <button type="button" class="btn btn-fefault cart">
-                                            <i class="fa fa-shopping-cart"></i>
-                                            Thêm
-                                        </button>
-                                    </span>
+                                    <form data-toggle="validator" role="form" action="@Url.Action("AddItem","Cart")" method="get">
+                                        <span>
+                                            <p>
+                                                <span>@string.Format("{0:n0}", @Model.GiaSanPham) VNĐ</span>
+                                            </p>
+                                            <label>Số lượng:</label>
+                                            <input type="hidden" name="productId" value="@Model.MaSanPham"/>
+                                            <input type="number" value="1" min="1" name="quantity" />
+                                            <button type="submit" class="btn btn-fefault cart"><i class="fa fa-shopping-cart"></i>Thêm</button>
+
+                                        </span>
+                                    </form>
                                 </div>
 
                                 <p><b>Trạng thái:</b> </p>
@@ -132,7 +139,15 @@
                                                     <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><img src="/Assets/Client/images/home/product1.jpg" alt="" /></a>
                                                     <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><h4>@item.TenSanPham</h4></a>
                                                     <h5>@item.GiaSanPham VNĐ</h5>
-                                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                    @if (Session["TenDangNhap"] != null)
+                                                    {
+                                                        <a href="@Url.Action("AddItem", "Cart", new { productId = @item.MaSanPham, quantity = 1 })" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="#" data-toggle="modal" data-target="#myModalLogin" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+
+                                                    }
                                                 </div>
                                             </div>
                                         </div>

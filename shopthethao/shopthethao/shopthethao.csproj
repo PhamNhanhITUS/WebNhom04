@@ -464,6 +464,7 @@
     <Content Include="Assets\Client\images\shop\product8.jpg" />
     <Content Include="Assets\Client\images\shop\product9.jpg" />
     <Content Include="Assets\Client\js\bootstrap.min.js" />
+    <Content Include="Assets\Client\js\Cart.js" />
     <Content Include="Assets\Client\js\contact.js" />
     <Content Include="Assets\Client\js\gmaps.js" />
     <Content Include="Assets\Client\js\html5shiv.js" />
@@ -521,15 +522,18 @@
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\SystemController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\Error404Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Admin.cs">
       <DependentUpon>shopthethao.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\ChiTietDonDatHang.cs">
       <DependentUpon>shopthethao.tt</DependentUpon>
     </Compile>
@@ -600,7 +604,6 @@
     <Content Include="Views\Shared\_PartialModalLogin.cshtml" />
     <Content Include="Views\Shared\_PartialModalRegister.cshtml" />
     <Content Include="Views\Shared\_PartialModalNoti.cshtml" />
-    <Content Include="Views\Shared\_PartialModalCart.cshtml" />
     <Content Include="Views\Shared\_PartialModalInfo.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
@@ -611,6 +614,9 @@
     <Content Include="Views\Shared\_PartialCatalogue.cshtml" />
     <Content Include="Views\Product\Search.cshtml" />
     <Content Include="Views\Product\Filter.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Profile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

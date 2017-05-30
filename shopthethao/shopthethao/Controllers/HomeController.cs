@@ -61,6 +61,7 @@ namespace shopthethao.Controllers
                 if (t != null)
                 {
                     Session["TenDangNhap"] = t.TenHienThi;
+                    Session["MaTaiKhoan"] = t.MaTaiKhoan;
                     Session["DangNhapThanhCong"] = "";
                     return RedirectToAction("Index");
                 }

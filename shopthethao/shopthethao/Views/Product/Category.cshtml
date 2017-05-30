@@ -16,6 +16,13 @@
 
 <section>
     <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                <li><a href="@Url.Action("Index","Product")">Cửa hàng</a></li>
+                <li class="active">Loại sản phẩm</li>
+            </ol>
+        </div>
         <div class="row">
             <div class="col-sm-3">
                 @Html.Partial("~/Views/Shared/_PartialCatalogue.cshtml")
@@ -33,8 +40,16 @@
                                         <div class="productinfo text-center">
                                             <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><img src="/Assets/Client/images/home/product1.jpg" alt="" /></a>
                                             <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><h4>@item.TenSanPham</h4></a>
-                                            <h5>@item.GiaSanPham VNĐ</h5>
-                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                            <h5>@string.Format("{0:n0}", item.GiaSanPham) VNĐ</h5>
+                                            @if (Session["TenDangNhap"] != null)
+                                            {
+                                                <a href="@Url.Action("AddItem", "Cart", new { productId = @item.MaSanPham, quantity = 1 })" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="#" data-toggle="modal" data-target="#myModalLogin" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+
+                                            }
                                         </div>
                                         <img src="/Assets/Client/images/home/new.png" class="new" alt="" />
                                     </div>

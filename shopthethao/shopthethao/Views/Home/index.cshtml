@@ -24,7 +24,15 @@
                                         <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><img src="/Assets/Client/images/home/product1.jpg" alt="" /></a>
                                         <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><h4>@item.TenSanPham</h4></a>
                                         <h5>@item.GiaSanPham VNĐ</h5>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                        @if (Session["TenDangNhap"] != null)
+                                        {
+                                        <a href="@Url.Action("AddItem", "Cart", new { productId = @item.MaSanPham, quantity = 1 })" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="#" data-toggle="modal" data-target="#myModalLogin" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                            
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +55,15 @@
                                                     <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><img src="/Assets/Client/images/home/product1.jpg" alt="" /></a>
                                                     <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><h4>@item.TenSanPham</h4></a>
                                                     <h5>@item.GiaSanPham VNĐ</h5>
-                                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                    @if (Session["TenDangNhap"] != null)
+                                                    {
+                                                        <a href="@Url.Action("AddItem", "Cart", new { productId = @item.MaSanPham, quantity = 1 })" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="#" data-toggle="modal" data-target="#myModalLogin" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
@@ -64,8 +80,16 @@
                                                 <div class="productinfo text-center">
                                                     <a href=""><img src="/Assets/Client/images/home/product1.jpg" alt="" /></a>
                                                     <a href=""><h4>@item.TenSanPham</h4></a>
-                                                    <h5>@item.GiaSanPham VNĐ</h5>
-                                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                    <h5>@string.Format("{0:n0}", item.GiaSanPham) VNĐ</h5>
+                                                    @if (Session["TenDangNhap"] != null)
+                                                    {
+                                                        <a href="@Url.Action("AddItem", "Cart", new { productId = @item.MaSanPham, quantity = 1 })" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="#" data-toggle="modal" data-target="#myModalLogin" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+
+                                                    }
                                                 </div>
                                             </div>
                                         </div>

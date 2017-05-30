@@ -1528,7 +1528,6 @@ h2.title {
 
 .breadcrumbs .breadcrumb {
   background:transparent;
-  margin-bottom: 75px;
   padding-left: 0;
 }
 
@@ -1547,7 +1546,7 @@ h2.title {
   border-color:transparent transparent transparent #FE980F;
   position: absolute;
   top: 11px;
-  left:48px;
+  left:75px;
 
 }
 
@@ -1557,7 +1556,7 @@ h2.title {
 
 #cart_items .cart_info {
   border: 1px solid #E6E4DF;
-  margin-bottom: 50px
+  
 }
 
 
@@ -2514,4 +2513,14 @@ h2.title {
 
 .contact-info .social-networks ul li a:hover{
   color: #FE980F;
+}
+.btn-custom{
+    background: #FE980F;
+    color: white;
+    border-radius: 0px;
+}
+.btn-custom:hover{
+    background: #FE980F;
+    color: white;
+    border-radius: 0px;
 }

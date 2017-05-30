@@ -61,7 +61,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="logo pull-left">
-                            <a href="index.html"><img src="/Assets/Client/images/home/logo.png" alt="" /></a>
+                            <a href="@Url.Action("Index","Home")"><img src="/Assets/Client/images/home/logo.png" alt="" /></a>
                         </div>
                     </div>
                     <div class="col-sm-8">
@@ -73,13 +73,13 @@
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:white;padding:8px 12px;color:#696763;font-family:'Roboto', sans-serif;font-weight:300;padding-right:0px;"><i class="fa fa-user"></i> @Session["TenDangNhap"]</button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-                                                <button class="form-control dropdown-item" type="button" style="border:0px">Thông tin tài khoản</button>
+                                                <button onclick="location.href='@Url.Action("Profile","User", new { ID = Session["MaTaiKhoan"]})'" class="form-control dropdown-item" type="button" style="border:0px">Thông tin tài khoản</button>
                                                 <button class="form-control dropdown-item" type="button" style="border:0px">Lịch sử mua hàng</button>
                                                 <button class="form-control dropdown-item" type="button" id="Logout" style="border:0px">Đăng xuất</button>
                                             </div>
                                         </div>
                                     </li>
-                                    <li><button type="button" data-toggle="modal" class="btn" data-target="#myModalCart" style="background-color:white;padding:8px 12px;color:#696763;font-family:'Roboto', sans-serif;font-weight:300;padding-right:0px;"><i class="fa fa-shopping-cart"></i> Giỏ hàng</button></li>
+                                    <li><button onclick="location.href='@Url.Action("Index","Cart")'" type="button" class="btn" style="background-color:white;padding:8px 12px;color:#696763;font-family:'Roboto', sans-serif;font-weight:300;padding-right:0px;"><i class="fa fa-shopping-cart"></i> Giỏ hàng</button></li>
                                 }
                                 else
                                 {
@@ -97,7 +97,6 @@
 
         @Html.Partial("~/Views/Shared/_PartialModalLogin.cshtml")
         @Html.Partial("~/Views/Shared/_PartialModalRegister.cshtml")
-        @Html.Partial("~/Views/Shared/_PartialModalCart.cshtml")
         @Html.Partial("~/Views/Shared/_PartialModalInfo.cshtml")
         @Html.Partial("~/Views/Shared/_PartialModalNoti.cshtml")
   
@@ -216,6 +215,7 @@
     <script src="/Assets/Client/js/main.js"></script>
     <script src="~/Assets/Client/js/validator.js"></script>
     <script src="~/Assets/Client/js/validator.min.js"></script>
+    <script src="~/Assets/Client/js/Cart.js"></script>
 
     @if (Session["DangNhapThanhCong"] != null)
     {
@@ -250,13 +250,6 @@
             @{
                 Session.Remove("DangKyThanhCong");
             }
-        })
-
-        $('#Logout').on('click', function (e) {
-            @{
-                Session.Abandon();
-            }
-            Html.RenderAction("Index", "Home");
         })
     </script>
 </body>
