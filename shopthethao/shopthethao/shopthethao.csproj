@@ -567,9 +567,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>shopthethao.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>shopthethao.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\TaiKhoan.cs">
       <DependentUpon>shopthethao.tt</DependentUpon>
     </Compile>
@@ -594,13 +591,6 @@
     <Content Include="Views\Error404\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <EntityDeploy Include="Models\shopthethao.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>shopthethao.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\shopthethao.edmx.diagram">
-      <DependentUpon>shopthethao.edmx</DependentUpon>
-    </Content>
     <Content Include="Views\Shared\_PartialModalLogin.cshtml" />
     <Content Include="Views\Shared\_PartialModalRegister.cshtml" />
     <Content Include="Views\Shared\_PartialModalNoti.cshtml" />
@@ -617,6 +607,14 @@
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Profile.cshtml" />
+    <Content Include="Views\Cart\Payment.cshtml" />
+    <EntityDeploy Include="Models\shopthethao.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>shopthethao.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\shopthethao.edmx.diagram">
+      <DependentUpon>shopthethao.edmx</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

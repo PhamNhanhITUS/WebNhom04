@@ -1,0 +1,109 @@
+﻿@model List<shopthethao.Models.CartItem>
+@using shopthethao.Models
+
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if(Session["MaTaiKhoan"] != null) { 
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" style="padding:0px 0px 40px 0px;">
+            <div class="col-md-8">
+                <section id="cart_items">
+                    
+                        <div class="table-responsive cart_info">
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr class="cart_menu"style="font-size:14px;" >
+                                        <td class="image"><b>Sản phẩm</b></td>
+                                        <td class="description"></td>
+                                        <td class="price"><b>Giá</b></td>
+                                        <td class="quantity"><b>Số lượng</b></td>
+                                        <td class="total"><b>Tổng tiền</b></td>
+                                        <td></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        int @total = 0;
+                                    }
+                                    @foreach (var item in Model)
+                                    {
+                                        
+                                            @*@total = @total + (item.Product.GiaSanPham * item.Quantity);*@
+
+                                        <tr>
+                                            <td class="cart_product">
+                                                <a href=""><img src="/Assets/Client/images/cart/one.png" alt=""></a>
+                                            </td>
+                                            <td class="cart_description" style="padding-left:20px;">
+                                                <h4><a href="">@item.Product.TenSanPham</a></h4>
+                                                <p>Mã: 1089772</p>
+                                            </td>
+                                            <td class="cart_price">
+                                                <p>@string.Format("{0:n0}", item.Product.GiaSanPham) VNĐ</p>
+                                            </td>
+                                            <td class="cart_quantity" style="font-size:18px;">
+                                                <div class="cart_quantity_button">
+                                                    <p>@item.Quantity</p>
+                                                </div>
+                                            </td>
+                                            @{var cart_total = item.Product.GiaSanPham * item.Quantity;
+                                             }
+                                            <td class="cart_total" style="font-size:20px;">
+                                                <p class="cart_total_price">@string.Format("{0:n0}", cart_total) VNĐ</p>
+                                            </td>
+                                            <td class="cart_delete">
+                                                <a data-id="@item.Product.MaSanPham" class="btn-delete" href=""><i class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                        
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                </section>
+                </div>
+            
+            <div class="col-md-4">
+                <div>
+                    <h2 style="margin-top:0px;"><b>Tổng tiền: @string.Format("{0:n0}", total) VNĐ</b></h2>
+                </div>
+                <div>
+                    <h4>Thông tin giao hàng</h4>
+                </div>
+                                @foreach (var item in ViewBag.Info as List<TaiKhoan>)
+                                {
+                                    <form data-toggle="validator" role="form" action="@Url.Action("Paymenting","Cart")" method="post">
+                                        <input name="id" type="hidden" value="@Session["MaTaiKhoan"]"/>
+                                        <div class="form-group">
+                                            <label>Người nhận</label>
+                                            <input name="shipName" class="form-control" value="@item.TenHienThi" required/>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Điện thoại</label>
+                                            <input type="number" name="phone" class="form-control" value="@item.DienThoai" maxlength="11" data-error="Số điện thoại không đúng định dạng" required/>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input type="email" name="email" class="form-control" value="@item.Email" data-error="Email không đúng định dạng" required/>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Địa chỉ</label>
+                                            <input name="address" class="form-control" value="@item.DiaChi" required/>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <button type="submit" class="btn btn-default btn-custom">Gửi đơn hàng</button>
+                                        </form>
+                                 }
+</div>
+        </div>
+        
+    </div>
+
+</div>
+}

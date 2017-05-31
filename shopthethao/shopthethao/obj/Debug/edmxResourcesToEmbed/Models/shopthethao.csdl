@@ -12,10 +12,10 @@
     <Key>
       <PropertyRef Name="MaChiTietDonDatHang" />
     </Key>
-    <Property Name="MaChiTietDonDatHang" Type="String" MaxLength="9" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="MaChiTietDonDatHang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="SoLuong" Type="Int32" />
     <Property Name="GiaBan" Type="Int32" />
-    <Property Name="MaDonDatHang" Type="String" MaxLength="9" FixedLength="true" Unicode="true" />
+    <Property Name="MaDonDatHang" Type="Int32" />
     <Property Name="MaSanPham" Type="Int32" />
     <NavigationProperty Name="DonDatHang" Relationship="Self.FK_ChiTietDonDatHang_DonDatHang" FromRole="ChiTietDonDatHang" ToRole="DonDatHang" />
     <NavigationProperty Name="SanPham" Relationship="Self.FK_ChiTietDonDatHang_SanPham" FromRole="ChiTietDonDatHang" ToRole="SanPham" />
@@ -24,7 +24,7 @@
     <Key>
       <PropertyRef Name="MaDonDatHang" />
     </Key>
-    <Property Name="MaDonDatHang" Type="String" MaxLength="9" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="MaDonDatHang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="NgayLap" Type="DateTime" Precision="3" />
     <Property Name="TongThanhTien" Type="Int32" />
     <Property Name="MaTaiKhoan" Type="Int32" />
@@ -32,6 +32,7 @@
     <Property Name="DiaChiNhanHang" Type="String" MaxLength="256" FixedLength="true" Unicode="true" />
     <Property Name="HoTenNhanHang" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
     <Property Name="DienThoaiNhanHang" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+    <Property Name="EmailNhanhang" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="ChiTietDonDatHangs" Relationship="Self.FK_ChiTietDonDatHang_DonDatHang" FromRole="DonDatHang" ToRole="ChiTietDonDatHang" />
     <NavigationProperty Name="TaiKhoan" Relationship="Self.FK_DonDatHang_TaiKhoan" FromRole="DonDatHang" ToRole="TaiKhoan" />
     <NavigationProperty Name="TinhTrang" Relationship="Self.FK_DonDatHang_TinhTrang" FromRole="DonDatHang" ToRole="TinhTrang" />
@@ -44,6 +45,7 @@
     <Property Name="TenHangSanXuat" Type="String" MaxLength="64" FixedLength="true" Unicode="true" />
     <Property Name="LogoURL" Type="String" MaxLength="45" FixedLength="true" Unicode="true" />
     <Property Name="BiXoa" Type="Boolean" />
+    <Property Name="MaHSX" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_HangSanXuat" FromRole="HangSanXuat" ToRole="SanPham" />
   </EntityType>
   <EntityType Name="LoaiSanPham">
@@ -53,6 +55,7 @@
     <Property Name="MaLoaiSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TenLoaiSanPham" Type="String" MaxLength="64" FixedLength="true" Unicode="true" />
     <Property Name="BiXoa" Type="Boolean" />
+    <Property Name="MaLoai" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_LoaiSanPham" FromRole="LoaiSanPham" ToRole="SanPham" />
   </EntityType>
   <EntityType Name="LoaiTaiKhoan">
@@ -79,10 +82,11 @@
     <Property Name="MaLoaiSanPham" Type="Int32" />
     <Property Name="MaHangSanXuat" Type="Int32" />
     <Property Name="MaTinhTrang" Type="Int32" />
+    <Property Name="TrangThai" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
+    <Property Name="MaSP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="ChiTietDonDatHangs" Relationship="Self.FK_ChiTietDonDatHang_SanPham" FromRole="SanPham" ToRole="ChiTietDonDatHang" />
     <NavigationProperty Name="HangSanXuat" Relationship="Self.FK_SanPham_HangSanXuat" FromRole="SanPham" ToRole="HangSanXuat" />
     <NavigationProperty Name="LoaiSanPham" Relationship="Self.FK_SanPham_LoaiSanPham" FromRole="SanPham" ToRole="LoaiSanPham" />
-    <Property Name="TrangThai" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="TaiKhoan">
     <Key>
@@ -194,7 +198,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="shopthethaoEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="shopthethaoEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Admins" EntityType="Self.Admin" />
     <EntitySet Name="ChiTietDonDatHangs" EntityType="Self.ChiTietDonDatHang" />
     <EntitySet Name="DonDatHangs" EntityType="Self.DonDatHang" />
@@ -232,16 +236,5 @@
       <End Role="LoaiTaiKhoan" EntitySet="LoaiTaiKhoans" />
       <End Role="TaiKhoan" EntitySet="TaiKhoans" />
     </AssociationSet>
-    <EntitySet Name="sysdiagrams" EntityType="shopthethaoModel.sysdiagram" />
   </EntityContainer>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
 </Schema>

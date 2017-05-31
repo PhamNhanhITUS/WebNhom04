@@ -26,6 +26,8 @@ C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\Microsoft.
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\Newtonsoft.Json.dll
+C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\PagedList.dll
+C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\PagedList.Mvc.dll
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\System.Web.Helpers.dll
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\System.Web.Mvc.dll
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\System.Web.Razor.dll
@@ -41,6 +43,8 @@ C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\Microsoft.
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\Microsoft.ApplicationInsights.xml
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\Newtonsoft.Json.xml
+C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\PagedList.xml
+C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\PagedList.Mvc.xml
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\System.Web.Razor.xml
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\System.Web.Webpages.xml
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\System.Web.Webpages.Deployment.xml
@@ -49,8 +53,3 @@ C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\System.Web
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\System.Web.Mvc.xml
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\obj\Debug\shopthethao.dll
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\obj\Debug\shopthethao.pdb
-C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\PagedList.dll
-C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\PagedList.Mvc.dll
-C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\PagedList.xml
-C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\PagedList.Mvc.xml
-C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\obj\Debug\shopthethao.csprojResolveAssemblyReference.cache

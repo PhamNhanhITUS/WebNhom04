@@ -23,6 +23,7 @@ namespace shopthethao.Models
         public int MaLoaiSanPham { get; set; }
         public string TenLoaiSanPham { get; set; }
         public Nullable<bool> BiXoa { get; set; }
+        public string MaLoai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SanPham> SanPhams { get; set; }

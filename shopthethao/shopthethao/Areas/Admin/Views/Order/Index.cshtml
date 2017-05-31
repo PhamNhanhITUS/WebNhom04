@@ -74,253 +74,99 @@
         </div>
     </div>
     <!-- Main content -->
-    <section class="content">
-        <div class="row">
-            <div class="col-sm-12" style="padding:0px;">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover">
-                        <thead>
+    <div class="col-xs-12">
+        <div class="box">
+
+            <div class="box-body">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th width="5%">ID</th>
+                            <th width="10%">Mã khách hàng</th>
+                            <th>Tên khách hàng</th>
+                            <th>Ngày đặt</th>
+                            <th>Số lượng</th>
+                            <th>Tổng tiền</th>
+                            <th style="/*width: 100px;*/">Trạng thái</th>
+                            <th width="15%">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @*@foreach (var item in Model)
+                        {
                             <tr>
-                                <td style="width: 1px;" class="text-center"><input type="checkbox" /></td>
-                                <td class="text-center">Mã đơn hàng</td>
-                                <td class="text-center"><a href="#" class="asc">Tên sản phẩm</a></td>
-                                <td class="text-center"><a href="#">Mã sản phẩm:</a></td>
-                                <td class="text-center"><a href="#">Mã khách hàng</a></td>
-                                <td class="text-center"><a href="#">Ngày đặt hàng</a></td>
-                                <td class="text-center"><a href="#">Trạng thái</a></td>
-                                <td class="text-center">Thao tác</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="text-center"><input type="checkbox" /></td>
-                                <td class="text-center">DH-01</td>
-                                <td class="text-center">BALO B2B01 B.GREY</td>
-                                <td class="text-center">S-01</td>
-                                <td class="text-center">KHV-04</td>
-                                <td class="text-center">30/04/2017</td>
-                                <td class="text-center">Đã giao</td>
-                                <td class="text-center">
-                                    <button type="button" data-toggle="modal" class="btn btn-info" data-target="#myModal3"><i class="fa fa-eye"></i></button>
-                                    <button type="button" data-toggle="modal" class="btn btn-primary" data-target="#myModal2"><i class="fa fa-pencil"></i></button>
-                                    <button type="button" data-toggle="tooltip" title="Xóa" class="btn btn-danger" onclick="confirm('Xóa/Gỡ bỏ sẽ không phục hồi lại được! Bạn có chắc chắn muốn thực hiện việc này?') ? $('#form-product').submit() : false;"><i class="fa fa-trash-o"></i></button>
+                                <td>@item.ID</td>
+                                <td>@item.idKhachHang</td>
+                                <td>@item.TaiKhoan.Name</td>
+                                <td>@item.NgayDat</td>
+                                <td>@item.SoLuong</td>
+                                <td>@string.Format("{0:N0}", @item.TongTien) &#x20ab;</td>
+                                <td>
+                                    @if (item.TrangThai == 1)
+                                    {
+                                        <span class="badge bg-yellow">Chưa giao</span>
+                                    }
+                                    else if (item.TrangThai == 2)
+                                    {
+                                        <span class="badge bg-lime">Đang giao</span>
+                                    }
+                                    else if (item.TrangThai == 3)
+                                    {
+                                        <span class="badge bg-green">Đã thanh toán</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-red">Đã hủy</span>
+                                    }
                                 </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center"><input type="checkbox" /></td>
-                                <td class="text-center">DH-01</td>
-                                <td class="text-center">BALO B2B01 B.GREY</td>
-                                <td class="text-center">S-01</td>
-                                <td class="text-center">KHV-04</td>
-                                <td class="text-center">30/04/2017</td>
-                                <td class="text-center">Chưa giao</td>
-                                <td class="text-center">
-                                    <button type="button" data-toggle="modal" class="btn btn-info" data-target="#myModal3"><i class="fa fa-eye"></i></button>
-                                    <button type="button" data-toggle="modal" class="btn btn-primary" data-target="#myModal2"><i class="fa fa-pencil"></i></button>
-                                    <button type="button" data-toggle="tooltip" title="Xóa" class="btn btn-danger" onclick="confirm('Xóa/Gỡ bỏ sẽ không phục hồi lại được! Bạn có chắc chắn muốn thực hiện việc này?') ? $('#form-product').submit() : false;"><i class="fa fa-trash-o"></i></button>
-                                </td>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center"><input type="checkbox" /></td>
-                                <td class="text-center">DH-01</td>
-                                <td class="text-center">BALO B2B01 B.GREY</td>
-                                <td class="text-center">S-01</td>
-                                <td class="text-center">KHV-04</td>
-                                <td class="text-center">30/04/2017</td>
-                                <td class="text-center">Đã giao</td>
-                                <td class="text-center">
-                                    <button type="button" data-toggle="modal" class="btn btn-info" data-target="#myModal3"><i class="fa fa-eye"></i></button>
-                                    <button type="button" data-toggle="modal" class="btn btn-primary" data-target="#myModal2"><i class="fa fa-pencil"></i></button>
-                                    <button type="button" data-toggle="tooltip" title="Xóa" class="btn btn-danger" onclick="confirm('Xóa/Gỡ bỏ sẽ không phục hồi lại được! Bạn có chắc chắn muốn thực hiện việc này?') ? $('#form-product').submit() : false;"><i class="fa fa-trash-o"></i></button>
-                                </td>
+                                <td>
+                                    <a href="@Url.Action("ChiTiet", "DonHang", new {id=@item.ID })">Xem chi tiết</a>
+
+                                    <a @if (item.TrangThai == 3) { @Html.Raw("class='tat'") } onclick="return xacNhanXoa('Bạn có muốn xóa không ?')" href="@Url.Action("Xoa", "DonHang", new {id = @item.ID})" style="margin-left: 10px;">
+                                        <button class="btn btn-sm btn-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </a>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <!-- Modal chi tiet don dat hang-->
-                    <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                    <h4 class="modal-title">Đơn đặt hàng</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="box-body">
-                                                <label style="font-size:18px;"><b>Chi tiết đơn hàng</b></label>
-                                            </div><!-- /.box-body -->
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <!-- form start -->
-                                            <form role="form">
-                                                <div class="box-body">
-                                                    <div class="form-group">
-                                                        <label><b>Mã đơn hàng</b></label>
-                                                        <p>DH-92</p>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><b>Tên nhà sản phẩm</b></label>
-                                                        <p>1. Áo thun</p>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><b>Tổng tiền</b></label>
-                                                        <p>1.250.000 VNĐ</p>
-                                                    </div>
-                                                </div><!-- /.box-body -->
-                                            </form>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <!-- form start -->
-                                            <form role="form">
-                                                <div class="box-body">
-                                                    <div class="form-group">
-                                                        <label><b>Ngày đặt hàng</b></label>
-                                                        <p>30/04/2017</p>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><b>Mã nhà sản phẩm</b></label>
-                                                        <p>1. AT-01</p>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><b>Ngày giao hàng dự kiến</b></label>
-                                                        <p>3/5/2017</p>
-                                                    </div>
-                                                </div><!-- /.box-body -->
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="box-body">
-                                                <label style="font-size:18px;"><b>Chi tiết khách hàng</b></label>
-                                            </div><!-- /.box-body -->
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <!-- form start -->
-                                            <form role="form">
-                                                <div class="box-body">
-                                                    <div class="form-group">
-                                                        <label><b>Tên khách hàng</b></label>
-                                                        <p>Phạm Nhanh</p>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><b>Số điện thoại</b></label>
-                                                        <p>01629594513</p>
-                                                    </div>
-                                                </div><!-- /.box-body -->
-                                            </form>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <!-- form start -->
-                                            <form role="form">
-                                                <div class="box-body">
-                                                    <div class="form-group">
-                                                        <label><b>Mã khách hàng</b></label>
-                                                        <p>KHV-04</p>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><b>Địa chỉ giao hàng</b></label>
-                                                        <p>477/3/9 Âu Cơ, phường Phú Trung, quận Tân Phú, TP.HCM</p>
-                                                    </div>
-                                                </div><!-- /.box-body -->
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.box -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Modal sua don dat hang-->
-                    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                    <h4 class="modal-title">Chỉnh sửa đơn đặt hàng</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <!-- form start -->
-                                            <form role="form">
-                                                <div class="box-body">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Ngày giao hàng</label>
-                                                        <input type="date" class="form-control">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Trạng thái</label>
-                                                        <select name="filter_status" class="form-control">
-                                                            <option value="*"></option>
-                                                            <option value="1">Đã giao</option>
-                                                            <option value="0">Chưa giao</option>
-                                                        </select>
-                                                    </div>
-                                                </div><!-- /.box-body -->
-                                            </form>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <!-- form start -->
-                                            <form role="form">
-                                                <div class="box-body">
-                                                    <div class="form-group">
-                                                        <label>Số điện thoại</label>
-                                                        <input type="text" class="form-control" placeholder="Nhập mã nhà sản xuất">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Email</label>
-                                                        <input type="email" class="form-control">
-                                                    </div>
-                                                </div><!-- /.box-body -->
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <form role="form">
-                                                <div class="box-body">
-                                                    <div class="form-group">
-                                                        <label>Địa chỉ giao hàng</label>
-                                                        <input type="text" class="form-control" placeholder="Nhập địa chỉ giao hàng">
-                                                    </div>
-                                                </div><!-- /.box-body -->
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.box -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
-                                    <button type="button" class="btn btn-primary">Sửa</button>
-                                </div>
-                            </div>
+                        }*@
+                    </tbody>
+                </table>
+            </div>
+
+            @if (ViewBag.totalPage > 0)
+            {
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-0">
+                            <ul class="pagination">
+                                @if (ViewBag.curPage != 1)
+                                {
+                                    <li><a href="?page=@(ViewBag.curPage - 1)">«</a></li>
+                                }
+
+                                @for (int i = 1; i <= ViewBag.totalPage; i++)
+                                {
+                                    if (ViewBag.curPage == i)
+                                    {
+                                        <li class="active"><a href="?page=@i">@i</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="?page=@i">@i</a></li>
+                                    }
+                                }
+                                @if (ViewBag.curPage != ViewBag.totalPage)
+                                {
+                                    <li><a href="?page=@(ViewBag.curPage + 1)">»</a></li>
+                                }
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-6 text-left">Hiển thị từ 1 đến 10 trong 22 (3 trang)</div>
-                    <div class="col-sm-6 text-right">
-                        <ul class="pagination" style="margin:0px;">
-                            <li class="disabled"><a href="#">&laquo;</a></li>
-                            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                            <li class=""><a href="#">2 <span class="sr-only">(current)</span></a></li>
-                            <li class=""><a href="#">3 <span class="sr-only">(current)</span></a></li>
-                            <li class=""><a href="#">4 <span class="sr-only">(current)</span></a></li>
-                            <li class="disabled"><a href="#">&raquo;</a></li>
-                        </ul>
-                    </div>
-                </div><!-- /.row -->
-    </section><!-- /.content -->
+            }
+
+        </div>
+    </div>
 </div>
 

@@ -12,17 +12,17 @@
     <Key>
       <PropertyRef Name="MaChiTietDonDatHang" />
     </Key>
-    <Property Name="MaChiTietDonDatHang" Type="nchar" MaxLength="9" Nullable="false" />
+    <Property Name="MaChiTietDonDatHang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SoLuong" Type="int" />
     <Property Name="GiaBan" Type="int" />
-    <Property Name="MaDonDatHang" Type="nchar" MaxLength="9" />
+    <Property Name="MaDonDatHang" Type="int" />
     <Property Name="MaSanPham" Type="int" />
   </EntityType>
   <EntityType Name="DonDatHang">
     <Key>
       <PropertyRef Name="MaDonDatHang" />
     </Key>
-    <Property Name="MaDonDatHang" Type="nchar" MaxLength="9" Nullable="false" />
+    <Property Name="MaDonDatHang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="NgayLap" Type="datetime" />
     <Property Name="TongThanhTien" Type="int" />
     <Property Name="MaTaiKhoan" Type="int" />
@@ -30,6 +30,7 @@
     <Property Name="DiaChiNhanHang" Type="nchar" MaxLength="256" />
     <Property Name="HoTenNhanHang" Type="nchar" MaxLength="30" />
     <Property Name="DienThoaiNhanHang" Type="nchar" MaxLength="11" />
+    <Property Name="EmailNhanhang" Type="nchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="HangSanXuat">
     <Key>
@@ -39,6 +40,7 @@
     <Property Name="TenHangSanXuat" Type="nchar" MaxLength="64" />
     <Property Name="LogoURL" Type="nchar" MaxLength="45" />
     <Property Name="BiXoa" Type="bit" />
+    <Property Name="MaHSX" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="LoaiSanPham">
     <Key>
@@ -47,6 +49,7 @@
     <Property Name="MaLoaiSanPham" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TenLoaiSanPham" Type="nchar" MaxLength="64" />
     <Property Name="BiXoa" Type="bit" />
+    <Property Name="MaLoai" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="LoaiTaiKhoan">
     <Key>
@@ -72,16 +75,7 @@
     <Property Name="MaHangSanXuat" Type="int" />
     <Property Name="MaTinhTrang" Type="int" />
     <Property Name="TrangThai" Type="nchar" MaxLength="32" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
+    <Property Name="MaSP" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="TaiKhoan">
     <Key>
@@ -198,7 +192,6 @@
     <EntitySet Name="LoaiSanPham" EntityType="Self.LoaiSanPham" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LoaiTaiKhoan" EntityType="Self.LoaiTaiKhoan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TinhTrang" EntityType="Self.TinhTrang" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_ChiTietDonDatHang_DonDatHang" Association="Self.FK_ChiTietDonDatHang_DonDatHang">

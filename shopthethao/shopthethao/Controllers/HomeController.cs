@@ -12,6 +12,7 @@ namespace shopthethao.Controllers
     public class HomeController : Controller
     {
         // GET: Home
+        shopthethaoEntities1 db = new shopthethaoEntities1();
         public ActionResult Index()
         {
             ViewBag.BestProduct = BestProduct();
@@ -55,7 +56,7 @@ namespace shopthethao.Controllers
         {
             string taikhoan = fc[0].ToString();
             string matkhau = CreateMD5(fc[1].ToString());
-            using (shopthethaoEntities db = new shopthethaoEntities())
+            using (shopthethaoEntities1 db = new shopthethaoEntities1())
             {
                 var t = db.TaiKhoans.Where(u => u.TenDangNhap == taikhoan && u.MatKhau == matkhau && u.BiXoa == false).SingleOrDefault();
                 if (t != null)
@@ -77,7 +78,7 @@ namespace shopthethao.Controllers
         public ActionResult Register(FormCollection fc)
         {
             string matKhauMaHoa = CreateMD5(fc["MatKhau"].ToString());
-            using (shopthethaoEntities db = new shopthethaoEntities())
+            using (shopthethaoEntities1 db = new shopthethaoEntities1())
             {
                 string tenDangNhap = fc["TenDangNhap"].ToString();
                 string email = fc["Email"].ToString();
@@ -133,24 +134,16 @@ namespace shopthethao.Controllers
 
         public List<SanPham> BestProduct()
         {
-            using (shopthethaoEntities db = new shopthethaoEntities())
-            {
-                return db.SanPhams.OrderBy(y => y.SoLuongBan).Take(8).ToList();
-            }
+            
+                return ViewBag.BestProduct = db.SanPhams.OrderBy(y => y.SoLuongBan).Take(8).ToList();
         }
         public List<SanPham> NewProduct_1()
         {
-            using (shopthethaoEntities db = new shopthethaoEntities())
-            {
-                return db.SanPhams.OrderByDescending(y => y.MaSanPham).Take(4).ToList();
-            }
+            return ViewBag.NewProduct_1 = db.SanPhams.OrderByDescending(y => y.MaSanPham).Take(4).ToList();
         }
         public List<SanPham> NewProduct_2()
         {
-            using (shopthethaoEntities db = new shopthethaoEntities())
-            {
-                return db.SanPhams.OrderByDescending(y => y.MaSanPham).Skip(4).Take(4).ToList();
-            }
+             return ViewBag.NewProduct_2 = db.SanPhams.OrderByDescending(y => y.MaSanPham).Skip(4).Take(4).ToList();
         }
     }
 }

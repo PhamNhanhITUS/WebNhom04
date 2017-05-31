@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f62e6a56665948f5ba4fe8f13be70d65" Name="Diagram1">
-        <EntityTypeShape EntityType="shopthethaoModel.Admin" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopthethaoModel.ChiTietDonDatHang" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopthethaoModel.DonDatHang" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopthethaoModel.HangSanXuat" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopthethaoModel.LoaiSanPham" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopthethaoModel.LoaiTaiKhoan" Width="1.5" PointX="1.5" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopthethaoModel.SanPham" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+      <Diagram DiagramId="d64e6f09d8c94102b5f28e59a7b2862c" Name="Diagram1">
+        <EntityTypeShape EntityType="shopthethaoModel.Admin" Width="1.5" PointX="5.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopthethaoModel.ChiTietDonDatHang" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopthethaoModel.DonDatHang" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopthethaoModel.HangSanXuat" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopthethaoModel.LoaiSanPham" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopthethaoModel.LoaiTaiKhoan" Width="1.5" PointX="1.5" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopthethaoModel.SanPham" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
         <EntityTypeShape EntityType="shopthethaoModel.TaiKhoan" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="shopthethaoModel.TinhTrang" Width="1.5" PointX="0.75" PointY="18.125" IsExpanded="true" />
         <AssociationConnector Association="shopthethaoModel.FK_ChiTietDonDatHang_DonDatHang" ManuallyRouted="false" />
@@ -21,7 +21,6 @@
         <AssociationConnector Association="shopthethaoModel.FK_SanPham_HangSanXuat" ManuallyRouted="false" />
         <AssociationConnector Association="shopthethaoModel.FK_SanPham_LoaiSanPham" ManuallyRouted="false" />
         <AssociationConnector Association="shopthethaoModel.FK_TaiKhoan_LoaiTaiKhoan" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="shopthethaoModel.sysdiagram" Width="1.5" PointX="5.375" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
