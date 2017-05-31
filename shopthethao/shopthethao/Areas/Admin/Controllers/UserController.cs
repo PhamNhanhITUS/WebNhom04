@@ -13,5 +13,10 @@ namespace shopthethao.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public ActionResult Delete()
+        {
+            return View();
+        }
     }
 }

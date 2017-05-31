@@ -4,288 +4,73 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<!-- Content Header (Page header) -->
-<!-- <section class="content-header">
-  <h1>
-    Data Tables
-    <small>advanced tables</small>
-  </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="#">Tables</a></li>
-    <li class="active">Data tables</li>
-  </ol>
-</section> -->
-<div class="page-header">
-    <div class="container-fluid">
-        <div class="pull-right" style="padding:25px 0px 0px 0px;">
-            <button type="button" data-toggle="modal" class="btn btn-primary" data-target="#myModal1"><i class="fa fa-plus"></i></button>
-            <button type="button" data-toggle="tooltip" title="Xóa" class="btn btn-danger" onclick="confirm('Xóa/Gỡ bỏ sẽ không phục hồi lại được! Bạn có chắc chắn muốn thực hiện việc này?') ? $('#form-product').submit() : false;"><i class="fa fa-trash-o"></i></button>
-        </div>
-        <h1>Khách hàng</h1>
-    </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Thêm khách hàng mới</h4>
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Tài khoản <small>Danh sách tài khoản</small></h3>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <!-- form start -->
-                        <form role="form">
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label>Họ tên </label>
-                                    <input type="email" class="form-control" placeholder="Nhập họ tên">
-                                </div>
-                                <div class="form-group">
-                                    <label>Mật khẩu</label>
-                                    <input type="email" class="form-control" placeholder="Nhập mật khẩu">
-                                </div>
-                                <div class="form-group">
-                                    <label>Nhập lại mật khẩu</label>
-                                    <input type="email" class="form-control" placeholder="Nhập lại mật khẩu">
-                                </div>
-                                <div class="form-group">
-                                    <label>Số điện thoại</label>
-                                    <input type="email" class="form-control" placeholder="Nhập số điện thoại">
-                                </div>
-                            </div><!-- /.box-body -->
-                        </form>
-                    </div>
-                    <div class="col-sm-6">
-                        <!-- form start -->
-                        <form role="form">
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="email" class="form-control" placeholder="Nhập địa chỉ Email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Ngày sinh</label>
-                                    <input type="date" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Loại khách hàng</label>
-                                    <select name="filter_status" id="input-status" class="form-control">
-                                        <option value="*"></option>
-                                        <option value="1">VIP</option>
-                                        <option value="0">Thường</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Địa chỉ</label>
-                                    <input type="text" class="form-control" placeholder="Nhập địa chỉ">
-                                </div>
-                            </div><!-- /.box-body -->
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- /.box -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
-                <button type="button" class="btn btn-primary">Thêm</button>
-            </div>
+            <!-- <div class="title_right">
+            </div> -->
         </div>
-    </div>
-</div>
-<div class="container-fluid">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><i class="fa fa-list"></i> Danh sách khách hàng</h3>
-        </div>
-        <div class="panel-body">
-            <div class="well">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="control-label" for="input-name">Tên Khách hàng</label>
-                            <input type="text" name="filter_name" value="" placeholder="Tên sản phẩm:" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="input-model">Số điện thoại</label>
-                            <input type="text" name="filter_name" value="" placeholder="Số điện thoại" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="control-label" for="input-model">Mã khách hàng</label>
-                            <input type="text" name="filter_name" value="" placeholder="Mã khách hàng" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="input-quantity">Ngày sinh</label>
-                            <input type="date" name="filter_name" value="" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="control-label" for="input-model">Email</label>
-                            <input type="text" name="filter_name" value="" placeholder="Email" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="input-quantity">Loại khách hàng</label>
-                            <select name="filter_status" id="input-status" class="form-control">
-                                <option value="*"></option>
-                                <option value="1">VIP</option>
-                                <option value="0">Thường</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-search"></i> Tìm kiếm</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Main content -->
-    <section class="content">
+        <div class="clearfix"></div>
         <div class="row">
-            <div class="col-sm-12" style="padding:0px;">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <td style="width: 1px;" class="text-center"><input type="checkbox" /></td>
-                                <td class="text-center">Họ tên</td>
-                                <td class="text-center"><a href="#" class="asc">Mã khách hàng</a></td>
-                                <td class="text-center"><a href="#">Ngày sinh</a></td>
-                                <td class="text-center"><a href="#">SĐT</a></td>
-                                <td class="text-center"><a href="#">Email</a></td>
-                                <td class="text-center">
-                                    <a href="#">Loại</a>
-                                </td>
-                                <td class="text-center">Thao tác</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="text-center"><input type="checkbox" /></td>
-                                <td class="text-center">Phạm Nhanh</td>
-                                <td class="text-center">KHV-01</td>
-                                <td class="text-center">02/06/1996</td>
-                                <td class="text-center">01629594513</td>
-                                <td class="text-center">phamnhanhitus@gmail.com</td>
-                                <td class="text-center">VIP</td>
-                                <td class="text-center">
-                                    <button type="button" data-toggle="modal" class="btn btn-primary" data-target="#myModal2"><i class="fa fa-pencil"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center"><input type="checkbox" /></td>
-                                <td class="text-center">Phạm Nhanh</td>
-                                <td class="text-center">KHV-01</td>
-                                <td class="text-center">02/06/1996</td>
-                                <td class="text-center">01629594513</td>
-                                <td class="text-center">phamnhanhitus@gmail.com</td>
-                                <td class="text-center">VIP</td>
-                                <td class="text-center">
-                                    <button type="button" data-toggle="modal" class="btn btn-primary" data-target="#myModal2"><i class="fa fa-pencil"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center"><input type="checkbox" /></td>
-                                <td class="text-center">Phạm Nhanh</td>
-                                <td class="text-center">KHV-01</td>
-                                <td class="text-center">02/06/1996</td>
-                                <td class="text-center">01629594513</td>
-                                <td class="text-center">phamnhanhitus@gmail.com</td>
-                                <td class="text-center">VIP</td>
-                                <td class="text-center">
-                                    <button type="button" data-toggle="modal" class="btn btn-primary" data-target="#myModal2"><i class="fa fa-pencil"></i></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <!-- Modal sua khach hang-->
-                    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Thêm khách hàng mới</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <!-- form start -->
-                                            <form role="form">
-                                                <div class="box-body">
-                                                    <div class="form-group">
-                                                        <label>Họ tên </label>
-                                                        <input type="email" class="form-control" placeholder="Nhập họ tên">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Mật khẩu</label>
-                                                        <input type="email" class="form-control" placeholder="Nhập mật khẩu">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Nhập lại mật khẩu</label>
-                                                        <input type="email" class="form-control" placeholder="Nhập lại mật khẩu">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Số điện thoại</label>
-                                                        <input type="email" class="form-control" placeholder="Nhập số điện thoại">
-                                                    </div>
-                                                </div><!-- /.box-body -->
-                                            </form>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <!-- form start -->
-                                            <form role="form">
-                                                <div class="box-body">
-                                                    <div class="form-group">
-                                                        <label>Email</label>
-                                                        <input type="email" class="form-control" placeholder="Nhập địa chỉ Email">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Ngày sinh</label>
-                                                        <input type="date" class="form-control">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputPassword1">Loại khách hàng</label>
-                                                        <select name="filter_status" id="input-status" class="form-control">
-                                                            <option value="*"></option>
-                                                            <option value="1">VIP</option>
-                                                            <option value="0">Thường</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Địa chỉ</label>
-                                                        <input type="text" class="form-control" placeholder="Nhập địa chỉ">
-                                                    </div>
-                                                </div><!-- /.box-body -->
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.box -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
-                                    <button type="button" class="btn btn-primary">Thêm</button>
-                                </div>
-                            </div>
-                        </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <button type="button" class="btn btn-round btn-primary">Thêm mới</button>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <table id="datatable" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Họ tên</th>
+                                    <th>Ngày sinh</th>
+                                    <th>Email</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Email</th>
+                                    <th>Địa chỉ</th>
+                                    <th style="width: 105px;">Thao tác</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>System Architect</td>
+                                    <td>Edinburgh</td>
+                                    <td>61</td>
+                                    <td>2011/04/25</td>
+                                    <td>2011/04/25</td>
+                                    <td><button type="button" class="btn btn-success btn-xs">Còn hàng</button></td>
+                                    <td>
+                                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
+                                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Nixon</td>
+                                    <td>System</td>
+                                    <td>Edinburgh</td>
+                                    <td>61</td>
+                                    <td>2011/04/25</td>
+                                    <td><button type="button" class="btn btn-round btn-warning btn-xs">Sale 10%</button></td>
+                                   
+                                    <td>
+                                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
+                                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-6 text-left">Hiển thị từ 1 đến 10 trong 22 (3 trang)</div>
-                    <div class="col-sm-6 text-right">
-                        <ul class="pagination" style="margin:0px;">
-                            <li class="disabled"><a href="#">&laquo;</a></li>
-                            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                            <li class=""><a href="#">2 <span class="sr-only">(current)</span></a></li>
-                            <li class=""><a href="#">3 <span class="sr-only">(current)</span></a></li>
-                            <li class=""><a href="#">4 <span class="sr-only">(current)</span></a></li>
-                            <li class="disabled"><a href="#">&raquo;</a></li>
-                        </ul>
-                    </div>
-                </div><!-- /.row -->
-    </section><!-- /.content -->
+            </div>
+        </div>
+    </div>
 </div>
+<!-- /page content -->
+
+
+
