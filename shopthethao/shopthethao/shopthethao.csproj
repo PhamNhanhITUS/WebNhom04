@@ -1569,6 +1569,7 @@
     <Content Include="Assets\Client\images\home\searchicon.png" />
     <Content Include="Assets\Client\images\home\shipping.jpg" />
     <Content Include="Assets\Client\images\home\success.png" />
+    <Content Include="Assets\Client\images\home\user.png" />
     <Content Include="Assets\Client\images\product-details\1.jpg" />
     <Content Include="Assets\Client\images\product-details\new.jpg" />
     <Content Include="Assets\Client\images\product-details\rating.png" />
@@ -1626,7 +1627,7 @@
     <Compile Include="Controllers\Error404Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1934,6 +1935,8 @@
     <Content Include="Areas\Admin\Views\Product\Manufacturer.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\User\Delete.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Profile\Info.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

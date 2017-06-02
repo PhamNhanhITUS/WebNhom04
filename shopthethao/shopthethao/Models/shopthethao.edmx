@@ -93,7 +93,7 @@
           <Property Name="DiaChi" Type="nvarchar" MaxLength="150" />
           <Property Name="DienThoai" Type="nvarchar" MaxLength="11" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
-          <Property Name="NgaySinh" Type="date" />
+          <Property Name="NgaySinh" Type="datetime" />
           <Property Name="GioiTinh" Type="bit" />
           <Property Name="MaLoaiTaiKhoan" Type="int" />
           <Property Name="BiXoa" Type="bit" />
@@ -331,7 +331,7 @@
           <Property Name="DiaChi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="DienThoai" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+          <Property Name="NgaySinh" Type="DateTime" Precision="3" />
           <Property Name="GioiTinh" Type="Boolean" />
           <Property Name="MaLoaiTaiKhoan" Type="Int32" />
           <Property Name="BiXoa" Type="Boolean" />

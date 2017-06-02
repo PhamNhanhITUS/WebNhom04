@@ -1,0 +1,118 @@
+﻿@model shopthethao.Models.TaiKhoan
+@{
+    ViewBag.Title = "Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-1">
+            </div>
+            <div class="col-sm-6">
+                    <div class="col-sm-6">
+                        <div>
+                            <img src="~/Assets/Client/images/home/user.png" alt="..." class="img-rounded" width="200px" height="200px" />
+                        </div>
+                        <div style="padding: 30px;">
+                            <p><b>Loại tài khoản: </b>@Model.LoaiTaiKhoan.TenLoaiTaiKhoan</p>
+                        </div>
+                    </div>
+                    <form data-toggle="validator" role="form" action="@Url.Action("ChangeProfile", "Profile")" method="post">
+                        <input type="hidden" name="id" value="@Session["MaTaiKhoan"]"/>
+                        <div class="col-sm-6" style="padding:0px;">
+                            <div class="form-group row" style="margin-bottom:0px;">
+                                <label for="example-text-input" class="col-2 col-form-label">Họ và tên</label>
+                                <div class="col-10">
+                                    <input class="form-control" type="text" name="name" value="@Model.TenHienThi" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="form-group row" style="margin-bottom:0px;">
+                                <label for="example-text-input" class="col-2 col-form-label">Ngày sinh</label>
+                                <div class="col-10">
+                                    <input class="form-control" type="datetime" name="birthday" value="@Model.NgaySinh" style="width:200px;" max="2017-12-31" data-error="Ngày sinh đúng định dạng" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="form-group row" style="margin-bottom:0px;">
+                                <label for="example-text-input" class="col-2 col-form-label">Giới tính</label>
+                                <div class="col-10">
+                                    <select class="form-control" name="sex" style="width:100px;">
+                                        @if (Model.GioiTinh == true)
+                                        {
+                                            <option selected value="True">Nam</option>
+                                        }
+                                        else
+                                        {
+                                            <option selected value="False">Nữ</option>
+                                        }
+                                        <option value="True">Nam</option>
+                                        <option value="False">Nữ</option>
+                                    </select>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="form-group row" style="margin-bottom:0px;">
+                                <label for="example-text-input" class="col-2 col-form-label">Số điện thoại</label>
+                                <div class="col-10">
+                                    <input class="form-control" name="phone" type="number" min="0" maxlength="11" value="@Model.DienThoai" style="width:200px;" data-error="Số điện thoại không đúng định dạng" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="form-group row" style="margin-bottom:0px;">
+                                <label for="example-text-input" class="col-2 col-form-label">Email</label>
+                                <div class="col-10">
+                                    <input class="form-control" name="email" type="email" value="@Model.Email" data-error="Email không đúng định dạng" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="form-group row" style="margin-bottom:0px;">
+                                <label for="example-text-input" class="col-2 col-form-label">Địa chỉ</label>
+                                <div class="col-10">
+                                    <input class="form-control" type="text" name="location" value="@Model.DiaChi" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="form-group row" style="margin-bottom:0px;">
+                                <button type="reset" class="btn btn-custom">Nhập lại</button>
+                                <button type="submit" class="btn btn-custom">Lưu chỉnh sửa</button>
+                            </div>
+                        </div>
+                    </form>
+                }
+
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-3">
+                <form data-toggle="validator" role="form" action="@Url.Action("ChangePassword", "Profile")" method="post">
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-2 col-form-label">Mật khẩu cũ</label>
+                        <div class="col-10">
+                            <input class="form-control" type="password" name="password" placeholder="Mật khẩu cũ" required />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-2 col-form-label">Mật khẩu mới (ít nhất 8 kí tự)</label>
+                        <div class="col-10">
+                            <input class="form-control" type="password" data-minlength="8" id="inputPassword" placeholder="Mật khẩu mới" required>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-2 col-form-label">Nhập lại mật khẩu mới</label>
+                        <div class="col-10">
+                            <input class="form-control" type="password" name="newPassword" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Nhập lại mật khẩu mới không trùng" placeholder="Nhập lại mật khẩu mới" required>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <button type="submit" class="btn btn-custom">Đổi mật khẩu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

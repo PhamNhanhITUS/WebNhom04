@@ -73,7 +73,7 @@
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:white;padding:8px 12px;color:#696763;font-family:'Roboto', sans-serif;font-weight:300;padding-right:0px;"><i class="fa fa-user"></i> @Session["TenDangNhap"]</button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-                                                <button onclick="location.href='@Url.Action("Profile","User", new { ID = Session["MaTaiKhoan"]})'" class="form-control dropdown-item" type="button" style="border:0px">Thông tin tài khoản</button>
+                                                <button onclick="location.href='@Url.Action("Info","Profile", new { ID = Session["MaTaiKhoan"]})'" class="form-control dropdown-item" type="button" style="border:0px">Thông tin tài khoản</button>
                                                 <button class="form-control dropdown-item" type="button" style="border:0px">Lịch sử mua hàng</button>
                                                 <button class="form-control dropdown-item" type="button" id="Logout" style="border:0px">Đăng xuất</button>
                                             </div>
@@ -247,6 +247,13 @@
             $('#ErrPayment').modal('show')
         </script>
     }
+    @if (Session["DoiThongTinThanhCong"] != null)
+    {
+        <script>
+            $('#ChangeProfile').modal('show')
+        </script>
+    }
+    S
     <script>
         $('#SuLogin').on('hide.bs.modal', function (e) {
             @{
@@ -271,6 +278,11 @@
         $('#ErrPayment').on('hide.bs.modal', function (e) {
           @{
               Session.Remove("ThanhToanThatBai");
+          }
+        })
+        $('#ChangeProfile').on('hide.bs.modal', function (e) {
+          @{
+              Session.Remove("DoiThongTinThanhCong");
           }
         })
     </script>

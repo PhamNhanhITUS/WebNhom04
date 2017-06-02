@@ -88,7 +88,7 @@
     <Property Name="DiaChi" Type="nvarchar" MaxLength="150" />
     <Property Name="DienThoai" Type="nvarchar" MaxLength="11" />
     <Property Name="Email" Type="nvarchar" MaxLength="50" />
-    <Property Name="NgaySinh" Type="date" />
+    <Property Name="NgaySinh" Type="datetime" />
     <Property Name="GioiTinh" Type="bit" />
     <Property Name="MaLoaiTaiKhoan" Type="int" />
     <Property Name="BiXoa" Type="bit" />
