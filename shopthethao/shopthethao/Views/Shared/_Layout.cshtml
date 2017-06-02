@@ -253,7 +253,12 @@
             $('#ChangeProfile').modal('show')
         </script>
     }
-    S
+    @if (Session["DoiMatKhauThanhCong"] != null)
+    {
+        <script>
+            $('#ChangePassword').modal('show')
+        </script>
+    }
     <script>
         $('#SuLogin').on('hide.bs.modal', function (e) {
             @{
@@ -283,6 +288,11 @@
         $('#ChangeProfile').on('hide.bs.modal', function (e) {
           @{
               Session.Remove("DoiThongTinThanhCong");
+          }
+        })
+        $('#ChangePassword').on('hide.bs.modal', function (e) {
+          @{
+              Session.Remove("DoiMatKhauThanhCong");
           }
         })
     </script>

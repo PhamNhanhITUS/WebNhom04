@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -45,9 +47,47 @@ namespace shopthethao.Controllers
             }
             return RedirectToAction("Info", "Profile");
         }
-        public ActionResult ChangePassword()
+
+        public static string CreateMD5(string input)
         {
-            return View();
+            // Use input string to calculate MD5 hash
+            MD5 md5 = System.Security.Cryptography.MD5.Create();
+            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
+            byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+            // Convert the byte array to hexadecimal string
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < hashBytes.Length; i++)
+            {
+                sb.Append(hashBytes[i].ToString("X2"));
+            }
+            return sb.ToString();
+        }
+        public ActionResult ChangePassword(FormCollection fc)
+        {
+            var id = int.Parse(fc["id"]);
+
+            var pass = CreateMD5(fc["password"].ToString());
+            var newPass = CreateMD5(fc["newPassword"].ToString());
+
+            var p = db.TaiKhoans.First(x => x.MaTaiKhoan == id);
+
+            if(p.MatKhau == pass)
+            {
+                p.MatKhau = newPass;
+                db.SaveChanges();
+            }
+            else
+            {
+                ViewBag.passError = "Mật khẩu cũ không đúng";
+                return RedirectToAction("Info", "Profile");
+            }
+            //if (db.SaveChanges() == 0)
+            //{
+            //    Session["DoiMatKhauThanhCong"] = "";
+            //    return RedirectToAction("Info", "Profile");
+            //}
+            return RedirectToAction("Info", "Profile");
         }
     }
 }
