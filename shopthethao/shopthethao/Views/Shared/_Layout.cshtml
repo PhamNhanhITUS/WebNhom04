@@ -235,6 +235,18 @@
             $('#SuRegis').modal('show')
         </script>
     }
+    @if (Session["ThanhToanThanhCong"] != null)
+    {
+        <script>
+            $('#SuPayment').modal('show')
+        </script>
+    }
+    @if (Session["ThanhToanThatBai"] != null)
+    {
+        <script>
+            $('#ErrPayment').modal('show')
+        </script>
+    }
     <script>
         $('#SuLogin').on('hide.bs.modal', function (e) {
             @{
@@ -250,6 +262,16 @@
             @{
                 Session.Remove("DangKyThanhCong");
             }
+        })
+        $('#SuPayment').on('hide.bs.modal', function (e) {
+          @{
+              Session.Remove("ThanhToanThanhCong");
+         }
+        })
+        $('#ErrPayment').on('hide.bs.modal', function (e) {
+          @{
+              Session.Remove("ThanhToanThatBai");
+          }
         })
     </script>
 </body>

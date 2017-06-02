@@ -124,9 +124,9 @@ namespace shopthethao.Controllers
         public ActionResult Payment(FormCollection fc)
         {
 
+            var MaTaiKhoan = int.Parse(fc["id"]);
 
-
-            DonDatHang donhang = new DonDatHang
+            DonDatHang order = new DonDatHang
             {
 
                 NgayLap = DateTime.Now,
@@ -139,45 +139,35 @@ namespace shopthethao.Controllers
                 DienThoaiNhanHang = fc["phone"].ToString(),
             };
 
-            db.DonDatHangs.Add(donhang);
+            db.DonDatHangs.Add(order);
 
             db.SaveChanges();
 
-            if (db.SaveChanges() == 0)
+            var idOrder = order.MaDonDatHang;
+            try
             {
-                Session["DangKyThanhCong"] = "";
-                return RedirectToAction("Index");
+                var cart = (List<CartItem>)Session[CartSession];
+                foreach (var item in cart)
+                {
+                    ChiTietDonDatHang orderDetail = new ChiTietDonDatHang
+                    {
+                        SoLuong = item.Quantity,
+                        GiaBan = item.Product.GiaSanPham,
+                        MaDonDatHang = idOrder,
+                        MaSanPham = item.Product.MaSanPham
+                    };
+                    db.ChiTietDonDatHangs.Add(orderDetail);
+                    db.SaveChanges();
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                Session["DangKyThatBai"] = "";
-                return RedirectToAction("Index", "Product");
+                Session["ThanhToanThatBai"] = "";
+                return RedirectToAction("Index", "Home");
             }
-            //try
-            //{
-            //    var idOder = db.DonDatHangs.OrderByDescending(x => x.MaDonDatHang).Take(1);
-            //    var cart = (List<CartItem>)Session[CartSession];
-            //    var detailDao = new Model.Dao.OrderDetailDao();
-            //    decimal total = 0;
-            //    foreach (var item in cart)
-            //    {
-            //        var orderDetail = new OrderDetail();
-            //        orderDetail.ProductID = item.Product.ID;
-            //        orderDetail.OrderID = id;
-            //        orderDetail.Price = item.Product.Price;
-            //        orderDetail.Quantity = item.Quantity;
-            //        detailDao.Insert(orderDetail);
-
-            //        total += (item.Product.Price.GetValueOrDefault(0) * item.Quantity);
-            //    }
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    ghi log
-            //    return Redirect("/loi-thanh-toan");
-            //}
-
+            Session["ThanhToanThanhCong"] = "";
+            return RedirectToAction("Index", "Home");
         }
     }
 }
