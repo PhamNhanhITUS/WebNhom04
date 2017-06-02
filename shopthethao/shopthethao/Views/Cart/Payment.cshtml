@@ -5,7 +5,7 @@
     ViewBag.Title = "Payment";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@if(Session["MaTaiKhoan"] != null) { 
+@if(Session["MaTaiKhoan"] != null) {
 <div class="container">
     <div class="row">
         <div class="col-md-12" style="padding:0px 0px 40px 0px;">
@@ -25,21 +25,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @{
-                                        int @total = 0;
+                                    @{ 
+                                        var total = "";
                                     }
                                     @foreach (var item in Model)
                                     {
-                                        
-                                            @*@total = @total + (item.Product.GiaSanPham * item.Quantity);*@
-
                                         <tr>
                                             <td class="cart_product">
                                                 <a href=""><img src="/Assets/Client/images/cart/one.png" alt=""></a>
                                             </td>
                                             <td class="cart_description" style="padding-left:20px;">
                                                 <h4><a href="">@item.Product.TenSanPham</a></h4>
-                                                <p>Mã: 1089772</p>
+                                                <p>Mã: @item.Product.MaSP</p>
                                             </td>
                                             <td class="cart_price">
                                                 <p>@string.Format("{0:n0}", item.Product.GiaSanPham) VNĐ</p>
@@ -50,6 +47,7 @@
                                                 </div>
                                             </td>
                                             @{var cart_total = item.Product.GiaSanPham * item.Quantity;
+                                                total += cart_total;
                                              }
                                             <td class="cart_total" style="font-size:20px;">
                                                 <p class="cart_total_price">@string.Format("{0:n0}", cart_total) VNĐ</p>
@@ -75,8 +73,9 @@
                 </div>
                                 @foreach (var item in ViewBag.Info as List<TaiKhoan>)
                                 {
-                                    <form data-toggle="validator" role="form" action="@Url.Action("Paymenting","Cart")" method="post">
+                                    <form data-toggle="validator" role="form" action="@Url.Action("Payment","Cart")" method="post">
                                         <input name="id" type="hidden" value="@Session["MaTaiKhoan"]"/>
+                                        <input name="total" type="hidden" value="@total" />
                                         <div class="form-group">
                                             <label>Người nhận</label>
                                             <input name="shipName" class="form-control" value="@item.TenHienThi" required/>

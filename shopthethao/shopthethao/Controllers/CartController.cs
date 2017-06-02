@@ -119,65 +119,65 @@ namespace shopthethao.Controllers
             }
             return View(list);
         }
-   
-        //[HttpPost]
-        //public ActionResult Paymenting(FormCollection fc)
-        //{
 
-           
+        [HttpPost]
+        public ActionResult Payment(FormCollection fc)
+        {
 
-        //    DonDatHang donhang = new DonDatHang
-        //    {
 
-        //        NgayLap = DateTime.Parse("2017-06-02"),
-        //        MaTaiKhoan = int.Parse(fc["id"]),
-        //        MaTinhTrang = 1,
-        //        TongThanhTien = 1000000,
-        //        DiaChiNhanHang = fc["address"].ToString(),
-        //        HoTenNhanHang = fc["shipName"].ToString(),
-        //        EmailNhanhang = fc["email"].ToString(),
-        //        DienThoaiNhanHang = fc["phone"].ToString(),
-        //    };
 
-        //    db.DonDatHangs.Add(donhang);
+            DonDatHang donhang = new DonDatHang
+            {
 
-        //    db.SaveChanges();
+                NgayLap = DateTime.Now,
+                MaTaiKhoan = int.Parse(fc["id"]),
+                MaTinhTrang = 1,
+                TongThanhTien = int.Parse(fc["total"]),
+                DiaChiNhanHang = fc["address"].ToString(),
+                HoTenNhanHang = fc["shipName"].ToString(),
+                EmailNhanhang = fc["email"].ToString(),
+                DienThoaiNhanHang = fc["phone"].ToString(),
+            };
 
-        //    if (db.SaveChanges() == 0)
-        //    {
-        //        Session["DangKyThanhCong"] = "";
-        //        return RedirectToAction("Index");
-        //    }
-        //    else
-        //    {
-        //        Session["DangKyThatBai"] = "";
-        //        return RedirectToAction("Index", "Product");
-        //    }
-        //    //try
-        //    //{
-        //    //    var idOder = db.DonDatHangs.OrderByDescending(x => x.MaDonDatHang).Take(1);
-        //    //    var cart = (List<CartItem>)Session[CartSession];
-        //    //    var detailDao = new Model.Dao.OrderDetailDao();
-        //    //    decimal total = 0;
-        //    //    foreach (var item in cart)
-        //    //    {
-        //    //        var orderDetail = new OrderDetail();
-        //    //        orderDetail.ProductID = item.Product.ID;
-        //    //        orderDetail.OrderID = id;
-        //    //        orderDetail.Price = item.Product.Price;
-        //    //        orderDetail.Quantity = item.Quantity;
-        //    //        detailDao.Insert(orderDetail);
+            db.DonDatHangs.Add(donhang);
 
-        //    //        total += (item.Product.Price.GetValueOrDefault(0) * item.Quantity);
-        //    //    }
+            db.SaveChanges();
 
-        //    //}
-        //    //catch (Exception ex)
-        //    //{
-        //    //    ghi log
-        //    //    return Redirect("/loi-thanh-toan");
-        //    //}
+            if (db.SaveChanges() == 0)
+            {
+                Session["DangKyThanhCong"] = "";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                Session["DangKyThatBai"] = "";
+                return RedirectToAction("Index", "Product");
+            }
+            //try
+            //{
+            //    var idOder = db.DonDatHangs.OrderByDescending(x => x.MaDonDatHang).Take(1);
+            //    var cart = (List<CartItem>)Session[CartSession];
+            //    var detailDao = new Model.Dao.OrderDetailDao();
+            //    decimal total = 0;
+            //    foreach (var item in cart)
+            //    {
+            //        var orderDetail = new OrderDetail();
+            //        orderDetail.ProductID = item.Product.ID;
+            //        orderDetail.OrderID = id;
+            //        orderDetail.Price = item.Product.Price;
+            //        orderDetail.Quantity = item.Quantity;
+            //        detailDao.Insert(orderDetail);
 
-        //}
+            //        total += (item.Product.Price.GetValueOrDefault(0) * item.Quantity);
+            //    }
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    ghi log
+            //    return Redirect("/loi-thanh-toan");
+            //}
+
+        }
     }
 }

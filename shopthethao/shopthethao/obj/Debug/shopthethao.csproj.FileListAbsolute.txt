@@ -53,3 +53,4 @@ C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\System.Web
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\bin\System.Web.Mvc.xml
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\obj\Debug\shopthethao.dll
 C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\obj\Debug\shopthethao.pdb
+C:\Users\phamnhanh\Source\Repos\WebNhom04\shopthethao\shopthethao\obj\Debug\shopthethao.csprojResolveAssemblyReference.cache

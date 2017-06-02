@@ -5,8 +5,8 @@
       <PropertyRef Name="MaAdmin" />
     </Key>
     <Property Name="MaAdmin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TaiKhoanAdmin" Type="nchar" MaxLength="30" />
-    <Property Name="MatKhauAdmin" Type="nchar" MaxLength="30" />
+    <Property Name="TaiKhoanAdmin" Type="nvarchar" MaxLength="30" />
+    <Property Name="MatKhauAdmin" Type="nvarchar" MaxLength="30" />
   </EntityType>
   <EntityType Name="ChiTietDonDatHang">
     <Key>
@@ -27,36 +27,36 @@
     <Property Name="TongThanhTien" Type="int" />
     <Property Name="MaTaiKhoan" Type="int" />
     <Property Name="MaTinhTrang" Type="int" />
-    <Property Name="DiaChiNhanHang" Type="nchar" MaxLength="256" />
-    <Property Name="HoTenNhanHang" Type="nchar" MaxLength="30" />
-    <Property Name="DienThoaiNhanHang" Type="nchar" MaxLength="11" />
-    <Property Name="EmailNhanhang" Type="nchar" MaxLength="50" />
+    <Property Name="DiaChiNhanHang" Type="nvarchar" MaxLength="150" />
+    <Property Name="HoTenNhanHang" Type="nvarchar" MaxLength="50" />
+    <Property Name="DienThoaiNhanHang" Type="nvarchar" MaxLength="11" />
+    <Property Name="EmailNhanhang" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="HangSanXuat">
     <Key>
       <PropertyRef Name="MaHangSanXuat" />
     </Key>
     <Property Name="MaHangSanXuat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TenHangSanXuat" Type="nchar" MaxLength="64" />
-    <Property Name="LogoURL" Type="nchar" MaxLength="45" />
+    <Property Name="TenHangSanXuat" Type="nvarchar" MaxLength="50" />
+    <Property Name="LogoURL" Type="nvarchar" MaxLength="256" />
     <Property Name="BiXoa" Type="bit" />
-    <Property Name="MaHSX" Type="nchar" MaxLength="10" />
+    <Property Name="MaHSX" Type="nvarchar" MaxLength="11" />
   </EntityType>
   <EntityType Name="LoaiSanPham">
     <Key>
       <PropertyRef Name="MaLoaiSanPham" />
     </Key>
     <Property Name="MaLoaiSanPham" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TenLoaiSanPham" Type="nchar" MaxLength="64" />
+    <Property Name="TenLoaiSanPham" Type="nvarchar" MaxLength="20" />
     <Property Name="BiXoa" Type="bit" />
-    <Property Name="MaLoai" Type="nchar" MaxLength="10" />
+    <Property Name="MaLoai" Type="nvarchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="LoaiTaiKhoan">
     <Key>
       <PropertyRef Name="MaLoaiTaiKhoan" />
     </Key>
     <Property Name="MaLoaiTaiKhoan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TenLoaiTaiKhoan" Type="nchar" MaxLength="30" />
+    <Property Name="TenLoaiTaiKhoan" Type="nvarchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="SanPham">
     <Key>
@@ -82,12 +82,12 @@
       <PropertyRef Name="MaTaiKhoan" />
     </Key>
     <Property Name="MaTaiKhoan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TenDangNhap" Type="char" MaxLength="30" />
-    <Property Name="MatKhau" Type="char" MaxLength="255" />
-    <Property Name="TenHienThi" Type="nchar" MaxLength="64" />
-    <Property Name="DiaChi" Type="nchar" MaxLength="256" />
-    <Property Name="DienThoai" Type="nchar" MaxLength="11" />
-    <Property Name="Email" Type="nchar" MaxLength="30" />
+    <Property Name="TenDangNhap" Type="nvarchar" MaxLength="50" />
+    <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
+    <Property Name="TenHienThi" Type="nvarchar" MaxLength="50" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="150" />
+    <Property Name="DienThoai" Type="nvarchar" MaxLength="11" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
     <Property Name="NgaySinh" Type="date" />
     <Property Name="GioiTinh" Type="bit" />
     <Property Name="MaLoaiTaiKhoan" Type="int" />
@@ -98,7 +98,7 @@
       <PropertyRef Name="MaTinhTrang" />
     </Key>
     <Property Name="MaTinhTrang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TenTinhTrang" Type="nchar" MaxLength="45" />
+    <Property Name="TenTinhTrang" Type="nvarchar" MaxLength="20" />
   </EntityType>
   <Association Name="FK_ChiTietDonDatHang_DonDatHang">
     <End Role="DonDatHang" Type="Self.DonDatHang" Multiplicity="0..1" />

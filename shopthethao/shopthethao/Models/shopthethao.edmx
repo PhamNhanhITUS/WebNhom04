@@ -10,8 +10,8 @@
             <PropertyRef Name="MaAdmin" />
           </Key>
           <Property Name="MaAdmin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TaiKhoanAdmin" Type="nchar" MaxLength="30" />
-          <Property Name="MatKhauAdmin" Type="nchar" MaxLength="30" />
+          <Property Name="TaiKhoanAdmin" Type="nvarchar" MaxLength="30" />
+          <Property Name="MatKhauAdmin" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="ChiTietDonDatHang">
           <Key>
@@ -32,36 +32,36 @@
           <Property Name="TongThanhTien" Type="int" />
           <Property Name="MaTaiKhoan" Type="int" />
           <Property Name="MaTinhTrang" Type="int" />
-          <Property Name="DiaChiNhanHang" Type="nchar" MaxLength="256" />
-          <Property Name="HoTenNhanHang" Type="nchar" MaxLength="30" />
-          <Property Name="DienThoaiNhanHang" Type="nchar" MaxLength="11" />
-          <Property Name="EmailNhanhang" Type="nchar" MaxLength="50" />
+          <Property Name="DiaChiNhanHang" Type="nvarchar" MaxLength="150" />
+          <Property Name="HoTenNhanHang" Type="nvarchar" MaxLength="50" />
+          <Property Name="DienThoaiNhanHang" Type="nvarchar" MaxLength="11" />
+          <Property Name="EmailNhanhang" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="HangSanXuat">
           <Key>
             <PropertyRef Name="MaHangSanXuat" />
           </Key>
           <Property Name="MaHangSanXuat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenHangSanXuat" Type="nchar" MaxLength="64" />
-          <Property Name="LogoURL" Type="nchar" MaxLength="45" />
+          <Property Name="TenHangSanXuat" Type="nvarchar" MaxLength="50" />
+          <Property Name="LogoURL" Type="nvarchar" MaxLength="256" />
           <Property Name="BiXoa" Type="bit" />
-          <Property Name="MaHSX" Type="nchar" MaxLength="10" />
+          <Property Name="MaHSX" Type="nvarchar" MaxLength="11" />
         </EntityType>
         <EntityType Name="LoaiSanPham">
           <Key>
             <PropertyRef Name="MaLoaiSanPham" />
           </Key>
           <Property Name="MaLoaiSanPham" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenLoaiSanPham" Type="nchar" MaxLength="64" />
+          <Property Name="TenLoaiSanPham" Type="nvarchar" MaxLength="20" />
           <Property Name="BiXoa" Type="bit" />
-          <Property Name="MaLoai" Type="nchar" MaxLength="10" />
+          <Property Name="MaLoai" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="LoaiTaiKhoan">
           <Key>
             <PropertyRef Name="MaLoaiTaiKhoan" />
           </Key>
           <Property Name="MaLoaiTaiKhoan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenLoaiTaiKhoan" Type="nchar" MaxLength="30" />
+          <Property Name="TenLoaiTaiKhoan" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="SanPham">
           <Key>
@@ -87,12 +87,12 @@
             <PropertyRef Name="MaTaiKhoan" />
           </Key>
           <Property Name="MaTaiKhoan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenDangNhap" Type="char" MaxLength="30" />
-          <Property Name="MatKhau" Type="char" MaxLength="255" />
-          <Property Name="TenHienThi" Type="nchar" MaxLength="64" />
-          <Property Name="DiaChi" Type="nchar" MaxLength="256" />
-          <Property Name="DienThoai" Type="nchar" MaxLength="11" />
-          <Property Name="Email" Type="nchar" MaxLength="30" />
+          <Property Name="TenDangNhap" Type="nvarchar" MaxLength="50" />
+          <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenHienThi" Type="nvarchar" MaxLength="50" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="150" />
+          <Property Name="DienThoai" Type="nvarchar" MaxLength="11" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="NgaySinh" Type="date" />
           <Property Name="GioiTinh" Type="bit" />
           <Property Name="MaLoaiTaiKhoan" Type="int" />
@@ -103,7 +103,7 @@
             <PropertyRef Name="MaTinhTrang" />
           </Key>
           <Property Name="MaTinhTrang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenTinhTrang" Type="nchar" MaxLength="45" />
+          <Property Name="TenTinhTrang" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <Association Name="FK_ChiTietDonDatHang_DonDatHang">
           <End Role="DonDatHang" Type="Self.DonDatHang" Multiplicity="0..1" />
@@ -237,8 +237,8 @@
             <PropertyRef Name="MaAdmin" />
           </Key>
           <Property Name="MaAdmin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TaiKhoanAdmin" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
-          <Property Name="MatKhauAdmin" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="TaiKhoanAdmin" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhauAdmin" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ChiTietDonDatHang">
           <Key>
@@ -261,10 +261,10 @@
           <Property Name="TongThanhTien" Type="Int32" />
           <Property Name="MaTaiKhoan" Type="Int32" />
           <Property Name="MaTinhTrang" Type="Int32" />
-          <Property Name="DiaChiNhanHang" Type="String" MaxLength="256" FixedLength="true" Unicode="true" />
-          <Property Name="HoTenNhanHang" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
-          <Property Name="DienThoaiNhanHang" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
-          <Property Name="EmailNhanhang" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="DiaChiNhanHang" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="HoTenNhanHang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DienThoaiNhanHang" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="EmailNhanhang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ChiTietDonDatHangs" Relationship="Self.FK_ChiTietDonDatHang_DonDatHang" FromRole="DonDatHang" ToRole="ChiTietDonDatHang" />
           <NavigationProperty Name="TaiKhoan" Relationship="Self.FK_DonDatHang_TaiKhoan" FromRole="DonDatHang" ToRole="TaiKhoan" />
           <NavigationProperty Name="TinhTrang" Relationship="Self.FK_DonDatHang_TinhTrang" FromRole="DonDatHang" ToRole="TinhTrang" />
@@ -274,10 +274,10 @@
             <PropertyRef Name="MaHangSanXuat" />
           </Key>
           <Property Name="MaHangSanXuat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenHangSanXuat" Type="String" MaxLength="64" FixedLength="true" Unicode="true" />
-          <Property Name="LogoURL" Type="String" MaxLength="45" FixedLength="true" Unicode="true" />
+          <Property Name="TenHangSanXuat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LogoURL" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="BiXoa" Type="Boolean" />
-          <Property Name="MaHSX" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="MaHSX" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_HangSanXuat" FromRole="HangSanXuat" ToRole="SanPham" />
         </EntityType>
         <EntityType Name="LoaiSanPham">
@@ -285,9 +285,9 @@
             <PropertyRef Name="MaLoaiSanPham" />
           </Key>
           <Property Name="MaLoaiSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenLoaiSanPham" Type="String" MaxLength="64" FixedLength="true" Unicode="true" />
+          <Property Name="TenLoaiSanPham" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="BiXoa" Type="Boolean" />
-          <Property Name="MaLoai" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="MaLoai" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_LoaiSanPham" FromRole="LoaiSanPham" ToRole="SanPham" />
         </EntityType>
         <EntityType Name="LoaiTaiKhoan">
@@ -295,7 +295,7 @@
             <PropertyRef Name="MaLoaiTaiKhoan" />
           </Key>
           <Property Name="MaLoaiTaiKhoan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenLoaiTaiKhoan" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="TenLoaiTaiKhoan" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TaiKhoans" Relationship="Self.FK_TaiKhoan_LoaiTaiKhoan" FromRole="LoaiTaiKhoan" ToRole="TaiKhoan" />
         </EntityType>
         <EntityType Name="SanPham">
@@ -325,12 +325,12 @@
             <PropertyRef Name="MaTaiKhoan" />
           </Key>
           <Property Name="MaTaiKhoan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenDangNhap" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
-          <Property Name="MatKhau" Type="String" MaxLength="255" FixedLength="true" Unicode="false" />
-          <Property Name="TenHienThi" Type="String" MaxLength="64" FixedLength="true" Unicode="true" />
-          <Property Name="DiaChi" Type="String" MaxLength="256" FixedLength="true" Unicode="true" />
-          <Property Name="DienThoai" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="TenDangNhap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenHienThi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DienThoai" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NgaySinh" Type="DateTime" Precision="0" />
           <Property Name="GioiTinh" Type="Boolean" />
           <Property Name="MaLoaiTaiKhoan" Type="Int32" />
@@ -343,7 +343,7 @@
             <PropertyRef Name="MaTinhTrang" />
           </Key>
           <Property Name="MaTinhTrang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenTinhTrang" Type="String" MaxLength="45" FixedLength="true" Unicode="true" />
+          <Property Name="TenTinhTrang" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DonDatHangs" Relationship="Self.FK_DonDatHang_TinhTrang" FromRole="TinhTrang" ToRole="DonDatHang" />
         </EntityType>
         <Association Name="FK_ChiTietDonDatHang_DonDatHang">
