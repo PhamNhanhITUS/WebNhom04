@@ -1,50 +1,17 @@
 ﻿
 @{
-    Layout = null;
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>404 Error | Shopthethao</title>
-    <link href="/Assets/Client/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/Assets/Client/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/Assets/Client/css/prettyPhoto.css" rel="stylesheet">
-    <link href="/Assets/Client/css/price-range.css" rel="stylesheet">
-    <link href="/Assets/Client/css/animate.css" rel="stylesheet">
-    <link href="/Assets/Client/css/main.css" rel="stylesheet">
-    <link href="/Assets/Client/css/responsive.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
-    <link rel="shortcut icon" href="/Assets/Client/images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/Assets/Client/images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/Assets/Client/images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/Assets/Client/images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
-</head><!--/head-->
-<body>
-    <div class="container text-center">
-        <div class="logo-404">
-            <a href="index.html"><img src="/Assets/Client/images/home/logo.png" alt="" /></a>
-        </div>
-        <div class="content-404">
-            <img src="/Assets/Client/images/404/404.png" class="img-responsive" alt="" />
-            <h1><b>Xin lỗi!</b> Không tìm thấy trang bạn yêu cầu</h1>
-            <h2><a href="index.html">Trở về trang chủ</a></h2>
-        </div>
+<div class="container text-center"style="padding-bottom:40px;">
+    <div class="logo-404">
+        <a href="@Url.Action("Index","Home")"><img src="/Assets/Client/images/home/logo.png" alt="" /></a>
     </div>
+    <div class="content-404">
+        <img src="/Assets/Client/images/404/404.png" class="img-responsive" alt="" />
+        <h1><b>Xin lỗi!</b> Không tìm thấy trang bạn yêu cầu</h1>
+        <h2><a href="@Url.Action("Index","Home")">Trở về trang chủ</a></h2>
+    </div>
+</div>
 
-    <script src="/Assets/Client/js/jquery.js"></script>
-    <script src="/Assets/Client/js/price-range.js"></script>
-    <script src="/Assets/Client/js/jquery.scrollUp.min.js"></script>
-    <script src="/Assets/Client/js/bootstrap.min.js"></script>
-    <script src="/Assets/Client/js/jquery.prettyPhoto.js"></script>
-    <script src="/Assets/Client/js/main.js"></script>
-</body>
-</html>

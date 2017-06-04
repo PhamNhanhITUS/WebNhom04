@@ -1689,7 +1689,6 @@
     <Content Include="Assets\Client\fonts\FontAwesome.otf" />
     <Content Include="Assets\Client\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Assets\Client\images\home\.DS_Store" />
-    <Content Include="Views\Error404\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_PartialModalLogin.cshtml" />
@@ -1937,6 +1936,7 @@
     <Content Include="Areas\Admin\Views\User\Delete.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\Info.cshtml" />
+    <Content Include="Views\Error404\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

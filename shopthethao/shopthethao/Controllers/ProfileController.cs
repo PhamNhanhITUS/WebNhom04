@@ -43,9 +43,9 @@ namespace shopthethao.Controllers
             if(db.SaveChanges() == 0)
             {
                 Session["DoiThongTinThanhCong"] = "";
-                return RedirectToAction("Info", "Profile");
+                return RedirectToAction("Info", "Profile", new { ID = id });
             }
-            return RedirectToAction("Info", "Profile");
+            return RedirectToAction("Info", "Profile", new { ID = id });
         }
 
         public static string CreateMD5(string input)
@@ -67,27 +67,30 @@ namespace shopthethao.Controllers
         {
             var id = int.Parse(fc["id"]);
 
-            var pass = CreateMD5(fc["password"].ToString());
-            var newPass = CreateMD5(fc["newPassword"].ToString());
+            string pass = CreateMD5(fc["password"].ToString());
+            string newPass = CreateMD5(fc["newPassword"].ToString());
 
-            var p = db.TaiKhoans.First(x => x.MaTaiKhoan == id);
+            var p = db.TaiKhoans.First(x => x.MaTaiKhoan == id && x.MatKhau == pass);
 
-            if(p.MatKhau == pass)
+            if(p != null)
             {
                 p.MatKhau = newPass;
                 db.SaveChanges();
+                if (db.SaveChanges() == 0)
+                {
+                    Session.Remove("DoiMatKhauThatBai");
+                    Session["DoiMatKhauThanhCong"] = "";
+                    return RedirectToAction("Info", "Profile", new { ID = id});
+                    
+                }
             }
             else
             {
-                ViewBag.passError = "Mật khẩu cũ không đúng";
-                return RedirectToAction("Info", "Profile");
+                Session["DoiMatKhauThatBai"] = "";
+                return RedirectToAction("Info", "Profile", new { ID = id });
             }
-            //if (db.SaveChanges() == 0)
-            //{
-            //    Session["DoiMatKhauThanhCong"] = "";
-            //    return RedirectToAction("Info", "Profile");
-            //}
-            return RedirectToAction("Info", "Profile");
+
+            return RedirectToAction("Info", "Profile", new { ID = id });
         }
     }
 }

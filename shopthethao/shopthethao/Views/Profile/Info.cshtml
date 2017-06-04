@@ -3,13 +3,14 @@
     ViewBag.Title = "Info";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="col-sm-1">
-            </div>
-            <div class="col-sm-6">
+@if (@Session["MaTaiKhoan"] != null)
+{
+    <div class="container" style="padding-bottom:40px;">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="col-sm-1">
+                </div>
+                <div class="col-sm-6">
                     <div class="col-sm-6">
                         <div>
                             <img src="~/Assets/Client/images/home/user.png" alt="..." class="img-rounded" width="200px" height="200px" />
@@ -19,7 +20,7 @@
                         </div>
                     </div>
                     <form data-toggle="validator" role="form" action="@Url.Action("ChangeProfile", "Profile")" method="post">
-                        <input type="hidden" name="id" value="@Session["MaTaiKhoan"]"/>
+                        <input type="hidden" name="id" value="@Session["MaTaiKhoan"]" />
                         <div class="col-sm-6" style="padding:0px;">
                             <div class="form-group row" style="margin-bottom:0px;">
                                 <label for="example-text-input" class="col-2 col-form-label">Họ và tên</label>
@@ -42,13 +43,13 @@
                                         @if (Model.GioiTinh == true)
                                         {
                                             <option selected value="True">Nam</option>
+                                            <option value="False">Nữ</option>
                                         }
                                         else
                                         {
                                             <option selected value="False">Nữ</option>
+                                            <option value="True">Nam</option>
                                         }
-                                        <option value="True">Nam</option>
-                                        <option value="False">Nữ</option>
                                     </select>
                                     <div class="help-block with-errors"></div>
                                 </div>
@@ -80,46 +81,50 @@
                             </div>
                         </div>
                     </form>
-                }
-
-            </div>
-            <div class="col-sm-1"></div>
-            <div class="col-sm-3">
-                <form data-toggle="validator" role="form" action="@Url.Action("ChangePassword", "Profile")" method="post">
-                    <input type="hidden" name="id" value="@Session["MaTaiKhoan"]" />
-                    @if (ViewBag.passError != null)
-                    {
+                </div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <form data-toggle="validator" role="form" action="@Url.Action("ChangePassword", "Profile")" method="post">
+                        <input type="hidden" name="id" value="@Session["MaTaiKhoan"]" />
+                        @if (Session["DoiMatKhauThatBai"] != null)
+                        {
+                            <div class="form-group row">
+                                <label for="example-text-input" class="col-10 col-form-label" style="color:red;">Mật khẩu cũ không đúng</label>
+                            </div>
+                        }
                         <div class="form-group row">
-                            <label for="example-text-input" class="col-10 col-form-label"style="color:red;">@ViewBag.passError</label>
+                            <label for="example-text-input" class="col-2 col-form-label">Mật khẩu cũ</label>
+                            <div class="col-10">
+                                <input class="form-control" type="password" name="password" placeholder="Mật khẩu cũ" required />
+                                <div class="help-block with-errors"></div>
+                            </div>
                         </div>
-                    }
-                    <div class="form-group row">
-                        <label for="example-text-input" class="col-2 col-form-label">Mật khẩu cũ</label>
-                        <div class="col-10">
-                            <input class="form-control" type="password" name="password" placeholder="Mật khẩu cũ" required />
-                            <div class="help-block with-errors"></div>
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-2 col-form-label">Mật khẩu mới (ít nhất 8 kí tự)</label>
+                            <div class="col-10">
+                                <input class="form-control" type="password" data-minlength="8" id="inputPassword" placeholder="Mật khẩu mới" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="example-text-input" class="col-2 col-form-label">Mật khẩu mới (ít nhất 8 kí tự)</label>
-                        <div class="col-10">
-                            <input class="form-control" type="password" data-minlength="8" id="inputPassword" placeholder="Mật khẩu mới" required>
-                            <div class="help-block with-errors"></div>
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-2 col-form-label">Nhập lại mật khẩu mới</label>
+                            <div class="col-10">
+                                <input class="form-control" type="password" name="newPassword" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Nhập lại mật khẩu mới không trùng" placeholder="Nhập lại mật khẩu mới" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="example-text-input" class="col-2 col-form-label">Nhập lại mật khẩu mới</label>
-                        <div class="col-10">
-                            <input class="form-control" type="password" name="newPassword" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Nhập lại mật khẩu mới không trùng" placeholder="Nhập lại mật khẩu mới" required>
-                            <div class="help-block with-errors"></div>
+                        <div class="form-group row">
+                            <button type="submit" class="btn btn-custom">Đổi mật khẩu</button>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <button type="submit" class="btn btn-custom">Đổi mật khẩu</button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+}
+else
+{
+    @Html.Action("Index","Error404")
+}
+
 
