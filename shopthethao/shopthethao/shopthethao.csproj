@@ -1937,6 +1937,7 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\Info.cshtml" />
     <Content Include="Views\Error404\Index.cshtml" />
+    <Content Include="Views\Profile\HistoryOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

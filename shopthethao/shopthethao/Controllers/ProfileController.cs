@@ -92,5 +92,10 @@ namespace shopthethao.Controllers
 
             return RedirectToAction("Info", "Profile", new { ID = id });
         }
+
+        public ActionResult HistoryOrder(int? ID)
+        {
+            return View();
+        }
     }
 }
