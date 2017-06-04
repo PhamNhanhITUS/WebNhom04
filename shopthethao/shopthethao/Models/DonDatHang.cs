@@ -29,6 +29,7 @@ namespace shopthethao.Models
         public string HoTenNhanHang { get; set; }
         public string DienThoaiNhanHang { get; set; }
         public string EmailNhanhang { get; set; }
+        public Nullable<bool> BiXoa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDonDatHang> ChiTietDonDatHangs { get; set; }

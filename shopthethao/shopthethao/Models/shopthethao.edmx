@@ -36,6 +36,7 @@
           <Property Name="HoTenNhanHang" Type="nvarchar" MaxLength="50" />
           <Property Name="DienThoaiNhanHang" Type="nvarchar" MaxLength="11" />
           <Property Name="EmailNhanhang" Type="nvarchar" MaxLength="50" />
+          <Property Name="BiXoa" Type="bit" />
         </EntityType>
         <EntityType Name="HangSanXuat">
           <Key>
@@ -268,6 +269,7 @@
           <NavigationProperty Name="ChiTietDonDatHangs" Relationship="Self.FK_ChiTietDonDatHang_DonDatHang" FromRole="DonDatHang" ToRole="ChiTietDonDatHang" />
           <NavigationProperty Name="TaiKhoan" Relationship="Self.FK_DonDatHang_TaiKhoan" FromRole="DonDatHang" ToRole="TaiKhoan" />
           <NavigationProperty Name="TinhTrang" Relationship="Self.FK_DonDatHang_TinhTrang" FromRole="DonDatHang" ToRole="TinhTrang" />
+          <Property Name="BiXoa" Type="Boolean" />
         </EntityType>
         <EntityType Name="HangSanXuat">
           <Key>
@@ -498,6 +500,7 @@
           <EntitySetMapping Name="DonDatHangs">
             <EntityTypeMapping TypeName="shopthethaoModel.DonDatHang">
               <MappingFragment StoreEntitySet="DonDatHang">
+                <ScalarProperty Name="BiXoa" ColumnName="BiXoa" />
                 <ScalarProperty Name="MaDonDatHang" ColumnName="MaDonDatHang" />
                 <ScalarProperty Name="NgayLap" ColumnName="NgayLap" />
                 <ScalarProperty Name="TongThanhTien" ColumnName="TongThanhTien" />

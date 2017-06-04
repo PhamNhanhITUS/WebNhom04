@@ -95,7 +95,13 @@ namespace shopthethao.Controllers
 
         public ActionResult HistoryOrder(int? ID)
         {
-            return View();
+            var listOrder = db.DonDatHangs.Where(x => x.MaTaiKhoan == ID && x.BiXoa == false).ToList();
+            return View(listOrder);
+        }
+        public ActionResult Logout()
+        {
+            Session.RemoveAll();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -31,6 +31,7 @@
     <Property Name="HoTenNhanHang" Type="nvarchar" MaxLength="50" />
     <Property Name="DienThoaiNhanHang" Type="nvarchar" MaxLength="11" />
     <Property Name="EmailNhanhang" Type="nvarchar" MaxLength="50" />
+    <Property Name="BiXoa" Type="bit" />
   </EntityType>
   <EntityType Name="HangSanXuat">
     <Key>

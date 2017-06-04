@@ -24,6 +24,7 @@
     <EntitySetMapping Name="DonDatHangs">
       <EntityTypeMapping TypeName="shopthethaoModel.DonDatHang">
         <MappingFragment StoreEntitySet="DonDatHang">
+          <ScalarProperty Name="BiXoa" ColumnName="BiXoa" />
           <ScalarProperty Name="MaDonDatHang" ColumnName="MaDonDatHang" />
           <ScalarProperty Name="NgayLap" ColumnName="NgayLap" />
           <ScalarProperty Name="TongThanhTien" ColumnName="TongThanhTien" />

@@ -75,7 +75,7 @@
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenu">
                                                 <button onclick="location.href='@Url.Action("Info","Profile", new { ID = Session["MaTaiKhoan"]})'" class="form-control dropdown-item" type="button" style="border:0px">Thông tin tài khoản</button>
                                                 <button onclick="location.href='@Url.Action("HistoryOrder","Profile", new { ID = Session["MaTaiKhoan"]})'" class="form-control dropdown-item" type="button" style="border:0px">Lịch sử mua hàng</button>
-                                                <button class="form-control dropdown-item" type="button" id="Logout" style="border:0px">Đăng xuất</button>
+                                                <button onclick="location.href='@Url.Action("Logout", "Profile")'" class="form-control dropdown-item" type="button" id="Logout" style="border:0px">Đăng xuất</button>
                                             </div>
                                         </div>
                                     </li>
