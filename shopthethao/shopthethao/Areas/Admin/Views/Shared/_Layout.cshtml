@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DataTables | Gentelella</title>
+    <title>Trang quản trị | shopthethao.com</title>
     <!-- Bootstrap -->
     <link href="/Assets/Admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -95,8 +95,8 @@
                                     <span class="fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                    <li><a href="javascript:;"> Thông tin cá nhân</a></li>
-                                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a></li>
+                                    <li><a href="@Url.Action("Index", "Profile", new { ID = 1})"> Thông tin cá nhân</a></li>
+                                    <li><a href="@Url.Action("Logout", "Profile")"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a></li>
                                 </ul>
                             </li>
                             <li role="presentation" class="dropdown">
@@ -154,5 +154,7 @@
     <!-- <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script> -->
     <!-- Custom Theme Scripts -->
     <script src="/Assets/Admin/build/js/custom.min.js"></script>
+    <script src="~/Assets/Client/js/validator.min.js"></script>
+    <script src="~/Assets/Client/js/Cart.js"></script>
 </body>
 </html>

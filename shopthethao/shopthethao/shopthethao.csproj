@@ -1519,10 +1519,6 @@
     <Content Include="Assets\Admin\vendors\moment\templates\globals.js" />
     <Content Include="Assets\Admin\vendors\moment\templates\locale-header.js" />
     <Content Include="Assets\Admin\vendors\moment\templates\test-header.js" />
-    <Content Include="Assets\Admin\vendors\validator\fv.css" />
-    <Content Include="Assets\Admin\vendors\validator\index.html" />
-    <Content Include="Assets\Admin\vendors\validator\multifield.js" />
-    <Content Include="Assets\Admin\vendors\validator\validator.js" />
     <Content Include="Assets\Client\css\animate.css" />
     <Content Include="Assets\Client\css\bootstrap.min.css" />
     <Content Include="Assets\Client\css\font-awesome.min.css" />
@@ -1619,10 +1615,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\OderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\LoginController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\Error404Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1920,8 +1918,6 @@
     <Content Include="Assets\Admin\vendors\moment\CHANGELOG.md" />
     <Content Include="Assets\Admin\vendors\moment\LICENSE" />
     <Content Include="Assets\Admin\vendors\moment\README.md" />
-    <Content Include="Assets\Admin\vendors\validator\README.md" />
-    <Content Include="Assets\Admin\vendors\validator\validator.jquery.json" />
     <Content Include="Areas\Admin\Views\Oder\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
@@ -1941,6 +1937,8 @@
     <Content Include="Models\shopthethao.edmx.diagram">
       <DependentUpon>shopthethao.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\Profile\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1951,7 +1949,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

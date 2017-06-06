@@ -90,7 +90,7 @@ namespace shopthethao.Controllers
                         GioiTinh = Boolean.Parse(fc["GioiTinh"]),
                         NgaySinh = DateTime.Parse(fc["NgaySinh"]),
                         DiaChi = fc["DiaChi"].ToString(),
-                        MaLoaiTaiKhoan = 1,
+                        MaLoaiTaiKhoan = 2,
                         BiXoa = false
                     };
                     db.TaiKhoans.Add(taiKhoan);
