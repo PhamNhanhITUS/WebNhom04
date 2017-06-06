@@ -52,7 +52,7 @@ namespace shopthethao.Controllers
                 }
                 else
                 {
-                    Session["LoiDangNhap"] = "";
+                    Session["LoiDangNhap"] = "Tài khoản hoặc mật khẩu không chính xác!";
                     return RedirectToAction("Index");
                 }
             }

@@ -217,11 +217,17 @@
     <script src="~/Assets/Client/js/validator.min.js"></script>
     <script src="~/Assets/Client/js/Cart.js"></script>
 
-    @if (Session["DangNhapThanhCong"] != null)
+    @if (Session["DangNhapThanhCong"] != null) 
     {
-        <script>
+        < script >
             $('#SuLogin').modal('show')
-        </script>
+        </ script >
+    }
+    @if(Session["LoiDangNhap"] != null)
+    {
+    <script>
+        $('#myModalLogin').modal('show')
+    </script>
     }
     @if (Session["KTDangKy"] != null)
     {
@@ -263,6 +269,11 @@
         $('#SuLogin').on('hide.bs.modal', function (e) {
             @{
                 Session.Remove("DangNhapThanhCong");
+            }
+        })
+        $('#myModalLogin').on('hide.bs.modal', function (e) {
+            @{
+                Session.Remove("LoiDangNhap");
             }
         })
         $('#myModalRegis').on('hide.bs.modal', function (e) {

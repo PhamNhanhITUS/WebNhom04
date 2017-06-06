@@ -10,7 +10,9 @@
             <div class="modal-body">
                 <form data-toggle="validator" role="form" action="@Url.Action("Login","Home")" method="post">
                     <div class="row" role="form">
-
+                        <div class="col-sm-12">
+                            <p style="color:red;">@if (Session["LoiDangNhap"] != null){ @Session["LoiDangNhap"];}</p>
+                        </div>
                         <div class="col-sm-12">
                             <div class="login-form">
                                 <!--login form-->
