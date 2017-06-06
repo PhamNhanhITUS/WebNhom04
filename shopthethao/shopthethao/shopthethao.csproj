@@ -1615,10 +1615,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\OderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SystemController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\LoginController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -1920,7 +1920,6 @@
     <Content Include="Assets\Admin\vendors\moment\README.md" />
     <Content Include="Areas\Admin\Views\Oder\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Category.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Manufacturer.cshtml" />
@@ -1938,7 +1937,14 @@
       <DependentUpon>shopthethao.edmx</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Views\Profile\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Dashboard.cshtml" />
+    <Content Include="Areas\Admin\Views\System\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\ModalCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\ModalManufacture.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\ModalProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\ModalUser.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\ModalSystem.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

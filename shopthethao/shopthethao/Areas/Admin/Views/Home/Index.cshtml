@@ -1,68 +1,54 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 
-<!-- page content -->
-<div class="right_col" role="main">
-    <div class="">
-        <div class="row top_tiles">
-            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="tile-stats">
-                    <div class="icon"><i class="fa fa-file-text"></i></div>
-                    <div class="count">179</div>
-                    <h3>Đơn đặt hàng</h3>
-                </div>
-            </div>
-            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="tile-stats">
-                    <div class="icon"><i class="fa fa-table"></i></div>
-                    <div class="count">179</div>
-                    <h3>Sản phẩm</h3>
-                </div>
-            </div>
-            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="tile-stats">
-                    <div class="icon"><i class="fa fa-file-o"></i></div>
-                    <div class="count">79</div>
-                    <h3>Đơn chờ duyệt</h3>
-                </div>
-            </div>
-            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="tile-stats">
-                    <div class="icon"><i class="fa fa-user"></i></div>
-                    <div class="count">179</div>
-                    <h3>Tài khoản</h3>
-                </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trang đăng nhập | shopthethao.com | </title>
+    <!-- Bootstrap -->
+    <link href="/Assets/Admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/Assets/Admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="/Assets/Admin/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="/Assets/Admin/vendors/animate.css/animate.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="/Assets/Admin/build/css/custom.min.css" rel="stylesheet">
+</head>
+<body class="login">
+    <div>
+        <a class="hiddenanchor" id="signup"></a>
+        <a class="hiddenanchor" id="signin"></a>
+        <div class="login_wrapper">
+            <div class="animate form login_form">
+                <section class="login_content">
+                    <form data-toggle="validator" role="form">
+                        <h1>Đăng nhập</h1>
+                        <div>
+                            <input type="text" class="form-control" placeholder="Username" required>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div>
+                            <input type="password" class="form-control" placeholder="Password" required>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-default submit">Đăng nhập</button>
+                        </div>
+                    </form>
+                </section>
             </div>
         </div>
-        <br />
-
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="dashboard_graph x_panel">
-                    <div class="row x_title">
-                        <div class="col-md-6">
-                            <h3>Thống kê <small>Theo loại sản phẩm</small></h3>
-                        </div>
-                        <div class="col-md-6">
-                            <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                                <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="x_content">
-                        <div class="demo-container" style="height:250px">
-                            <div id="chart_plot_03" class="demo-placeholder"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
-</div>
-<!-- /page content -->
-
+    <script src="~/Assets/Client/js/validator.js"></script>
+    <script src="~/Assets/Client/js/validator.min.js"></script>
+</body>
+</html>

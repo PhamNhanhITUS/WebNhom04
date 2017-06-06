@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace shopthethao.Areas.Admin.Controllers
 {
-    public class LoginController : Controller
+    public class SystemController : Controller
     {
-        // GET: Admin/Login
+        // GET: Admin/System
         public ActionResult Index()
         {
             return View();

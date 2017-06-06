@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row top_tiles">
+            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-file-text"></i></div>
+                    <div class="count">179</div>
+                    <h3>Đơn đặt hàng</h3>
+                </div>
+            </div>
+            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-table"></i></div>
+                    <div class="count">179</div>
+                    <h3>Sản phẩm</h3>
+                </div>
+            </div>
+            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-file-o"></i></div>
+                    <div class="count">79</div>
+                    <h3>Đơn chờ duyệt</h3>
+                </div>
+            </div>
+            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-user"></i></div>
+                    <div class="count">179</div>
+                    <h3>Tài khoản</h3>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="dashboard_graph x_panel">
+                    <div class="row x_title">
+                        <div class="col-md-6">
+                            <h3>Thống kê <small>Theo loại sản phẩm</small></h3>
+                        </div>
+                        <div class="col-md-6">
+                            <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="x_content">
+                        <div class="demo-container" style="height:250px">
+                            <div id="chart_plot_03" class="demo-placeholder"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- /page content -->
+

@@ -51,7 +51,7 @@
                             <h3>Quản lý</h3>
                             <ul class="nav side-menu">
                                 <li>
-                                    <a href="@Url.Action("Index","Home")"><i class="fa fa-home"></i> Bảng điều khiển</a>
+                                    <a href="@Url.Action("Dashboard","Home")"><i class="fa fa-home"></i> Bảng điều khiển</a>
                                 </li>
                                 <li>
                                     <a><i class="fa fa-table"></i> Sản phẩm <span class="fa fa-chevron-down"></span></a>
@@ -73,6 +73,12 @@
                                     <a><i class="fa fa-file-text"></i> Đơn đặt hàng <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="@Url.Action("Index","Oder")">Danh sách</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a><i class="fa fa-file-text"></i> Hệ thống <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="@Url.Action("Index","System")">Nhân viên</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -154,7 +160,7 @@
     <!-- <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script> -->
     <!-- Custom Theme Scripts -->
     <script src="/Assets/Admin/build/js/custom.min.js"></script>
+    <script src="~/Assets/Client/js/validator.js"></script>
     <script src="~/Assets/Client/js/validator.min.js"></script>
-    <script src="~/Assets/Client/js/Cart.js"></script>
 </body>
 </html>
