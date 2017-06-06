@@ -1,0 +1,44 @@
+﻿@model shopthethao.Models.TaiKhoan
+@using shopthethao.Models
+@{
+    ViewBag.Title = "Change";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Sửa tài khoản</h3>
+            </div>
+            <!-- <div class="title_right">
+            </div> -->
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+                <div class="form-group col-md-12" style="padding:0px 10px;margin-bottom:0px;">
+                    <div class="form-group">
+                    <div class="col-md-2"></div>
+                     <label class="control-label col-md-2">Loại tài khoản</label>
+                     <div class="col-md-3">
+                          <select class="select2_single form-control" tabindex="-1">
+                             <option selected disabled>@Model.LoaiTaiKhoan.TenLoaiTaiKhoan</option>
+                                @if (ViewBag.User != null)
+                                {
+
+                                    foreach (var item in ViewBag.User as List<LoaiTaiKhoan>)
+                                    {
+                                         <option value="@item.MaLoaiTaiKhoan">@item.TenLoaiTaiKhoan</option>
+                                     }
+                                 }
+                              </select>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary">Sửa</button>
+                        </div>
+                        </div>
+               </div>
+        </div> 
+     </div>
+</div>
+

@@ -137,6 +137,12 @@
                     </nav>
                 </div>
             </div>
+            <!-- /Modal -->
+            @Html.Partial("~/Areas/Admin/Views/Shared/ModalCategory.cshtml")
+            @Html.Partial("~/Areas/Admin/Views/Shared/ModalManufacturer.cshtml")
+            @Html.Partial("~/Areas/Admin/Views/Shared/ModalProduct.cshtml")
+            @Html.Partial("~/Areas/Admin/Views/Shared/ModalSystem.cshtml")
+            @Html.Partial("~/Areas/Admin/Views/Shared/ModalUser.cshtml")
             <!-- /top navigation -->
             <!-- page content -->
             @RenderBody()
@@ -164,3 +170,9 @@
     <script src="~/Assets/Client/js/validator.min.js"></script>
 </body>
 </html>
+@if (Session["SuaTaiKhoan"] != null)
+{
+    <script>
+        $('#ModalChangeUser').modal('show')
+    </script>
+}

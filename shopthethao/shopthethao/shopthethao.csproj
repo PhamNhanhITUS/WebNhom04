@@ -1620,7 +1620,6 @@
     <Compile Include="Areas\Admin\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Admin\Controllers\SystemController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
-    <Compile Include="Areas\Admin\LoginController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\Error404Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1695,7 +1694,6 @@
     <Content Include="Views\Shared\_PartialModalLogin.cshtml" />
     <Content Include="Views\Shared\_PartialModalRegister.cshtml" />
     <Content Include="Views\Shared\_PartialModalNoti.cshtml" />
-    <Content Include="Views\Shared\_PartialModalInfo.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Shared\_PartialSlide.cshtml" />
@@ -1941,10 +1939,11 @@
     <Content Include="Areas\Admin\Views\Home\Dashboard.cshtml" />
     <Content Include="Areas\Admin\Views\System\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\ModalCategory.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\ModalManufacture.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\ModalManufacturer.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\ModalProduct.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\ModalUser.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\ModalSystem.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Change.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
