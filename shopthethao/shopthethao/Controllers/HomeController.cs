@@ -11,8 +11,8 @@ namespace shopthethao.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
-        shopthethaoEntities1 db = new shopthethaoEntities1();
+        //GET: Home
+       shopthethaoEntities2 db = new shopthethaoEntities2();
         public ActionResult Index()
         {
             ViewBag.BestProduct = BestProduct();
@@ -22,13 +22,13 @@ namespace shopthethao.Controllers
         }
         public static string CreateMD5(string input)
         {
-            // Use input string to calculate MD5 hash
-            MD5 md5 = System.Security.Cryptography.MD5.Create();
+            //Use input string to calculate MD5 hash
+           MD5 md5 = System.Security.Cryptography.MD5.Create();
             byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
             byte[] hashBytes = md5.ComputeHash(inputBytes);
 
-            // Convert the byte array to hexadecimal string
-            StringBuilder sb = new StringBuilder();
+            //Convert the byte array to hexadecimal string
+           StringBuilder sb = new StringBuilder();
             for (int i = 0; i < hashBytes.Length; i++)
             {
                 sb.Append(hashBytes[i].ToString("X2"));
@@ -40,30 +40,25 @@ namespace shopthethao.Controllers
         {
             string taikhoan = fc[0].ToString();
             string matkhau = CreateMD5(fc[1].ToString());
-            using (shopthethaoEntities1 db = new shopthethaoEntities1())
+            var t = db.TaiKhoans.Where(u => u.TenDangNhap == taikhoan && u.MatKhau == matkhau && u.BiXoa == false).SingleOrDefault();
+            if (t != null)
             {
-                var t = db.TaiKhoans.Where(u => u.TenDangNhap == taikhoan && u.MatKhau == matkhau && u.BiXoa == false).SingleOrDefault();
-                if (t != null)
-                {
-                    Session["TenDangNhap"] = t.TenHienThi;
-                    Session["MaTaiKhoan"] = t.MaTaiKhoan;
-                    Session["DangNhapThanhCong"] = "";
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    Session["LoiDangNhap"] = "Tài khoản hoặc mật khẩu không chính xác!";
-                    return RedirectToAction("Index");
-                }
+                Session["TenDangNhap"] = t.TenHienThi;
+                Session["MaTaiKhoan"] = t.MaTaiKhoan;
+                Session["DangNhapThanhCong"] = "";
+                return RedirectToAction("Index");
             }
-           
+            else
+            {
+                Session["LoiDangNhap"] = "Tài khoản hoặc mật khẩu không chính xác!";
+                return RedirectToAction("Index");
+            }
+
         }
         [HttpPost]
         public ActionResult Register(FormCollection fc)
         {
             string matKhauMaHoa = CreateMD5(fc["MatKhau"].ToString());
-            using (shopthethaoEntities1 db = new shopthethaoEntities1())
-            {
                 string tenDangNhap = fc["TenDangNhap"].ToString();
                 string email = fc["Email"].ToString();
                 string dienThoai = fc["DienThoai"].ToString();
@@ -112,14 +107,12 @@ namespace shopthethao.Controllers
                         return RedirectToAction("Index");
                     }
                 }
-                    
-            }
         }
 
         public List<SanPham> BestProduct()
         {
-            
-                return ViewBag.BestProduct = db.SanPhams.OrderBy(y => y.SoLuongBan).Take(8).ToList();
+
+            return ViewBag.BestProduct = db.SanPhams.OrderBy(y => y.SoLuongBan).Take(8).ToList();
         }
         public List<SanPham> NewProduct_1()
         {
@@ -127,7 +120,7 @@ namespace shopthethao.Controllers
         }
         public List<SanPham> NewProduct_2()
         {
-             return ViewBag.NewProduct_2 = db.SanPhams.OrderByDescending(y => y.MaSanPham).Skip(4).Take(4).ToList();
+            return ViewBag.NewProduct_2 = db.SanPhams.OrderByDescending(y => y.MaSanPham).Skip(4).Take(4).ToList();
         }
     }
 }

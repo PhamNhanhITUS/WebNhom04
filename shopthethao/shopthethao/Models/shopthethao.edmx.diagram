@@ -4,16 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d64e6f09d8c94102b5f28e59a7b2862c" Name="Diagram1">
-        <EntityTypeShape EntityType="shopthethaoModel.Admin" Width="1.5" PointX="5.75" PointY="7.25" IsExpanded="true" />
+      <Diagram DiagramId="5d160c04db3749f0848cb007aca4f60f" Name="Diagram1">
+        <EntityTypeShape EntityType="shopthethaoModel.Admin" Width="1.5" PointX="8" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="shopthethaoModel.ChiTietDonDatHang" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="shopthethaoModel.DonDatHang" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="shopthethaoModel.HangSanXuat" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopthethaoModel.LoaiAdmin" Width="1.5" PointX="5.75" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="shopthethaoModel.LoaiSanPham" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopthethaoModel.LoaiTaiKhoan" Width="1.5" PointX="1.5" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopthethaoModel.LoaiTaiKhoan" Width="1.5" PointX="1.5" PointY="15" IsExpanded="true" />
         <EntityTypeShape EntityType="shopthethaoModel.SanPham" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopthethaoModel.TaiKhoan" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopthethaoModel.TinhTrang" Width="1.5" PointX="0.75" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopthethaoModel.TaiKhoan" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopthethaoModel.TinhTrang" Width="1.5" PointX="0.75" PointY="18.25" IsExpanded="true" />
+        <AssociationConnector Association="shopthethaoModel.FK_Admin_LoaiAdmin" ManuallyRouted="false" />
         <AssociationConnector Association="shopthethaoModel.FK_ChiTietDonDatHang_DonDatHang" ManuallyRouted="false" />
         <AssociationConnector Association="shopthethaoModel.FK_ChiTietDonDatHang_SanPham" ManuallyRouted="false" />
         <AssociationConnector Association="shopthethaoModel.FK_DonDatHang_TaiKhoan" ManuallyRouted="false" />

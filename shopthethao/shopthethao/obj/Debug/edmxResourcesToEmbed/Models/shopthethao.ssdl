@@ -6,7 +6,10 @@
     </Key>
     <Property Name="MaAdmin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TaiKhoanAdmin" Type="nvarchar" MaxLength="30" />
+    <Property Name="TenHienThi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
     <Property Name="MatKhauAdmin" Type="nvarchar" MaxLength="30" />
+    <Property Name="MaLoaiAdmin" Type="int" />
   </EntityType>
   <EntityType Name="ChiTietDonDatHang">
     <Key>
@@ -42,6 +45,13 @@
     <Property Name="LogoURL" Type="nvarchar" MaxLength="256" />
     <Property Name="BiXoa" Type="bit" />
     <Property Name="MaHSX" Type="nvarchar" MaxLength="11" />
+  </EntityType>
+  <EntityType Name="LoaiAdmin">
+    <Key>
+      <PropertyRef Name="MaLoaiAdmin" />
+    </Key>
+    <Property Name="MaLoaiAdmin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenLoaiAdmin" Type="nvarchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="LoaiSanPham">
     <Key>
@@ -101,6 +111,18 @@
     <Property Name="MaTinhTrang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TenTinhTrang" Type="nvarchar" MaxLength="20" />
   </EntityType>
+  <Association Name="FK_Admin_LoaiAdmin">
+    <End Role="LoaiAdmin" Type="Self.LoaiAdmin" Multiplicity="0..1" />
+    <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiAdmin">
+        <PropertyRef Name="MaLoaiAdmin" />
+      </Principal>
+      <Dependent Role="Admin">
+        <PropertyRef Name="MaLoaiAdmin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ChiTietDonDatHang_DonDatHang">
     <End Role="DonDatHang" Type="Self.DonDatHang" Multiplicity="0..1" />
     <End Role="ChiTietDonDatHang" Type="Self.ChiTietDonDatHang" Multiplicity="*" />
@@ -190,11 +212,16 @@
     <EntitySet Name="ChiTietDonDatHang" EntityType="Self.ChiTietDonDatHang" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DonDatHang" EntityType="Self.DonDatHang" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HangSanXuat" EntityType="Self.HangSanXuat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoaiAdmin" EntityType="Self.LoaiAdmin" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LoaiSanPham" EntityType="Self.LoaiSanPham" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LoaiTaiKhoan" EntityType="Self.LoaiTaiKhoan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TinhTrang" EntityType="Self.TinhTrang" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Admin_LoaiAdmin" Association="Self.FK_Admin_LoaiAdmin">
+      <End Role="LoaiAdmin" EntitySet="LoaiAdmin" />
+      <End Role="Admin" EntitySet="Admin" />
+    </AssociationSet>
     <AssociationSet Name="FK_ChiTietDonDatHang_DonDatHang" Association="Self.FK_ChiTietDonDatHang_DonDatHang">
       <End Role="DonDatHang" EntitySet="DonDatHang" />
       <End Role="ChiTietDonDatHang" EntitySet="ChiTietDonDatHang" />

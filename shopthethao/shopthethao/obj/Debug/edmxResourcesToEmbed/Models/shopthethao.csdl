@@ -6,7 +6,11 @@
     </Key>
     <Property Name="MaAdmin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TaiKhoanAdmin" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="TenHienThi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="MatKhauAdmin" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="MaLoaiAdmin" Type="Int32" />
+    <NavigationProperty Name="LoaiAdmin" Relationship="Self.FK_Admin_LoaiAdmin" FromRole="Admin" ToRole="LoaiAdmin" />
   </EntityType>
   <EntityType Name="ChiTietDonDatHang">
     <Key>
@@ -33,10 +37,10 @@
     <Property Name="HoTenNhanHang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="DienThoaiNhanHang" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
     <Property Name="EmailNhanhang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BiXoa" Type="Boolean" />
     <NavigationProperty Name="ChiTietDonDatHangs" Relationship="Self.FK_ChiTietDonDatHang_DonDatHang" FromRole="DonDatHang" ToRole="ChiTietDonDatHang" />
     <NavigationProperty Name="TaiKhoan" Relationship="Self.FK_DonDatHang_TaiKhoan" FromRole="DonDatHang" ToRole="TaiKhoan" />
     <NavigationProperty Name="TinhTrang" Relationship="Self.FK_DonDatHang_TinhTrang" FromRole="DonDatHang" ToRole="TinhTrang" />
-    <Property Name="BiXoa" Type="Boolean" />
   </EntityType>
   <EntityType Name="HangSanXuat">
     <Key>
@@ -48,6 +52,14 @@
     <Property Name="BiXoa" Type="Boolean" />
     <Property Name="MaHSX" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_HangSanXuat" FromRole="HangSanXuat" ToRole="SanPham" />
+  </EntityType>
+  <EntityType Name="LoaiAdmin">
+    <Key>
+      <PropertyRef Name="MaLoaiAdmin" />
+    </Key>
+    <Property Name="MaLoaiAdmin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoaiAdmin" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Admins" Relationship="Self.FK_Admin_LoaiAdmin" FromRole="LoaiAdmin" ToRole="Admin" />
   </EntityType>
   <EntityType Name="LoaiSanPham">
     <Key>
@@ -115,6 +127,18 @@
     <Property Name="TenTinhTrang" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DonDatHangs" Relationship="Self.FK_DonDatHang_TinhTrang" FromRole="TinhTrang" ToRole="DonDatHang" />
   </EntityType>
+  <Association Name="FK_Admin_LoaiAdmin">
+    <End Role="LoaiAdmin" Type="Self.LoaiAdmin" Multiplicity="0..1" />
+    <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiAdmin">
+        <PropertyRef Name="MaLoaiAdmin" />
+      </Principal>
+      <Dependent Role="Admin">
+        <PropertyRef Name="MaLoaiAdmin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ChiTietDonDatHang_DonDatHang">
     <End Role="DonDatHang" Type="Self.DonDatHang" Multiplicity="0..1" />
     <End Role="ChiTietDonDatHang" Type="Self.ChiTietDonDatHang" Multiplicity="*" />
@@ -199,16 +223,21 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="shopthethaoEntities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="shopthethaoEntities2" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Admins" EntityType="Self.Admin" />
     <EntitySet Name="ChiTietDonDatHangs" EntityType="Self.ChiTietDonDatHang" />
     <EntitySet Name="DonDatHangs" EntityType="Self.DonDatHang" />
     <EntitySet Name="HangSanXuats" EntityType="Self.HangSanXuat" />
+    <EntitySet Name="LoaiAdmins" EntityType="Self.LoaiAdmin" />
     <EntitySet Name="LoaiSanPhams" EntityType="Self.LoaiSanPham" />
     <EntitySet Name="LoaiTaiKhoans" EntityType="Self.LoaiTaiKhoan" />
     <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
     <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
     <EntitySet Name="TinhTrangs" EntityType="Self.TinhTrang" />
+    <AssociationSet Name="FK_Admin_LoaiAdmin" Association="Self.FK_Admin_LoaiAdmin">
+      <End Role="LoaiAdmin" EntitySet="LoaiAdmins" />
+      <End Role="Admin" EntitySet="Admins" />
+    </AssociationSet>
     <AssociationSet Name="FK_ChiTietDonDatHang_DonDatHang" Association="Self.FK_ChiTietDonDatHang_DonDatHang">
       <End Role="DonDatHang" EntitySet="DonDatHangs" />
       <End Role="ChiTietDonDatHang" EntitySet="ChiTietDonDatHangs" />

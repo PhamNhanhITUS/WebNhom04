@@ -10,7 +10,7 @@ namespace shopthethao.Controllers
 {
     public class CartController : Controller
     {
-        shopthethaoEntities1 db = new shopthethaoEntities1();
+        shopthethaoEntities2 db = new shopthethaoEntities2();
 
         private const string CartSession = "CartSession";
         // GET: Cart
@@ -27,7 +27,6 @@ namespace shopthethao.Controllers
 
         public ActionResult AddItem(int productId, int quantity)
         {
-            shopthethaoEntities1 db = new shopthethaoEntities1();
             var product = db.SanPhams.First(x => x.MaSanPham == productId);
             var cart = Session[CartSession];
             if (cart != null)
@@ -108,8 +107,6 @@ namespace shopthethao.Controllers
 
         public ActionResult Payment(int? ID)
         {
-            shopthethaoEntities1 db = new shopthethaoEntities1();
-
             ViewBag.Info = db.TaiKhoans.Where(x => x.MaTaiKhoan == ID).ToList();
             var cart = Session[CartSession];
             var list = new List<CartItem>();

@@ -16,6 +16,11 @@ namespace shopthethao.Models
     {
         public int MaAdmin { get; set; }
         public string TaiKhoanAdmin { get; set; }
+        public string TenHienThi { get; set; }
+        public string Email { get; set; }
         public string MatKhauAdmin { get; set; }
+        public Nullable<int> MaLoaiAdmin { get; set; }
+    
+        public virtual LoaiAdmin LoaiAdmin { get; set; }
     }
 }

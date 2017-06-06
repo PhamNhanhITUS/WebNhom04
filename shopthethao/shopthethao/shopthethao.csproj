@@ -1644,6 +1644,9 @@
     <Compile Include="Models\HangSanXuat.cs">
       <DependentUpon>shopthethao.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoaiAdmin.cs">
+      <DependentUpon>shopthethao.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LoaiSanPham.cs">
       <DependentUpon>shopthethao.tt</DependentUpon>
     </Compile>
@@ -1708,13 +1711,6 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Profile.cshtml" />
     <Content Include="Views\Cart\Payment.cshtml" />
-    <EntityDeploy Include="Models\shopthethao.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>shopthethao.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\shopthethao.edmx.diagram">
-      <DependentUpon>shopthethao.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Assets\Admin\vendors\animate.css\animate-config.json" />
     <Content Include="Assets\Admin\vendors\animate.css\bower.json" />
@@ -1938,6 +1934,13 @@
     <Content Include="Views\Profile\Info.cshtml" />
     <Content Include="Views\Error404\Index.cshtml" />
     <Content Include="Views\Profile\HistoryOrder.cshtml" />
+    <EntityDeploy Include="Models\shopthethao.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>shopthethao.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\shopthethao.edmx.diagram">
+      <DependentUpon>shopthethao.edmx</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

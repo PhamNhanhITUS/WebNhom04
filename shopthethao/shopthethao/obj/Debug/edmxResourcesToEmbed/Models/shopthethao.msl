@@ -1,12 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="shopthethaoModelStoreContainer" CdmEntityContainer="shopthethaoEntities1">
+  <EntityContainerMapping StorageEntityContainer="shopthethaoModelStoreContainer" CdmEntityContainer="shopthethaoEntities2">
     <EntitySetMapping Name="Admins">
       <EntityTypeMapping TypeName="shopthethaoModel.Admin">
         <MappingFragment StoreEntitySet="Admin">
           <ScalarProperty Name="MaAdmin" ColumnName="MaAdmin" />
           <ScalarProperty Name="TaiKhoanAdmin" ColumnName="TaiKhoanAdmin" />
+          <ScalarProperty Name="TenHienThi" ColumnName="TenHienThi" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="MatKhauAdmin" ColumnName="MatKhauAdmin" />
+          <ScalarProperty Name="MaLoaiAdmin" ColumnName="MaLoaiAdmin" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -24,7 +27,6 @@
     <EntitySetMapping Name="DonDatHangs">
       <EntityTypeMapping TypeName="shopthethaoModel.DonDatHang">
         <MappingFragment StoreEntitySet="DonDatHang">
-          <ScalarProperty Name="BiXoa" ColumnName="BiXoa" />
           <ScalarProperty Name="MaDonDatHang" ColumnName="MaDonDatHang" />
           <ScalarProperty Name="NgayLap" ColumnName="NgayLap" />
           <ScalarProperty Name="TongThanhTien" ColumnName="TongThanhTien" />
@@ -34,6 +36,7 @@
           <ScalarProperty Name="HoTenNhanHang" ColumnName="HoTenNhanHang" />
           <ScalarProperty Name="DienThoaiNhanHang" ColumnName="DienThoaiNhanHang" />
           <ScalarProperty Name="EmailNhanhang" ColumnName="EmailNhanhang" />
+          <ScalarProperty Name="BiXoa" ColumnName="BiXoa" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -45,6 +48,14 @@
           <ScalarProperty Name="LogoURL" ColumnName="LogoURL" />
           <ScalarProperty Name="BiXoa" ColumnName="BiXoa" />
           <ScalarProperty Name="MaHSX" ColumnName="MaHSX" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoaiAdmins">
+      <EntityTypeMapping TypeName="shopthethaoModel.LoaiAdmin">
+        <MappingFragment StoreEntitySet="LoaiAdmin">
+          <ScalarProperty Name="MaLoaiAdmin" ColumnName="MaLoaiAdmin" />
+          <ScalarProperty Name="TenLoaiAdmin" ColumnName="TenLoaiAdmin" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
