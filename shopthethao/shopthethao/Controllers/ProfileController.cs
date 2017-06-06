@@ -1,4 +1,5 @@
-﻿using shopthethao.Models;
+﻿using PagedList;
+using shopthethao.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace shopthethao.Controllers
         {
             if (ID.HasValue == false)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Error404");
             }
             var p =  db.TaiKhoans.First(x => x.MaTaiKhoan == ID);
             return View(p);
@@ -93,10 +94,12 @@ namespace shopthethao.Controllers
             return RedirectToAction("Info", "Profile", new { ID = id });
         }
 
-        public ActionResult HistoryOrder(int? ID)
+        public ActionResult HistoryOrder(int? ID, int? page)
         {
             var listOrder = db.DonDatHangs.Where(x => x.MaTaiKhoan == ID && x.BiXoa == false).ToList();
-            return View(listOrder);
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(listOrder.ToPagedList(pageNumber, pageSize));
         }
         public ActionResult Logout()
         {

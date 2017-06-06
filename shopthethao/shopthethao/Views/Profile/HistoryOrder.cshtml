@@ -1,68 +1,79 @@
-﻿@model List<shopthethao.Models.DonDatHang>
+﻿@model PagedList.IPagedList<shopthethao.Models.DonDatHang>
+@using PagedList.Mvc;
 @using shopthethao.Models
 
 @{
     ViewBag.Title = "HistoryOrder";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<section id="cart_items">
-    <div class="container">
-        <div class="breadcrumbs">
-            <ol class="breadcrumb">
-                <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
-                <li class="active">Lịch sử mua hàng</li>
-            </ol>
-        </div>
-        @foreach (var item in Model)
-        {
-            <div class="row" style="padding:0px 0px 20px 0px;">
-                <div class="col-md-12">
-                    <section id="cart_items">
-                        <div class="table-responsive cart_info">
-                            <table class="table table-condensed" style="margin-bottom:0px;">
-                                <thead>
-                                    <tr class="cart_menu" style="font-size:14px;">
-                                        <td><b>Mã hóa đơn: </b>@item.MaDonDatHang</td>
-                                        <td><b>Ngày tạo: </b>@item.NgayLap</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><b>Tổng tiền: </b>@string.Format("{0:n0}", item.TongThanhTien) VNĐ</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @{var list = item.ChiTietDonDatHangs.Where(x => x.MaDonDatHang == item.MaDonDatHang).ToList();}
-
-                                    @foreach (var item1 in list as List <ChiTietDonDatHang>)
-                                    {
-                                        <tr>
-                                            <td class="cart_product">
-                                                <a href=""><img src="/Assets/Client/images/cart/one.png" alt=""></a>
-                                            </td>
-                                            <td class="cart_description" style="padding-left:20px;">
-                                                <h4><a href="">@item1.SanPham.TenSanPham</a></h4>
-                                                <p>Mã: @item1.SanPham.MaSP</p>
-                                            </td>
-                                            <td class="cart_price">
-                                                <p>@string.Format("{0:n0}", item1.SanPham.GiaSanPham) VNĐ</p>
-                                            </td>
-                                            <td class="cart_quantity" style="font-size:18px;">
-                                                <div class="cart_quantity_button">
-                                                    <p>@item1.SoLuong</p>
-                                                </div>
-                                            </td>
-                                            @{ var cart_total = item1.SanPham.GiaSanPham * item1.SoLuong;}
-                                            <td class="cart_total" style="font-size:20px; padding-left:100px;">
-                                                <p class="cart_total_price">@string.Format("{0:n0}", cart_total) VNĐ</p>
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </section>
-                </div>
+@if (@Session["MaTaiKhoan"] != null)
+{
+    <section id="cart_items">
+        <div class="container">
+            <div class="breadcrumbs">
+                <ol class="breadcrumb">
+                    <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                    <li class="active">Lịch sử mua hàng</li>
+                </ol>
             </div>
-        }
-        
-    </div>
-</section>
+            @foreach (var item in Model)
+            {
+                <div class="row" style="padding:0px 0px 20px 0px;">
+                    <div class="col-md-12">
+                        <section id="cart_items">
+                            <div class="table-responsive cart_info">
+                                <table class="table table-condensed" style="margin-bottom:0px;">
+                                    <thead>
+                                        <tr class="cart_menu" style="font-size:14px;">
+                                            <td><b>Mã hóa đơn: </b>@item.MaDonDatHang</td>
+                                            <td><b>Ngày tạo: </b>@item.NgayLap</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><b>Tổng tiền: </b>@string.Format("{0:n0}", item.TongThanhTien) VNĐ</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{var list = item.ChiTietDonDatHangs.Where(x => x.MaDonDatHang == item.MaDonDatHang).ToList();}
+
+                                        @foreach (var item1 in list as List<ChiTietDonDatHang>)
+                                        {
+                                            <tr>
+                                                <td class="cart_product">
+                                                    <a href=""><img src="/Assets/Client/images/cart/one.png" alt=""></a>
+                                                </td>
+                                                <td class="cart_description" style="padding-left:20px;">
+                                                    <h4><a href="">@item1.SanPham.TenSanPham</a></h4>
+                                                    <p>Mã: @item1.SanPham.MaSP</p>
+                                                </td>
+                                                <td class="cart_price">
+                                                    <p>@string.Format("{0:n0}", item1.SanPham.GiaSanPham) VNĐ</p>
+                                                </td>
+                                                <td class="cart_quantity" style="font-size:18px;">
+                                                    <div class="cart_quantity_button">
+                                                        <p>@item1.SoLuong</p>
+                                                    </div>
+                                                </td>
+                                                @{ var cart_total = item1.SanPham.GiaSanPham * item1.SoLuong;}
+                                                <td class="cart_total" style="font-size:20px; padding-left:100px;">
+                                                    <p class="cart_total_price">@string.Format("{0:n0}", cart_total) VNĐ</p>
+                                                </td>
+                                            </tr>
+                                      }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                }
+            <ul class="pagination" style="margin-bottom:0px;padding-left:0px;">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+            </ul>
+        </div>
+    </section>
+
+}
+else
+{
+    @Html.Action("Index", "Error404")
+}
