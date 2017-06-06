@@ -137,6 +137,7 @@ namespace shopthethao.Controllers
                 HoTenNhanHang = fc["shipName"].ToString(),
                 EmailNhanhang = fc["email"].ToString(),
                 DienThoaiNhanHang = fc["phone"].ToString(),
+                BiXoa = false
             };
 
             db.DonDatHangs.Add(order);
