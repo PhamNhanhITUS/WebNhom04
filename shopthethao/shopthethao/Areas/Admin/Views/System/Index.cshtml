@@ -1,4 +1,4 @@
-﻿
+﻿@using shopthethao.Models
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -24,6 +24,7 @@
                     <div class="x_content">
                         <table id="datatable" class="table table-striped table-bordered">
                             <thead>
+
                                 <tr>
                                     <th>Họ tên</th>
                                     <th>Tên đăng nhập</th>
@@ -34,27 +35,19 @@
                             </thead>
 
                             <tbody>
+                            @foreach (var item in Model as List<Admin>)
+                            {
                                 <tr>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>Edinburgh</td>
-                                    <td><button type="button" class="btn btn-success btn-xs">Còn hàng</button></td>
+                                    <td>@item.TenHienThi</td>
+                                    <td>@item.TaiKhoanAdmin</td>
+                                    <td>@item.Email</td>
+                                    <td><button type="button" class="btn btn-success btn-xs">@item.LoaiAdmin.TenLoaiAdmin</button></td>
                                     <td>
                                         <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
                                         <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>Nixon</td>
-                                    <td>Edinburgh</td>
-                                    <td>System</td>
-                                    <td><button type="button" class="btn btn-round btn-warning btn-xs">Sale 10%</button></td>
-
-                                    <td>
-                                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
-                                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
-                                    </td>
-                                </tr>
+                            }
                             </tbody>
                         </table>
                     </div>
