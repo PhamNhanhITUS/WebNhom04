@@ -73,12 +73,10 @@ namespace shopthethao.Areas.Admin.Controllers
 
                 if (db.SaveChanges() == 0)
                 {
-                    Session["SuaLoaiSPThanhCong"] = "";
                     return RedirectToAction("Index", "Category");
                 }
                 else
                 {
-                    Session["SuaLoaiSPThatBai"] = "";
                     return RedirectToAction("Index", "Category");
                 }
             }
@@ -96,7 +94,6 @@ namespace shopthethao.Areas.Admin.Controllers
             }
             else
             {
-                Session["SuaLoaiSPThatBai"] = "";
                 return RedirectToAction("Index", "Category");
             }
         }

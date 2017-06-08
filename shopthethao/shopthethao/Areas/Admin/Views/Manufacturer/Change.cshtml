@@ -1,4 +1,4 @@
-﻿
+﻿@model shopthethao.Models.HangSanXuat
 @{
     ViewBag.Title = "Change";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -15,26 +15,32 @@
         </div>
         <div class="clearfix"></div>
         <div class="row" style="padding-top:20px;">
-            <div class="form-group col-md-12">
-                <div class="form-group">
-                    <div class="col-md-1"></div>
-                    <label class="control-label col-md-1">Tên HSX</label>
-                    <div class="col-md-2">
-                        <input class="form-control" />
-                    </div>
-                    <label class="control-label col-md-1">Mã HSX</label>
-                    <div class="col-md-2">
-                        <input class="form-control" />
-                    </div>
-                    <label class="control-label col-md-1">Logo</label>
-                    <div class="col-md-2">
-                        <input class="form-control" type="file"/>
-                    </div>
-                    <div class="col-md-1">
-                        <button type="submit" class="btn btn-primary">Sửa</button>
+            <form data-toggle="validator" role="form" action="@Url.Action("ChangeForm", "Manufacturer")" method="post" enctype = "multipart/form-data">
+                <div class="form-group col-md-12">
+                    <div class="form-group">
+                        <div class="col-md-1"></div>
+                        <input name="id" value="@Model.MaHangSanXuat" type="hidden"/>
+                        <label class="control-label col-md-1">Tên HSX</label>
+                        <div class="col-md-2">
+                            <input class="form-control" placeholder="Tên HSX" name="name" value="@Model.TenHangSanXuat" required/>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <label class="control-label col-md-1">Mã HSX</label>
+                        <div class="col-md-2">
+                            <input class="form-control" name="idManu" placeholder="Mã HSX" value="@Model.MaHSX" required/>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <label class="control-label col-md-1">Logo</label>
+                        <div class="col-md-2">
+                            <input class="form-control" type="file" name="picture" value="@Model.LogoURL" required/>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="col-md-1">
+                            <button type="submit" class="btn btn-primary">Sửa</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+              </form>
         </div>
     </div>
 </div>

@@ -188,21 +188,32 @@
         $('#ModalNotiErrCate').modal('show')
     </script>
 }
+@if (Session["TrungHSX"] != null)
+{
+    <script>
+        $('#ModalNotiErrManu').modal('show')
+    </script>
+}
 
 <script>
     $('#ModalNotiCate').on('hide.bs.modal', function (e) {
-            @{
-                Session.Remove("ThemLoaiSPThanhCong");
-            }
+      @{
+        Session.Remove("ThemLoaiSPThanhCong");
+      }
     })
     $('#ModalDeleteCate').on('hide.bs.modal', function (e) {
-            @{
-                Session.Remove("XoaLoaiSPThanhCong");
-            }
+     @{
+        Session.Remove("XoaLoaiSPThanhCong");
+     }
     })
     $('#ModalNotiErrCate').on('hide.bs.modal', function (e) {
-            @{
-                Session.Remove("TrungLoaiSP");
-            }
+      @{
+        Session.Remove("TrungLoaiSP");
+       }
+    })
+    $('#ModalNotiErrManu').on('hide.bs.modal', function (e) {
+      @{
+        Session.Remove("TrungHSX");
+       }
     })
 </script>

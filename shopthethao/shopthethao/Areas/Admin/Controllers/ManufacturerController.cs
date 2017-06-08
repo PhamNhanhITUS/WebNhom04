@@ -39,14 +39,14 @@ namespace shopthethao.Areas.Admin.Controllers
                 db.HangSanXuats.Add(manufacturer);
                 db.SaveChanges();
 
-                var lastInsertID = manufacturer.MaHangSanXuat;
+                var lastInsertName = manufacturer.TenHangSanXuat;
 
                 if (picture != null && picture.ContentLength > 0)
                 {
-                    string fileName = Path.GetFileName(lastInsertID.ToString() + "_" + picture.FileName);
+                    string fileName = Path.GetFileName(lastInsertName.ToString() + "_" + picture.FileName);
 
-                    string dirPath = Server.MapPath("~/Assets/HinhAnh");
-                    string targetDirPath = Path.Combine(dirPath, lastInsertID.ToString());
+                    string dirPath = Server.MapPath("~/Assets/Logo");
+                    string targetDirPath = Path.Combine(dirPath, lastInsertName.ToString());
                     Directory.CreateDirectory(targetDirPath);
 
                     string path = Path.Combine(targetDirPath, fileName);
@@ -55,28 +55,90 @@ namespace shopthethao.Areas.Admin.Controllers
                     manufacturer.LogoURL = fileName;
 
                     db.SaveChanges();
-                }
 
-                if (db.SaveChanges() == 0)
-                {
-                    Session["ThemLoaiSPThanhCong"] = "";
-                    return RedirectToAction("Index");
+                    if (db.SaveChanges() == 0)
+                    {
+                        Session["ThemHSXThanhCong"] = "";
+                        return RedirectToAction("Index", "Manufacturer");
+                    }
+                    else
+                    {
+                        Session["ThemHSXThatBai"] = "";
+                        return RedirectToAction("Index", "Manufacturer");
+                    }
                 }
                 else
                 {
-                    Session["ThemLoaiSPThatBai"] = "";
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Manufacturer");
                 }
             }
-
-
-
-            
-            return View();
         }
-        public ActionResult Change()
+        public ActionResult Change(int? ID)
         {
-            return View();
+            var list = db.HangSanXuats.First(x => x.MaHangSanXuat == ID);
+            return View(list);
+        }
+        public ActionResult ChangeForm(FormCollection fc, HttpPostedFileBase picture)
+        {
+            var id = int.Parse(fc["id"]);
+            var idManu = fc["idManu"].ToString();
+
+            if (db.HangSanXuats.Where(x => x.MaHSX == idManu).SingleOrDefault() != null)
+            {
+                Session["TrungHSX"] = "";
+                return RedirectToAction("Change", "Manufacturer", new { ID = id });
+            }
+            else
+            {
+                var p = db.HangSanXuats.First(x => x.MaHangSanXuat == id);
+                p.MaHSX = fc["idManu"].ToString();
+                p.TenHangSanXuat = fc["name"].ToString();
+                db.SaveChanges();
+
+                var lastInsertName = p.TenHangSanXuat;
+
+                if (picture != null && picture.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(lastInsertName.ToString() + "_" + picture.FileName);
+
+                    string dirPath = Server.MapPath("~/Assets/Logo");
+                    string targetDirPath = Path.Combine(dirPath, lastInsertName.ToString());
+                    Directory.CreateDirectory(targetDirPath);
+
+                    string path = Path.Combine(targetDirPath, fileName);
+
+                    picture.SaveAs(path);
+                    p.LogoURL = fileName;
+
+                    db.SaveChanges();
+
+                    if (db.SaveChanges() == 0)
+                    {
+                        return RedirectToAction("Index", "Manufacturer");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Manufacturer");
+                    }
+                }
+                return RedirectToAction("Index", "Manufacturer");
+            }
+        }
+        public ActionResult Delete(int? ID)
+        {
+            var p = db.HangSanXuats.First(x => x.MaHangSanXuat == ID);
+            p.BiXoa = true;
+            db.SaveChanges();
+
+            if (db.SaveChanges() == 0)
+            {
+                Session["XoaSPThanhCong"] = "";
+                return RedirectToAction("Index", "Manufacturer");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Manufacturer");
+            }
         }
     }
 }
