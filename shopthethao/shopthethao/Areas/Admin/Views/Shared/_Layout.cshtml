@@ -59,7 +59,7 @@
                                         <li><a href="@Url.Action("Index","Product")">Danh sách</a></li>
                                         <li><a href="@Url.Action("Index", "Category")">Loại sản phẩm</a></li>
                                         <li><a href="@Url.Action("Index","Manufacturer")">Hãng sản xuất</a></li>
-                                        <li><a href="@Url.Action("Delete","Product")">Bị xoá</a></li>
+                                        <li><a href="@Url.Action("Index","Delete")">Bị xoá</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -143,6 +143,7 @@
             @Html.Partial("~/Areas/Admin/Views/Shared/ModalProduct.cshtml")
             @Html.Partial("~/Areas/Admin/Views/Shared/ModalSystem.cshtml")
             @Html.Partial("~/Areas/Admin/Views/Shared/ModalUser.cshtml")
+            @Html.Partial("~/Areas/Admin/Views/Shared/ModalDelete.cshtml")
             <!-- /top navigation -->
             <!-- page content -->
             @RenderBody()
@@ -194,7 +195,24 @@
         $('#ModalNotiErrManu').modal('show')
     </script>
 }
-
+@if (Session["XoaHSXThanhCong"] != null)
+{
+    <script>
+        $('#ModalDeleteManu').modal('show')
+    </script>
+}
+@if (Session["PhucHoiThanhCong"] != null)
+{
+    <script>
+        $('#ModalRestore').modal('show')
+    </script>
+}
+@if (Session["XoaThanhCong"] != null)
+{
+    <script>
+        $('#ModalDelete').modal('show')
+    </script>
+}
 <script>
     $('#ModalNotiCate').on('hide.bs.modal', function (e) {
       @{
@@ -215,5 +233,20 @@
       @{
         Session.Remove("TrungHSX");
        }
+    })
+    $('#ModalDeleteManu').on('hide.bs.modal', function (e) {
+     @{
+         Session.Remove("XoaHSXThanhCong");
+     }
+    })
+    $('#ModalRestore').on('hide.bs.modal', function (e) {
+     @{
+         Session.Remove("PhucHoiThanhCong");
+     }
+    })
+    $('#ModalDelete').on('hide.bs.modal', function (e) {
+     @{
+         Session.Remove("XoaThanhCong");
+     }
     })
 </script>

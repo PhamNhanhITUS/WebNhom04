@@ -1,4 +1,5 @@
-﻿using System;
+﻿using shopthethao.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace shopthethao.Areas.Admin.Controllers
 {
     public class ProductController : Controller
     {
+        shopthethaoEntities2 db = new shopthethaoEntities2();
         // GET: Admin/Product
         public ActionResult Index()
         {
@@ -21,7 +23,7 @@ namespace shopthethao.Areas.Admin.Controllers
         {
             return View();
         }
-        public ActionResult Delete()
+        public ActionResult DeleteAll()
         {
             return View();
         }

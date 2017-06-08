@@ -16,6 +16,10 @@ namespace shopthethao.Areas.Admin.Controllers
             return View(db.TaiKhoans.Where(x => x.BiXoa == false).ToList());
         }
 
+        public ActionResult Delete()
+        {
+            return View();
+        }
         public ActionResult Change(int? ID)
         {
             ViewBag.User = db.LoaiTaiKhoans.ToList();

@@ -132,7 +132,7 @@ namespace shopthethao.Areas.Admin.Controllers
 
             if (db.SaveChanges() == 0)
             {
-                Session["XoaSPThanhCong"] = "";
+                Session["XoaHSXThanhCong"] = "";
                 return RedirectToAction("Index", "Manufacturer");
             }
             else

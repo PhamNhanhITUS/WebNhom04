@@ -1616,6 +1616,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DeleteController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManufacturerController.cs" />
     <Compile Include="Areas\Admin\Controllers\OderController.cs" />
@@ -1925,8 +1926,6 @@
     <Content Include="Areas\Admin\Views\Oder\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Product\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\User\Delete.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\Info.cshtml" />
     <Content Include="Views\Error404\Index.cshtml" />
@@ -1952,6 +1951,8 @@
     <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Change.cshtml" />
     <Content Include="Areas\Admin\Views\Manufacturer\Change.cshtml" />
+    <Content Include="Areas\Admin\Views\Delete\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\ModalDelete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
