@@ -1,0 +1,64 @@
+﻿@using shopthethao.Models
+@{
+    ViewBag.Title = "ListDelete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Tài khoản <small>Danh sách tài khoản</small></h3>
+            </div>
+            <!-- <div class="title_right">
+            </div> -->
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="x_content">
+                        <table id="datatable" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Họ tên</th>
+                                    <th>Ngày sinh</th>
+                                    <th>Email</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Loại</th>
+                                    <th style="width: 115px;">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var item in Model as List<TaiKhoan>)
+                                {
+                                    <tr>
+                                        <td>@item.TenHienThi</td>
+                                        <td>@item.NgaySinh</td>
+                                        <td>@item.DienThoai</td>
+                                        <td>@item.Email</td>
+                                        <td>@item.DiaChi</td>
+                                        <td><button type="button" class="btn btn-success btn-xs">@item.LoaiTaiKhoan.TenLoaiTaiKhoan</button></td>
+                                        <td>
+                                            <a href="@Url.Action("RestoreUser", "User", new { ID = @item.MaTaiKhoan })" class="btn btn-info btn-xs" data-toggle="tooltip" title="Phục hồi"><i class="fa fa-pencil"></i> Phục hồi </a>
+                                            <a href="@Url.Action("DeleteUser", "User", new { ID = @item.MaTaiKhoan })" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Khi xóa sẽ mất vĩnh viễn"><i class="fa fa-trash-o"></i> Xóa </a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->
+

@@ -106,12 +106,23 @@ namespace shopthethao.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        public ActionResult ListDelete(int? ID)
+        public ActionResult ListDelete()
+        {
+            return View(db.TaiKhoans.Where(x => x.BiXoa == true).ToList());
+        }
+        public ActionResult RestoreUser(int? ID)
         {
             var p = db.TaiKhoans.First(x => x.MaTaiKhoan == ID);
-            p.BiXoa = true;
+            p.BiXoa = false;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("ListDelete", "User");
+        }
+        public ActionResult DeleteUser(int? ID)
+        {
+            var p = db.TaiKhoans.First(x => x.MaTaiKhoan == ID);
+            db.TaiKhoans.Remove(p);
+            db.SaveChanges();
+            return RedirectToAction("ListDelete", "User");
         }
     }
 }
