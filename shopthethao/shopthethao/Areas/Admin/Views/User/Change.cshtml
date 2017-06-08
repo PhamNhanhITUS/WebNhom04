@@ -20,23 +20,27 @@
                     <div class="form-group">
                     <div class="col-md-2"></div>
                      <label class="control-label col-md-2">Loại tài khoản</label>
-                     <div class="col-md-3">
-                          <select class="select2_single form-control" tabindex="-1">
-                             <option selected disabled>@Model.LoaiTaiKhoan.TenLoaiTaiKhoan</option>
-                                @if (ViewBag.User != null)
-                                {
-
-                                    foreach (var item in ViewBag.User as List<LoaiTaiKhoan>)
+                        <form data-toggle="validator" role="form" action="@Url.Action("ChangeForm", "User")" method="post">
+                            <input type="hidden" value="@Model.MaTaiKhoan" name="id" />
+                            <div class="col-md-3">
+                                <select class="select2_single form-control" tabindex="-1" name="usergroup">
+                                    <option selected disabled>@Model.LoaiTaiKhoan.TenLoaiTaiKhoan</option>
+                                    @if (ViewBag.User != null)
                                     {
-                                         <option value="@item.MaLoaiTaiKhoan">@item.TenLoaiTaiKhoan</option>
-                                     }
-                                 }
-                              </select>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="submit" class="btn btn-primary">Sửa</button>
-                        </div>
-                        </div>
+
+                                        foreach (var item in ViewBag.User as List<LoaiTaiKhoan>)
+                                        {
+                                            <option value="@item.MaLoaiTaiKhoan">@item.TenLoaiTaiKhoan</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-primary">Sửa</button>
+                            </div>
+                        </form>
+                            
+                    </div>
                </div>
         </div> 
      </div>

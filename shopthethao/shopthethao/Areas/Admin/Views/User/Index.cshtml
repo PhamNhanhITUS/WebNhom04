@@ -51,7 +51,7 @@
                                         <td>
                                             <a href=""></a>
                                             <a href="@Url.Action("Change","User", new { ID = @item.MaTaiKhoan })"  class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
-                                            <a href="@Url.Action("Change","User", new { ID = @item.MaTaiKhoan })" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Đã chắc chắn chưa"><i class="fa fa-trash-o"></i> Xóa </a>
+                                            <a href="@Url.Action("Delete","User", new { ID = @item.MaTaiKhoan })" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Đã chắc chắn chưa"><i class="fa fa-trash-o"></i> Xóa </a>
                                         </td>
                                     </tr>
                                 }

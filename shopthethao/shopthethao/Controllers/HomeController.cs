@@ -58,7 +58,7 @@ namespace shopthethao.Controllers
         [HttpPost]
         public ActionResult Register(FormCollection fc)
         {
-            string matKhauMaHoa = CreateMD5(fc["MatKhau"].ToString());
+                string matKhauMaHoa = CreateMD5(fc["MatKhau"].ToString());
                 string tenDangNhap = fc["TenDangNhap"].ToString();
                 string email = fc["Email"].ToString();
                 string dienThoai = fc["DienThoai"].ToString();
