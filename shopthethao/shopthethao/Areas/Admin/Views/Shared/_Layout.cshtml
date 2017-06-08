@@ -57,8 +57,8 @@
                                     <a><i class="fa fa-table"></i> Sản phẩm <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="@Url.Action("Index","Product")">Danh sách</a></li>
-                                        <li><a href="@Url.Action("Category", "Product")">Loại sản phẩm</a></li>
-                                        <li><a href="@Url.Action("Manufacturer","Product")">Hãng sản xuất</a></li>
+                                        <li><a href="@Url.Action("Index", "Category")">Loại sản phẩm</a></li>
+                                        <li><a href="@Url.Action("Index","Manufacturer")">Hãng sản xuất</a></li>
                                         <li><a href="@Url.Action("Delete","Product")">Bị xoá</a></li>
                                     </ul>
                                 </li>
@@ -170,9 +170,39 @@
     <script src="~/Assets/Client/js/validator.min.js"></script>
 </body>
 </html>
-@if (Session["SuaTaiKhoan"] != null)
+@if (Session["ThemLoaiSPThanhCong"] != null)
 {
     <script>
-        $('#ModalChangeUser').modal('show')
+        $('#ModalNotiCate').modal('show')
     </script>
 }
+@if (Session["XoaLoaiSPThanhCong"] != null)
+{
+    <script>
+        $('#ModalDeleteCate').modal('show')
+    </script>
+}
+@if (Session["TrungLoaiSP"] != null)
+{
+    <script>
+        $('#ModalNotiErrCate').modal('show')
+    </script>
+}
+
+<script>
+    $('#ModalNotiCate').on('hide.bs.modal', function (e) {
+            @{
+                Session.Remove("ThemLoaiSPThanhCong");
+            }
+    })
+    $('#ModalDeleteCate').on('hide.bs.modal', function (e) {
+            @{
+                Session.Remove("XoaLoaiSPThanhCong");
+            }
+    })
+    $('#ModalNotiErrCate').on('hide.bs.modal', function (e) {
+            @{
+                Session.Remove("TrungLoaiSP");
+            }
+    })
+</script>

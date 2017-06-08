@@ -35,5 +35,6 @@ namespace shopthethao.Models
         public virtual DbSet<SanPham> SanPhams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<TinhTrang> TinhTrangs { get; set; }
+        public virtual DbSet<HinhAnh> HinhAnhs { get; set; }
     }
 }

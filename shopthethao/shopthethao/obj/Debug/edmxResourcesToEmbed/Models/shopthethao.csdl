@@ -84,7 +84,7 @@
       <PropertyRef Name="MaSanPham" />
     </Key>
     <Property Name="MaSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="TenSanPham" Type="String" MaxLength="45" FixedLength="true" Unicode="true" />
+    <Property Name="TenSanPham" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
     <Property Name="GiaSanPham" Type="Int32" />
     <Property Name="NgayNhap" Type="DateTime" Precision="3" />
     <Property Name="SoLuongTon" Type="Int32" />
@@ -95,11 +95,13 @@
     <Property Name="MaLoaiSanPham" Type="Int32" />
     <Property Name="MaHangSanXuat" Type="Int32" />
     <Property Name="MaTinhTrang" Type="Int32" />
-    <Property Name="TrangThai" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
-    <Property Name="MaSP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="TrangThai" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="MaSP" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="ChiTietDonDatHangs" Relationship="Self.FK_ChiTietDonDatHang_SanPham" FromRole="SanPham" ToRole="ChiTietDonDatHang" />
     <NavigationProperty Name="HangSanXuat" Relationship="Self.FK_SanPham_HangSanXuat" FromRole="SanPham" ToRole="HangSanXuat" />
     <NavigationProperty Name="LoaiSanPham" Relationship="Self.FK_SanPham_LoaiSanPham" FromRole="SanPham" ToRole="LoaiSanPham" />
+    <Property Name="URLAnhDaiDien" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HinhAnhs" Relationship="shopthethaoModel.FK_HinhAnh_SanPham" FromRole="SanPham" ToRole="HinhAnh" />
   </EntityType>
   <EntityType Name="TaiKhoan">
     <Key>
@@ -266,5 +268,31 @@
       <End Role="LoaiTaiKhoan" EntitySet="LoaiTaiKhoans" />
       <End Role="TaiKhoan" EntitySet="TaiKhoans" />
     </AssociationSet>
+    <EntitySet Name="HinhAnhs" EntityType="shopthethaoModel.HinhAnh" />
+    <AssociationSet Name="FK_HinhAnh_SanPham" Association="shopthethaoModel.FK_HinhAnh_SanPham">
+      <End Role="SanPham" EntitySet="SanPhams" />
+      <End Role="HinhAnh" EntitySet="HinhAnhs" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="HinhAnh">
+    <Key>
+      <PropertyRef Name="MaHinhAnh" />
+    </Key>
+    <Property Name="MaHinhAnh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="URL" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="MaSanPham" Type="Int32" />
+    <NavigationProperty Name="SanPham" Relationship="shopthethaoModel.FK_HinhAnh_SanPham" FromRole="HinhAnh" ToRole="SanPham" />
+  </EntityType>
+  <Association Name="FK_HinhAnh_SanPham">
+    <End Type="shopthethaoModel.SanPham" Role="SanPham" Multiplicity="0..1" />
+    <End Type="shopthethaoModel.HinhAnh" Role="HinhAnh" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="MaSanPham" />
+      </Principal>
+      <Dependent Role="HinhAnh">
+        <PropertyRef Name="MaSanPham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

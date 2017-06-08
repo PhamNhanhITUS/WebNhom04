@@ -6,19 +6,19 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="getCroppedCanvasTitle">Thêm loại sản phẩm</h4>
             </div>
-            <form data-toggle="validator" role="form" action="@Url.Action("Register", "Home")" method="post">
+            <form data-toggle="validator" role="form" action="@Url.Action("Add", "Category")" method="post">
                 <div class="modal-body">
                     <div class="form-group row" style="padding:0px 10px;margin-bottom:0px;">
                         <label for="example-text-input" class="col-2 col-form-label">Mã loại sản phẩm</label>
                         <div class="col-10">
-                            <input class="form-control" type="text" placeholder="Mã loại sản phẩm" required>
+                            <input class="form-control" type="text" name="id" placeholder="Mã loại sản phẩm" required>
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
                     <div class="form-group row" style="padding:0px 10px;margin-bottom:0px;">
                         <label for="example-text-input" class="col-2 col-form-label">Tên loại sản phẩm</label>
                         <div class="col-10">
-                            <input class="form-control" type="text" placeholder="Tên loại sản phẩm" required>
+                            <input class="form-control" type="text" name="name" placeholder="Tên loại sản phẩm" required>
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
@@ -33,38 +33,70 @@
 </div>
 <!-- /modal thêm Loại sản phẩm -->
 
-<!-- Modal sửa loại sản phẩm-->
-<div class="modal fade docs-cropped in" id="ModalChangeCate" tabindex="-1" role="dialog" aria-labelledby="getCroppedCanvasTitle" aria-hidden="true">
+<!-- modal xóa Loại sản phẩm thành công-->
+<div class="modal fade docs-cropped in" id="ModalDeleteCate" tabindex="-1" role="dialog" aria-labelledby="getCroppedCanvasTitle" aria-hidden="true">
     <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
+        <div class="modal-content" style="width:400px;">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="getCroppedCanvasTitle">Sửa loại sản phẩm</h4>
+                <h4 class="modal-title" id="getCroppedCanvasTitle">Thêm loại sản phẩm</h4>
             </div>
-            <form data-toggle="validator" role="form" action="@Url.Action("Register", "Home")" method="post">
-                <div class="modal-body">
-                    <div class="form-group row" style="padding:0px 10px;margin-bottom:0px;">
-                        <label for="example-text-input" class="col-2 col-form-label">Mã loại sản phẩm</label>
-                        <div class="col-10">
-                            <input class="form-control" type="text" placeholder="Mã loại sản phẩm" required>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-                    <div class="form-group row" style="padding:0px 10px;margin-bottom:0px;">
-                        <label for="example-text-input" class="col-2 col-form-label">Tên loại sản phẩm</label>
-                        <div class="col-10">
-                            <input class="form-control" type="text" placeholder="Tên loại sản phẩm" required>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
+            <div class="modal-body">
+                <div style="padding:5px 0px;">
+                    <img src="~/Assets/Client/images/home/success.png" />
+                    <label style="padding-left:15px;font-size:18px;">Xóa loại sản phẩm thành công!</label>
                 </div>
                 <!-- /.box -->
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-default">Sửa</button>
+                <div class="modal-footer" style="border-top:0px; padding:15px 0px 0px 0px;">
+                    <button data-dismiss="modal" class="btn btn-primary">Thoát</button>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
-<!-- /modal sửa Loại sản phẩm -->
+<!-- /modal xóa Loại sản phẩm thành công -->
+<!-- Modal thông báo thêm loại sản phẩm thành công-->
+<div class="modal fade docs-cropped in" id="ModalNotiCate" tabindex="-1" role="dialog" aria-labelledby="getCroppedCanvasTitle" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content" style="width:400px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="getCroppedCanvasTitle">Thêm loại sản phẩm</h4>
+            </div>
+            <div class="modal-body">
+                <div style="padding:5px 0px;">
+                    <img src="~/Assets/Client/images/home/success.png" />
+                    <label style="padding-left:15px;font-size:18px;">Thêm loại sản phẩm thành công!</label>
+                </div>
+                <!-- /.box -->
+                <div class="modal-footer" style="border-top:0px; padding:15px 0px 0px 0px;">
+                    <button data-dismiss="modal" class="btn btn-primary">Thoát</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /modal thông báo thêm Loại sản phẩm thành công-->
 
+<!-- Modal thông báo thêm loại sản phẩm bị trùng-->
+<div class="modal fade docs-cropped in" id="ModalNotiErrCate" tabindex="-1" role="dialog" aria-labelledby="getCroppedCanvasTitle" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content" style="width:400px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="getCroppedCanvasTitle">Thêm loại sản phẩm</h4>
+            </div>
+            <div class="modal-body">
+                <div style="padding:5px 0px;">
+                    <img src="~/Assets/Client/images/home/error.png" />
+                    <label style="padding-left:15px;font-size:18px;">Bị trùng mã loại sản phẩm!</label>
+                </div>
+                <!-- /.box -->
+                <div class="modal-footer" style="border-top:0px; padding:15px 0px 0px 0px;">
+                    <button data-dismiss="modal" class="btn btn-primary">Thoát</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /modal thông báo thêm Loại sản phẩm bị trùng-->

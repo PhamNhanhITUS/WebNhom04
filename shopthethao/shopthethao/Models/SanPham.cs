@@ -18,6 +18,7 @@ namespace shopthethao.Models
         public SanPham()
         {
             this.ChiTietDonDatHangs = new HashSet<ChiTietDonDatHang>();
+            this.HinhAnhs = new HashSet<HinhAnh>();
         }
     
         public int MaSanPham { get; set; }
@@ -34,10 +35,13 @@ namespace shopthethao.Models
         public Nullable<int> MaTinhTrang { get; set; }
         public string TrangThai { get; set; }
         public string MaSP { get; set; }
+        public string URLAnhDaiDien { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDonDatHang> ChiTietDonDatHangs { get; set; }
         public virtual HangSanXuat HangSanXuat { get; set; }
         public virtual LoaiSanPham LoaiSanPham { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HinhAnh> HinhAnhs { get; set; }
     }
 }

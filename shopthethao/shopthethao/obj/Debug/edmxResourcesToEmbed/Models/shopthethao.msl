@@ -80,6 +80,7 @@
     <EntitySetMapping Name="SanPhams">
       <EntityTypeMapping TypeName="shopthethaoModel.SanPham">
         <MappingFragment StoreEntitySet="SanPham">
+          <ScalarProperty Name="URLAnhDaiDien" ColumnName="URLAnhDaiDien" />
           <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
           <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
           <ScalarProperty Name="GiaSanPham" ColumnName="GiaSanPham" />
@@ -119,6 +120,15 @@
         <MappingFragment StoreEntitySet="TinhTrang">
           <ScalarProperty Name="MaTinhTrang" ColumnName="MaTinhTrang" />
           <ScalarProperty Name="TenTinhTrang" ColumnName="TenTinhTrang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HinhAnhs">
+      <EntityTypeMapping TypeName="shopthethaoModel.HinhAnh">
+        <MappingFragment StoreEntitySet="HinhAnh">
+          <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="MaHinhAnh" ColumnName="MaHinhAnh" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

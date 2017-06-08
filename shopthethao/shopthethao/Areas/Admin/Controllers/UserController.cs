@@ -13,7 +13,7 @@ namespace shopthethao.Areas.Admin.Controllers
         // GET: Admin/User
         public ActionResult Index()
         {
-            return View(db.TaiKhoans.ToList());
+            return View(db.TaiKhoans.Where(x => x.BiXoa == false).ToList());
         }
 
         public ActionResult Change(int? ID)

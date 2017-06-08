@@ -1,6 +1,6 @@
-﻿
+﻿@using shopthethao.Models
 @{
-    ViewBag.Title = "Category";
+    ViewBag.Title = "Manufacturer";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -8,7 +8,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Loại sản phẩm <small>Danh sách loại sản phẩm</small></h3>
+                <h3>Hãng sản xuất <small>Danh sách hãng sản xuất</small></h3>
             </div>
             <!-- <div class="title_right">
             </div> -->
@@ -18,7 +18,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <button type="button" class="btn btn-round btn-primary" data-toggle="modal" data-target="#ModalAddCate">Thêm mới</button>
+                        <button type="button" class="btn btn-round btn-primary" data-toggle="modal" data-target="#ModalAddManu">Thêm mới</button>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -26,31 +26,27 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Mã loại</th>
-                                    <th>Tên loại</th>
+                                    <th>Mã HSX</th>
+                                    <th>Logo HSX</th>
+                                    <th>Tên HSX</th>
                                     <th style="width: 105px;">Thao tác</th>
                                 </tr>
                             </thead>
 
                             <tbody>
+                            @foreach (var item in Model as List<HangSanXuat>)
+                            {
                                 <tr>
-                                    <td>1</td>
-                                    <td>NH-001</td>
-                                    <td>System Architect</td>
+                                    <td>@item.MaHangSanXuat</td>
+                                    <td>@item.MaHSX</td>
+                                    <td><img src="" /></td>
+                                    <td>@item.TenHangSanXuat</td>
                                     <td>
-                                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
-                                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
+                                        <a href="@Url.Action("Change","Manufacturer", new { ID = @item.MaHangSanXuat })" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
+                                        <a href="@Url.Action("Delete","Manufacturer", new { ID = @item.MaHangSanXuat })" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>NH-002</td>
-                                    <td>System Architect</td>
-                                    <td>
-                                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
-                                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
-                                    </td>
-                                </tr>
+                            }
                             </tbody>
                         </table>
                     </div>

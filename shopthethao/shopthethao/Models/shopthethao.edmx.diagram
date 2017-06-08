@@ -23,6 +23,8 @@
         <AssociationConnector Association="shopthethaoModel.FK_SanPham_HangSanXuat" ManuallyRouted="false" />
         <AssociationConnector Association="shopthethaoModel.FK_SanPham_LoaiSanPham" ManuallyRouted="false" />
         <AssociationConnector Association="shopthethaoModel.FK_TaiKhoan_LoaiTaiKhoan" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="shopthethaoModel.HinhAnh" Width="1.5" PointX="5.25" PointY="0.75" />
+        <AssociationConnector Association="shopthethaoModel.FK_HinhAnh_SanPham" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
