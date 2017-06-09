@@ -1955,6 +1955,7 @@
     </Content>
     <Content Include="Areas\Admin\Views\Oder\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\Oder\Change.cshtml" />
+    <Content Include="Areas\Admin\Views\Oder\ListDelete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

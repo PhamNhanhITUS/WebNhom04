@@ -38,9 +38,16 @@ namespace shopthethao.Areas.Admin.Controllers
             }
             return RedirectToAction("Change");
         }
-        public ActionResult Delete()
+        public ActionResult Delete(int? ID)
         {
-            return View();
+            var p = db.DonDatHangs.First(x => x.MaDonDatHang== ID);
+            p.BiXoa = true;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult ListDelete()
+        {
+            return View(db.DonDatHangs.Where(x => x.BiXoa == true).ToList());
         }
     }
 }
