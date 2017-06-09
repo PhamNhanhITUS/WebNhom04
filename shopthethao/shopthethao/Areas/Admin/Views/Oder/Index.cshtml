@@ -1,4 +1,4 @@
-﻿
+﻿@using shopthethao.Models
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -10,7 +10,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Sản phẩm <small>Danh sách sản phẩm</small></h3>
+                <h3>Đơn đặt hàng <small>Danh sách đơn đặt hàng</small></h3>
             </div>
             <!-- <div class="title_right">
             </div> -->
@@ -20,7 +20,6 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <button type="button" class="btn btn-round btn-primary">Thêm mới</button>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -37,42 +36,33 @@
                             </thead>
 
                             <tbody>
+                            @foreach (var item in Model as List<DonDatHang>)
+                            {
                                 <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                    <td><button type="button" class="btn btn-success btn-xs">Đang giao</button></td>
+                                    <td>@item.MaDonDatHang</td>
+                                    <td>@item.NgayLap</td>
+                                    <td>@item.TaiKhoan.TenHienThi</td>
+                                    <td>@item.TongThanhTien</td>
+
+                                    @if(item.TinhTrang.MaTinhTrang == 1){
+                                         <td><button type="button" class="btn btn-danger btn-xs">@item.TinhTrang.TenTinhTrang</button></td>
+                                    }
+                                    else if (item.TinhTrang.MaTinhTrang == 2)
+                                    {
+                                        <td><button type="button" class="btn btn-warning btn-xs">@item.TinhTrang.TenTinhTrang</button></td>
+                                    }
+                                    else
+                                    {
+                                        <td><button type="button" class="btn btn-success btn-xs">@item.TinhTrang.TenTinhTrang</button></td>
+                                    }
+
                                     <td>
-                                        <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Xem </a>
+                                        <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Xem </a>
                                         <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
                                         <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>Nixon</td>
-                                    <td>System</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                    <td><button type="button" class="btn btn-danger btn-xs">Đã giao</button></td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> View </a>
-                                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
-                                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Nixon</td>
-                                    <td>System</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                    <td><button type="button" class="btn btn-warning btn-xs">Hủy</button></td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> View </a>
-                                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
-                                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
-                                    </td>
-                                </tr>
+                            }
                             </tbody>
                         </table>
                     </div>

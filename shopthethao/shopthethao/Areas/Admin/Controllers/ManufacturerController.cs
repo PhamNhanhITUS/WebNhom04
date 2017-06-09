@@ -96,10 +96,11 @@ namespace shopthethao.Areas.Admin.Controllers
                 db.SaveChanges();
 
                 var lastInsertName = p.TenHangSanXuat;
+                var lastInsertId = p.MaHangSanXuat;
 
                 if (picture != null && picture.ContentLength > 0)
                 {
-                    string fileName = Path.GetFileName(lastInsertName.ToString() + "_" + picture.FileName);
+                    string fileName = Path.GetFileName(lastInsertId.ToString() + "_" + picture.FileName);
 
                     string dirPath = Server.MapPath("~/Assets/Logo");
                     string targetDirPath = Path.Combine(dirPath, lastInsertName.ToString());

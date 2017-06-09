@@ -82,8 +82,27 @@ namespace shopthethao.Areas.Admin.Controllers
         }
         public ActionResult ChangeForm(FormCollection fc)
         {
-            return View();
+            var id = int.Parse(fc["id"]);
+            var p = db.TaiKhoanAdmins.First(x => x.MaAdmin == id);
+            p.MaLoaiAdmin = int.Parse(fc["admingroup"]);
+            db.SaveChanges();
+            if (db.SaveChanges() == 0)
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Change");
         }
-        
+        public ActionResult Delete(int? ID)
+        {
+            
+            var p = db.TaiKhoanAdmins.First(x => x.MaAdmin == ID);
+            db.TaiKhoanAdmins.Remove(p);
+            db.SaveChanges();
+            if (db.SaveChanges() == 0)
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

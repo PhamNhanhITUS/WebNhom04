@@ -23,7 +23,7 @@
                         <form data-toggle="validator" role="form" action="@Url.Action("ChangeForm", "User")" method="post">
                             <input type="hidden" value="@Model.MaTaiKhoan" name="id" />
                             <div class="col-md-3">
-                                <select class="select2_single form-control" tabindex="-1" name="usergroup">
+                                <select class="select2_single form-control" tabindex="-1" name="admingroup">
                                     <option selected disabled>@Model.LoaiTaiKhoan.TenLoaiTaiKhoan</option>
                                     @if (ViewBag.User != null)
                                     {

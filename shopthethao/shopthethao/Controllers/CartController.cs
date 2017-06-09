@@ -129,7 +129,7 @@ namespace shopthethao.Controllers
                 NgayLap = DateTime.Now,
                 MaTaiKhoan = int.Parse(fc["id"]),
                 MaTinhTrang = 1,
-                TongThanhTien = int.Parse(fc["total"]),
+                //TongThanhTien = int.Parse(fc["total"]),
                 DiaChiNhanHang = fc["address"].ToString(),
                 HoTenNhanHang = fc["shipName"].ToString(),
                 EmailNhanhang = fc["email"].ToString(),
