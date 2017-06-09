@@ -1,5 +1,6 @@
 ﻿@model shopthethao.Models.TaiKhoanAdmin
 @using shopthethao.Models
+
 @{
     ViewBag.Title = "Change";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -25,10 +26,10 @@
                         <div class="col-md-3">
                             <select class="select2_single form-control" tabindex="-1" name="admingroup">
                                 <option selected disabled>@Model.LoaiAdmin.TenLoaiAdmin</option>
-                                @if (ViewBag.User != null)
+                                @if (ViewBag.Admin != null)
                                 {
 
-                                    foreach (var item in ViewBag.User as List<LoaiAdmin>)
+                                    foreach (var item in ViewBag.Admin as List<LoaiAdmin>)
                                     {
                                         <option value="@item.MaLoaiAdmin">@item.TenLoaiAdmin</option>
                                     }

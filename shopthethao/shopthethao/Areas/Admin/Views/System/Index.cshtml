@@ -43,8 +43,8 @@
                                     <td>@item.Email</td>
                                     <td><button type="button" class="btn btn-success btn-xs">@item.LoaiAdmin.TenLoaiAdmin</button></td>
                                     <td>
-                                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
-                                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
+                                        <a href="@Url.Action("Change","System", new { ID = @item.MaAdmin })" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
+                                        <a href="@Url.Action("Delete","System", new { ID = @item.MaAdmin })" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
                                     </td>
                                 </tr>
                             }

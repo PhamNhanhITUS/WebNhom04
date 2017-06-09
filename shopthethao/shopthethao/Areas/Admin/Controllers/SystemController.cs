@@ -74,9 +74,11 @@ namespace shopthethao.Areas.Admin.Controllers
                 }
             }
         }
-        public ActionResult Change()
+        public ActionResult Change(int? ID)
         {
-            return View();
+            ViewBag.Admin = db.LoaiAdmins.ToList();
+            var list = db.TaiKhoanAdmins.First(x => x.MaAdmin == ID);
+            return View(list);
         }
         public ActionResult ChangeForm(FormCollection fc)
         {
