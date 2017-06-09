@@ -57,9 +57,9 @@
                                     }
 
                                     <td>
-                                        <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Xem </a>
-                                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
-                                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
+                                        <a href="@Url.Action("Detail","Oder", new { ID = item.MaDonDatHang })" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Xem </a>
+                                        <a href="@Url.Action("Change","Oder", new { ID = item.MaDonDatHang })" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
+                                        <a href="@Url.Action("Delete","Oder", new { ID = item.MaDonDatHang })" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Đã chắc chắn chưa"><i class="fa fa-trash-o"></i> Xóa </a>
                                     </td>
                                 </tr>
                             }
