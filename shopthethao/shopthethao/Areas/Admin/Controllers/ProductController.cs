@@ -95,6 +95,15 @@ namespace shopthethao.Areas.Admin.Controllers
                 }
             }
         }
+
+        public ActionResult Change(int? ID)
+        {
+            ViewBag.Category = db.LoaiSanPhams.Where(x => x.BiXoa == false).ToList();
+            ViewBag.Manufacturer = db.HangSanXuats.Where(x => x.BiXoa == false).ToList();
+            ViewBag.Sale = db.KhuyenMaiSanPhams.ToList();
+            var list = db.SanPhams.First(x => x.MaSanPham == ID);
+            return View(list);
+        }
         public ActionResult DeleteAll()
         {
             return View();

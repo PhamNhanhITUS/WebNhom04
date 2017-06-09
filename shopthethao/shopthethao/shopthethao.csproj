@@ -1963,6 +1963,7 @@
       <DependentUpon>shopthethao.edmx</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Views\Shared\ModalProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Change.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
