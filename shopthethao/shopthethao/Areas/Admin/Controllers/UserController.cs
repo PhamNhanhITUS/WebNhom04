@@ -11,7 +11,7 @@ namespace shopthethao.Areas.Admin.Controllers
 {
     public class UserController : Controller
     {
-        shopthethaoEntities4 db = new shopthethaoEntities4();
+        shopthethaoEntities5 db = new shopthethaoEntities5();
         // GET: Admin/User
         public ActionResult Index()
         {

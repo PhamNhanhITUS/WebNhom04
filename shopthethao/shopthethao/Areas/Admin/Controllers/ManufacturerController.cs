@@ -10,7 +10,7 @@ namespace shopthethao.Areas.Admin.Controllers
 {
     public class ManufacturerController : Controller
     {
-        shopthethaoEntities4 db = new shopthethaoEntities4();
+        shopthethaoEntities5 db = new shopthethaoEntities5();
         // GET: Admin/Manufacturer
         public ActionResult Index()
         {
@@ -83,13 +83,6 @@ namespace shopthethao.Areas.Admin.Controllers
             var id = int.Parse(fc["id"]);
             var idManu = fc["idManu"].ToString();
 
-            if (db.HangSanXuats.Where(x => x.MaHSX == idManu).SingleOrDefault() != null)
-            {
-                Session["TrungHSX"] = "";
-                return RedirectToAction("Change", "Manufacturer", new { ID = id });
-            }
-            else
-            {
                 var p = db.HangSanXuats.First(x => x.MaHangSanXuat == id);
                 p.MaHSX = fc["idManu"].ToString();
                 p.TenHangSanXuat = fc["name"].ToString();
@@ -123,7 +116,6 @@ namespace shopthethao.Areas.Admin.Controllers
                     }
                 }
                 return RedirectToAction("Index", "Manufacturer");
-            }
         }
         public ActionResult Delete(int? ID)
         {

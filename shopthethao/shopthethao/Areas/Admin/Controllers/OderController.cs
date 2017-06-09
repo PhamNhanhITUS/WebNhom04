@@ -10,7 +10,7 @@ namespace shopthethao.Areas.Admin.Controllers
     public class OderController : Controller
     {
         // GET: Admin/Oder
-        shopthethaoEntities4 db = new shopthethaoEntities4();
+        shopthethaoEntities5 db = new shopthethaoEntities5();
         public ActionResult Index()
         {
             return View(db.DonDatHangs.Where(x => x.BiXoa == false).ToList());
@@ -48,6 +48,20 @@ namespace shopthethao.Areas.Admin.Controllers
         public ActionResult ListDelete()
         {
             return View(db.DonDatHangs.Where(x => x.BiXoa == true).ToList());
+        }
+        public ActionResult RestoreOder(int? ID)
+        {
+            var p = db.DonDatHangs.First(x => x.MaDonDatHang == ID);
+            p.BiXoa = false;
+            db.SaveChanges();
+            return RedirectToAction("ListDelete", "Oder");
+        }
+        public ActionResult DeleteOder(int? ID)
+        {
+            var p = db.DonDatHangs.First(x => x.MaDonDatHang == ID);
+            db.DonDatHangs.Remove(p);
+            db.SaveChanges();
+            return RedirectToAction("ListDelete", "Oder");
         }
     }
 }

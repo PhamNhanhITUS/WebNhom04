@@ -9,13 +9,13 @@ namespace shopthethao.Areas.Admin.Controllers
 {
     public class ProductController : Controller
     {
-        shopthethaoEntities4 db = new shopthethaoEntities4();
+        shopthethaoEntities5 db = new shopthethaoEntities5();
         // GET: Admin/Product
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult Category()
+        public ActionResult AddProduct()
         {
             return View();
         }

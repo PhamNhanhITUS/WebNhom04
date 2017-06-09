@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="shopthethaoModelStoreContainer" CdmEntityContainer="shopthethaoEntities4">
+  <EntityContainerMapping StorageEntityContainer="shopthethaoModelStoreContainer" CdmEntityContainer="shopthethaoEntities5">
     <EntitySetMapping Name="ChiTietDonDatHangs">
       <EntityTypeMapping TypeName="shopthethaoModel.ChiTietDonDatHang">
         <MappingFragment StoreEntitySet="ChiTietDonDatHang">
@@ -48,6 +48,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="KhuyenMaiSanPhams">
+      <EntityTypeMapping TypeName="shopthethaoModel.KhuyenMaiSanPham">
+        <MappingFragment StoreEntitySet="KhuyenMaiSanPham">
+          <ScalarProperty Name="MaKhuyenMai" ColumnName="MaKhuyenMai" />
+          <ScalarProperty Name="TenKhuyenMai" ColumnName="TenKhuyenMai" />
+          <ScalarProperty Name="NgayBatDau" ColumnName="NgayBatDau" />
+          <ScalarProperty Name="NgayKetThuc" ColumnName="NgayKetThuc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="LoaiAdmins">
       <EntityTypeMapping TypeName="shopthethaoModel.LoaiAdmin">
         <MappingFragment StoreEntitySet="LoaiAdmin">
@@ -90,8 +100,19 @@
           <ScalarProperty Name="BiXoa" ColumnName="BiXoa" />
           <ScalarProperty Name="MaLoaiSanPham" ColumnName="MaLoaiSanPham" />
           <ScalarProperty Name="MaHangSanXuat" ColumnName="MaHangSanXuat" />
-          <ScalarProperty Name="MaTinhTrang" ColumnName="MaTinhTrang" />
+          <ScalarProperty Name="MaKhuyenMai" ColumnName="MaKhuyenMai" />
           <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="shopthethaoModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

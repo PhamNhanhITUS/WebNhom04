@@ -50,6 +50,16 @@
     <Property Name="MaSanPham" Type="Int32" />
     <NavigationProperty Name="SanPham" Relationship="Self.FK_HinhAnh_SanPham" FromRole="HinhAnh" ToRole="SanPham" />
   </EntityType>
+  <EntityType Name="KhuyenMaiSanPham">
+    <Key>
+      <PropertyRef Name="MaKhuyenMai" />
+    </Key>
+    <Property Name="MaKhuyenMai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenKhuyenMai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NgayBatDau" Type="DateTime" Precision="0" />
+    <Property Name="NgayKetThuc" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_KhuyenMaiSanPham" FromRole="KhuyenMaiSanPham" ToRole="SanPham" />
+  </EntityType>
   <EntityType Name="LoaiAdmin">
     <Key>
       <PropertyRef Name="MaLoaiAdmin" />
@@ -93,12 +103,23 @@
     <Property Name="BiXoa" Type="Boolean" />
     <Property Name="MaLoaiSanPham" Type="Int32" />
     <Property Name="MaHangSanXuat" Type="Int32" />
-    <Property Name="MaTinhTrang" Type="Int32" />
-    <Property Name="TrangThai" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="MaKhuyenMai" Type="Int32" />
+    <Property Name="TrangThai" Type="Boolean" />
     <NavigationProperty Name="ChiTietDonDatHangs" Relationship="Self.FK_ChiTietDonDatHang_SanPham" FromRole="SanPham" ToRole="ChiTietDonDatHang" />
     <NavigationProperty Name="HangSanXuat" Relationship="Self.FK_SanPham_HangSanXuat" FromRole="SanPham" ToRole="HangSanXuat" />
     <NavigationProperty Name="HinhAnhs" Relationship="Self.FK_HinhAnh_SanPham" FromRole="SanPham" ToRole="HinhAnh" />
+    <NavigationProperty Name="KhuyenMaiSanPham" Relationship="Self.FK_SanPham_KhuyenMaiSanPham" FromRole="SanPham" ToRole="KhuyenMaiSanPham" />
     <NavigationProperty Name="LoaiSanPham" Relationship="Self.FK_SanPham_LoaiSanPham" FromRole="SanPham" ToRole="LoaiSanPham" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="TaiKhoan">
     <Key>
@@ -210,6 +231,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_SanPham_KhuyenMaiSanPham">
+    <End Role="KhuyenMaiSanPham" Type="Self.KhuyenMaiSanPham" Multiplicity="0..1" />
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhuyenMaiSanPham">
+        <PropertyRef Name="MaKhuyenMai" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="MaKhuyenMai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_TaiKhoanAdmin_LoaiAdmin">
     <End Role="LoaiAdmin" Type="Self.LoaiAdmin" Multiplicity="0..1" />
     <End Role="TaiKhoanAdmin" Type="Self.TaiKhoanAdmin" Multiplicity="*" />
@@ -246,15 +279,17 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="shopthethaoEntities4" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="shopthethaoEntities5" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="ChiTietDonDatHangs" EntityType="Self.ChiTietDonDatHang" />
     <EntitySet Name="DonDatHangs" EntityType="Self.DonDatHang" />
     <EntitySet Name="HangSanXuats" EntityType="Self.HangSanXuat" />
     <EntitySet Name="HinhAnhs" EntityType="Self.HinhAnh" />
+    <EntitySet Name="KhuyenMaiSanPhams" EntityType="Self.KhuyenMaiSanPham" />
     <EntitySet Name="LoaiAdmins" EntityType="Self.LoaiAdmin" />
     <EntitySet Name="LoaiSanPhams" EntityType="Self.LoaiSanPham" />
     <EntitySet Name="LoaiTaiKhoans" EntityType="Self.LoaiTaiKhoan" />
     <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
     <EntitySet Name="TaiKhoanAdmins" EntityType="Self.TaiKhoanAdmin" />
     <EntitySet Name="TinhTrangs" EntityType="Self.TinhTrang" />
@@ -281,6 +316,10 @@
     <AssociationSet Name="FK_HinhAnh_SanPham" Association="Self.FK_HinhAnh_SanPham">
       <End Role="SanPham" EntitySet="SanPhams" />
       <End Role="HinhAnh" EntitySet="HinhAnhs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPham_KhuyenMaiSanPham" Association="Self.FK_SanPham_KhuyenMaiSanPham">
+      <End Role="KhuyenMaiSanPham" EntitySet="KhuyenMaiSanPhams" />
+      <End Role="SanPham" EntitySet="SanPhams" />
     </AssociationSet>
     <AssociationSet Name="FK_TaiKhoanAdmin_LoaiAdmin" Association="Self.FK_TaiKhoanAdmin_LoaiAdmin">
       <End Role="LoaiAdmin" EntitySet="LoaiAdmins" />

@@ -1645,6 +1645,9 @@
     <Compile Include="Models\HinhAnh.cs">
       <DependentUpon>shopthethao.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\KhuyenMaiSanPham.cs">
+      <DependentUpon>shopthethao.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LoaiAdmin.cs">
       <DependentUpon>shopthethao.tt</DependentUpon>
     </Compile>
@@ -1671,6 +1674,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>shopthethao.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>shopthethao.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TaiKhoan.cs">
       <DependentUpon>shopthethao.tt</DependentUpon>
@@ -1946,6 +1952,10 @@
     <Content Include="Areas\Admin\Views\Shared\ModalDelete.cshtml" />
     <Content Include="Areas\Admin\Views\User\ListDelete.cshtml" />
     <Content Include="Areas\Admin\Views\System\Change.cshtml" />
+    <Content Include="Areas\Admin\Views\Oder\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Oder\Change.cshtml" />
+    <Content Include="Areas\Admin\Views\Oder\ListDelete.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\AddProduct.cshtml" />
     <EntityDeploy Include="Models\shopthethao.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>shopthethao.Designer.cs</LastGenOutput>
@@ -1953,9 +1963,6 @@
     <Content Include="Models\shopthethao.edmx.diagram">
       <DependentUpon>shopthethao.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Views\Oder\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\Oder\Change.cshtml" />
-    <Content Include="Areas\Admin\Views\Oder\ListDelete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

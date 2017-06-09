@@ -9,7 +9,7 @@ namespace shopthethao.Areas.Admin.Controllers
 {
     public class CategoryController : Controller
     {
-        shopthethaoEntities4 db = new shopthethaoEntities4();
+        shopthethaoEntities5 db = new shopthethaoEntities5();
         // GET: Admin/Category
         public ActionResult Index()
         {
@@ -59,13 +59,7 @@ namespace shopthethao.Areas.Admin.Controllers
             var id = int.Parse(fc["id"]);
             var idCate = fc["idCate"].ToString();
 
-            if (db.LoaiSanPhams.Where(x => x.MaLoai == idCate).SingleOrDefault() != null)
-            {
-                Session["TrungLoaiSP"] = "";
-                return RedirectToAction("Change", "Category", new { ID = id });
-            }
-            else
-            {
+           
                 var p = db.LoaiSanPhams.First(x => x.MaLoaiSanPham == id);
                 p.MaLoai = fc["id"].ToString();
                 p.TenLoaiSanPham = fc["name"].ToString();
@@ -79,7 +73,6 @@ namespace shopthethao.Areas.Admin.Controllers
                 {
                     return RedirectToAction("Index", "Category");
                 }
-            }
         }
         public ActionResult Delete(int? ID)
         {

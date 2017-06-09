@@ -43,6 +43,15 @@
     <Property Name="URL" Type="nvarchar" MaxLength="20" />
     <Property Name="MaSanPham" Type="int" />
   </EntityType>
+  <EntityType Name="KhuyenMaiSanPham">
+    <Key>
+      <PropertyRef Name="MaKhuyenMai" />
+    </Key>
+    <Property Name="MaKhuyenMai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenKhuyenMai" Type="nvarchar" MaxLength="20" />
+    <Property Name="NgayBatDau" Type="date" />
+    <Property Name="NgayKetThuc" Type="date" />
+  </EntityType>
   <EntityType Name="LoaiAdmin">
     <Key>
       <PropertyRef Name="MaLoaiAdmin" />
@@ -83,8 +92,18 @@
     <Property Name="BiXoa" Type="bit" />
     <Property Name="MaLoaiSanPham" Type="int" />
     <Property Name="MaHangSanXuat" Type="int" />
-    <Property Name="MaTinhTrang" Type="int" />
-    <Property Name="TrangThai" Type="nvarchar" MaxLength="32" />
+    <Property Name="MaKhuyenMai" Type="int" />
+    <Property Name="TrangThai" Type="bit" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="TaiKhoan">
     <Key>
@@ -192,6 +211,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_SanPham_KhuyenMaiSanPham">
+    <End Role="KhuyenMaiSanPham" Type="Self.KhuyenMaiSanPham" Multiplicity="0..1" />
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhuyenMaiSanPham">
+        <PropertyRef Name="MaKhuyenMai" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="MaKhuyenMai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SanPham_LoaiSanPham">
     <End Role="LoaiSanPham" Type="Self.LoaiSanPham" Multiplicity="0..1" />
     <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
@@ -233,10 +264,12 @@
     <EntitySet Name="DonDatHang" EntityType="Self.DonDatHang" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HangSanXuat" EntityType="Self.HangSanXuat" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HinhAnh" EntityType="Self.HinhAnh" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KhuyenMaiSanPham" EntityType="Self.KhuyenMaiSanPham" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LoaiAdmin" EntityType="Self.LoaiAdmin" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LoaiSanPham" EntityType="Self.LoaiSanPham" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LoaiTaiKhoan" EntityType="Self.LoaiTaiKhoan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TaiKhoanAdmin" EntityType="Self.TaiKhoanAdmin" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TinhTrang" EntityType="Self.TinhTrang" Schema="dbo" store:Type="Tables" />
@@ -262,6 +295,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_SanPham_HangSanXuat" Association="Self.FK_SanPham_HangSanXuat">
       <End Role="HangSanXuat" EntitySet="HangSanXuat" />
+      <End Role="SanPham" EntitySet="SanPham" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPham_KhuyenMaiSanPham" Association="Self.FK_SanPham_KhuyenMaiSanPham">
+      <End Role="KhuyenMaiSanPham" EntitySet="KhuyenMaiSanPham" />
       <End Role="SanPham" EntitySet="SanPham" />
     </AssociationSet>
     <AssociationSet Name="FK_SanPham_LoaiSanPham" Association="Self.FK_SanPham_LoaiSanPham">

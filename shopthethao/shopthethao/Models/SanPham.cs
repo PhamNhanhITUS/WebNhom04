@@ -34,14 +34,15 @@ namespace shopthethao.Models
         public Nullable<bool> BiXoa { get; set; }
         public Nullable<int> MaLoaiSanPham { get; set; }
         public Nullable<int> MaHangSanXuat { get; set; }
-        public Nullable<int> MaTinhTrang { get; set; }
-        public string TrangThai { get; set; }
+        public Nullable<int> MaKhuyenMai { get; set; }
+        public Nullable<bool> TrangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDonDatHang> ChiTietDonDatHangs { get; set; }
         public virtual HangSanXuat HangSanXuat { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HinhAnh> HinhAnhs { get; set; }
+        public virtual KhuyenMaiSanPham KhuyenMaiSanPham { get; set; }
         public virtual LoaiSanPham LoaiSanPham { get; set; }
     }
 }

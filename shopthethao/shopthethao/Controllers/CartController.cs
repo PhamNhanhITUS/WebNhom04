@@ -10,7 +10,7 @@ namespace shopthethao.Controllers
 {
     public class CartController : Controller
     {
-        shopthethaoEntities4 db = new shopthethaoEntities4();
+        shopthethaoEntities5 db = new shopthethaoEntities5();
 
         private const string CartSession = "CartSession";
         // GET: Cart

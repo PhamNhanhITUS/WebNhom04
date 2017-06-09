@@ -14,7 +14,7 @@ namespace shopthethao.Controllers
     public class ProfileController : Controller
     {
         // GET: Profile
-        shopthethaoEntities4 db = new shopthethaoEntities4();
+        shopthethaoEntities5 db = new shopthethaoEntities5();
         public ActionResult Index()
         {
             return View();
