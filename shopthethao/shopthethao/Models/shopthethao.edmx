@@ -5,17 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="shopthethaoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Admin">
-          <Key>
-            <PropertyRef Name="MaAdmin" />
-          </Key>
-          <Property Name="MaAdmin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TaiKhoanAdmin" Type="nvarchar" MaxLength="30" />
-          <Property Name="TenHienThi" Type="nvarchar" MaxLength="50" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" />
-          <Property Name="MatKhauAdmin" Type="nvarchar" MaxLength="30" />
-          <Property Name="MaLoaiAdmin" Type="int" />
-        </EntityType>
         <EntityType Name="ChiTietDonDatHang">
           <Key>
             <PropertyRef Name="MaChiTietDonDatHang" />
@@ -108,7 +97,7 @@
           </Key>
           <Property Name="MaTaiKhoan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenDangNhap" Type="nvarchar" MaxLength="50" />
-          <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
+          <Property Name="MatKhau" Type="nvarchar" MaxLength="100" />
           <Property Name="TenHienThi" Type="nvarchar" MaxLength="50" />
           <Property Name="DiaChi" Type="nvarchar" MaxLength="150" />
           <Property Name="DienThoai" Type="nvarchar" MaxLength="11" />
@@ -118,6 +107,17 @@
           <Property Name="MaLoaiTaiKhoan" Type="int" />
           <Property Name="BiXoa" Type="bit" />
         </EntityType>
+        <EntityType Name="TaiKhoanAdmin">
+          <Key>
+            <PropertyRef Name="MaAdmin" />
+          </Key>
+          <Property Name="MaAdmin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaiKhoan" Type="nvarchar" MaxLength="30" />
+          <Property Name="TenHienThi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="MatKhauAdmin" Type="nvarchar" MaxLength="100" />
+          <Property Name="MaLoaiAdmin" Type="int" />
+        </EntityType>
         <EntityType Name="TinhTrang">
           <Key>
             <PropertyRef Name="MaTinhTrang" />
@@ -125,18 +125,6 @@
           <Property Name="MaTinhTrang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenTinhTrang" Type="nvarchar" MaxLength="20" />
         </EntityType>
-        <Association Name="FK_Admin_LoaiAdmin">
-          <End Role="LoaiAdmin" Type="Self.LoaiAdmin" Multiplicity="0..1" />
-          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LoaiAdmin">
-              <PropertyRef Name="MaLoaiAdmin" />
-            </Principal>
-            <Dependent Role="Admin">
-              <PropertyRef Name="MaLoaiAdmin" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ChiTietDonDatHang_DonDatHang">
           <End Role="DonDatHang" Type="Self.DonDatHang" Multiplicity="0..1" />
           <End Role="ChiTietDonDatHang" Type="Self.ChiTietDonDatHang" Multiplicity="*" />
@@ -233,8 +221,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TaiKhoanAdmin_LoaiAdmin">
+          <End Role="LoaiAdmin" Type="Self.LoaiAdmin" Multiplicity="0..1" />
+          <End Role="TaiKhoanAdmin" Type="Self.TaiKhoanAdmin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiAdmin">
+              <PropertyRef Name="MaLoaiAdmin" />
+            </Principal>
+            <Dependent Role="TaiKhoanAdmin">
+              <PropertyRef Name="MaLoaiAdmin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="shopthethaoModelStoreContainer">
-          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietDonDatHang" EntityType="Self.ChiTietDonDatHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DonDatHang" EntityType="Self.DonDatHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HangSanXuat" EntityType="Self.HangSanXuat" Schema="dbo" store:Type="Tables" />
@@ -244,11 +243,8 @@
           <EntitySet Name="LoaiTaiKhoan" EntityType="Self.LoaiTaiKhoan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaiKhoanAdmin" EntityType="Self.TaiKhoanAdmin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TinhTrang" EntityType="Self.TinhTrang" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Admin_LoaiAdmin" Association="Self.FK_Admin_LoaiAdmin">
-            <End Role="LoaiAdmin" EntitySet="LoaiAdmin" />
-            <End Role="Admin" EntitySet="Admin" />
-          </AssociationSet>
           <AssociationSet Name="FK_ChiTietDonDatHang_DonDatHang" Association="Self.FK_ChiTietDonDatHang_DonDatHang">
             <End Role="DonDatHang" EntitySet="DonDatHang" />
             <End Role="ChiTietDonDatHang" EntitySet="ChiTietDonDatHang" />
@@ -281,23 +277,15 @@
             <End Role="LoaiTaiKhoan" EntitySet="LoaiTaiKhoan" />
             <End Role="TaiKhoan" EntitySet="TaiKhoan" />
           </AssociationSet>
+          <AssociationSet Name="FK_TaiKhoanAdmin_LoaiAdmin" Association="Self.FK_TaiKhoanAdmin_LoaiAdmin">
+            <End Role="LoaiAdmin" EntitySet="LoaiAdmin" />
+            <End Role="TaiKhoanAdmin" EntitySet="TaiKhoanAdmin" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="shopthethaoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Admin">
-          <Key>
-            <PropertyRef Name="MaAdmin" />
-          </Key>
-          <Property Name="MaAdmin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TaiKhoanAdmin" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="TenHienThi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MatKhauAdmin" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="MaLoaiAdmin" Type="Int32" />
-          <NavigationProperty Name="LoaiAdmin" Relationship="Self.FK_Admin_LoaiAdmin" FromRole="Admin" ToRole="LoaiAdmin" />
-        </EntityType>
         <EntityType Name="ChiTietDonDatHang">
           <Key>
             <PropertyRef Name="MaChiTietDonDatHang" />
@@ -333,11 +321,20 @@
             <PropertyRef Name="MaHangSanXuat" />
           </Key>
           <Property Name="MaHangSanXuat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaHSX" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
           <Property Name="TenHangSanXuat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LogoURL" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="BiXoa" Type="Boolean" />
-          <Property Name="MaHSX" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_HangSanXuat" FromRole="HangSanXuat" ToRole="SanPham" />
+        </EntityType>
+        <EntityType Name="HinhAnh">
+          <Key>
+            <PropertyRef Name="MaHinhAnh" />
+          </Key>
+          <Property Name="MaHinhAnh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URL" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MaSanPham" Type="Int32" />
+          <NavigationProperty Name="SanPham" Relationship="Self.FK_HinhAnh_SanPham" FromRole="HinhAnh" ToRole="SanPham" />
         </EntityType>
         <EntityType Name="LoaiAdmin">
           <Key>
@@ -345,16 +342,16 @@
           </Key>
           <Property Name="MaLoaiAdmin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenLoaiAdmin" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Admins" Relationship="Self.FK_Admin_LoaiAdmin" FromRole="LoaiAdmin" ToRole="Admin" />
+          <NavigationProperty Name="TaiKhoanAdmins" Relationship="Self.FK_TaiKhoanAdmin_LoaiAdmin" FromRole="LoaiAdmin" ToRole="TaiKhoanAdmin" />
         </EntityType>
         <EntityType Name="LoaiSanPham">
           <Key>
             <PropertyRef Name="MaLoaiSanPham" />
           </Key>
           <Property Name="MaLoaiSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaLoai" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="TenLoaiSanPham" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="BiXoa" Type="Boolean" />
-          <Property Name="MaLoai" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_LoaiSanPham" FromRole="LoaiSanPham" ToRole="SanPham" />
         </EntityType>
         <EntityType Name="LoaiTaiKhoan">
@@ -370,7 +367,9 @@
             <PropertyRef Name="MaSanPham" />
           </Key>
           <Property Name="MaSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaSP" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="TenSanPham" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="URLAnhDaiDien" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="GiaSanPham" Type="Int32" />
           <Property Name="NgayNhap" Type="DateTime" Precision="3" />
           <Property Name="SoLuongTon" Type="Int32" />
@@ -382,12 +381,10 @@
           <Property Name="MaHangSanXuat" Type="Int32" />
           <Property Name="MaTinhTrang" Type="Int32" />
           <Property Name="TrangThai" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
-          <Property Name="MaSP" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ChiTietDonDatHangs" Relationship="Self.FK_ChiTietDonDatHang_SanPham" FromRole="SanPham" ToRole="ChiTietDonDatHang" />
           <NavigationProperty Name="HangSanXuat" Relationship="Self.FK_SanPham_HangSanXuat" FromRole="SanPham" ToRole="HangSanXuat" />
+          <NavigationProperty Name="HinhAnhs" Relationship="Self.FK_HinhAnh_SanPham" FromRole="SanPham" ToRole="HinhAnh" />
           <NavigationProperty Name="LoaiSanPham" Relationship="Self.FK_SanPham_LoaiSanPham" FromRole="SanPham" ToRole="LoaiSanPham" />
-          <Property Name="URLAnhDaiDien" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="HinhAnhs" Relationship="shopthethaoModel.FK_HinhAnh_SanPham" FromRole="SanPham" ToRole="HinhAnh" />
         </EntityType>
         <EntityType Name="TaiKhoan">
           <Key>
@@ -395,7 +392,7 @@
           </Key>
           <Property Name="MaTaiKhoan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenDangNhap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhau" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="TenHienThi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DiaChi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="DienThoai" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
@@ -407,6 +404,18 @@
           <NavigationProperty Name="DonDatHangs" Relationship="Self.FK_DonDatHang_TaiKhoan" FromRole="TaiKhoan" ToRole="DonDatHang" />
           <NavigationProperty Name="LoaiTaiKhoan" Relationship="Self.FK_TaiKhoan_LoaiTaiKhoan" FromRole="TaiKhoan" ToRole="LoaiTaiKhoan" />
         </EntityType>
+        <EntityType Name="TaiKhoanAdmin">
+          <Key>
+            <PropertyRef Name="MaAdmin" />
+          </Key>
+          <Property Name="MaAdmin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaiKhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="TenHienThi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhauAdmin" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MaLoaiAdmin" Type="Int32" />
+          <NavigationProperty Name="LoaiAdmin" Relationship="Self.FK_TaiKhoanAdmin_LoaiAdmin" FromRole="TaiKhoanAdmin" ToRole="LoaiAdmin" />
+        </EntityType>
         <EntityType Name="TinhTrang">
           <Key>
             <PropertyRef Name="MaTinhTrang" />
@@ -415,18 +424,6 @@
           <Property Name="TenTinhTrang" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DonDatHangs" Relationship="Self.FK_DonDatHang_TinhTrang" FromRole="TinhTrang" ToRole="DonDatHang" />
         </EntityType>
-        <Association Name="FK_Admin_LoaiAdmin">
-          <End Role="LoaiAdmin" Type="Self.LoaiAdmin" Multiplicity="0..1" />
-          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LoaiAdmin">
-              <PropertyRef Name="MaLoaiAdmin" />
-            </Principal>
-            <Dependent Role="Admin">
-              <PropertyRef Name="MaLoaiAdmin" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ChiTietDonDatHang_DonDatHang">
           <End Role="DonDatHang" Type="Self.DonDatHang" Multiplicity="0..1" />
           <End Role="ChiTietDonDatHang" Type="Self.ChiTietDonDatHang" Multiplicity="*" />
@@ -487,6 +484,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HinhAnh_SanPham">
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="0..1" />
+          <End Role="HinhAnh" Type="Self.HinhAnh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPham">
+              <PropertyRef Name="MaSanPham" />
+            </Principal>
+            <Dependent Role="HinhAnh">
+              <PropertyRef Name="MaSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaiKhoanAdmin_LoaiAdmin">
+          <End Role="LoaiAdmin" Type="Self.LoaiAdmin" Multiplicity="0..1" />
+          <End Role="TaiKhoanAdmin" Type="Self.TaiKhoanAdmin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiAdmin">
+              <PropertyRef Name="MaLoaiAdmin" />
+            </Principal>
+            <Dependent Role="TaiKhoanAdmin">
+              <PropertyRef Name="MaLoaiAdmin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SanPham_LoaiSanPham">
           <End Role="LoaiSanPham" Type="Self.LoaiSanPham" Multiplicity="0..1" />
           <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
@@ -511,21 +532,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="shopthethaoEntities2" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Admins" EntityType="Self.Admin" />
+        <EntityContainer Name="shopthethaoEntities4" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ChiTietDonDatHangs" EntityType="Self.ChiTietDonDatHang" />
           <EntitySet Name="DonDatHangs" EntityType="Self.DonDatHang" />
           <EntitySet Name="HangSanXuats" EntityType="Self.HangSanXuat" />
+          <EntitySet Name="HinhAnhs" EntityType="Self.HinhAnh" />
           <EntitySet Name="LoaiAdmins" EntityType="Self.LoaiAdmin" />
           <EntitySet Name="LoaiSanPhams" EntityType="Self.LoaiSanPham" />
           <EntitySet Name="LoaiTaiKhoans" EntityType="Self.LoaiTaiKhoan" />
           <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
           <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
+          <EntitySet Name="TaiKhoanAdmins" EntityType="Self.TaiKhoanAdmin" />
           <EntitySet Name="TinhTrangs" EntityType="Self.TinhTrang" />
-          <AssociationSet Name="FK_Admin_LoaiAdmin" Association="Self.FK_Admin_LoaiAdmin">
-            <End Role="LoaiAdmin" EntitySet="LoaiAdmins" />
-            <End Role="Admin" EntitySet="Admins" />
-          </AssociationSet>
           <AssociationSet Name="FK_ChiTietDonDatHang_DonDatHang" Association="Self.FK_ChiTietDonDatHang_DonDatHang">
             <End Role="DonDatHang" EntitySet="DonDatHangs" />
             <End Role="ChiTietDonDatHang" EntitySet="ChiTietDonDatHangs" />
@@ -546,6 +564,14 @@
             <End Role="HangSanXuat" EntitySet="HangSanXuats" />
             <End Role="SanPham" EntitySet="SanPhams" />
           </AssociationSet>
+          <AssociationSet Name="FK_HinhAnh_SanPham" Association="Self.FK_HinhAnh_SanPham">
+            <End Role="SanPham" EntitySet="SanPhams" />
+            <End Role="HinhAnh" EntitySet="HinhAnhs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaiKhoanAdmin_LoaiAdmin" Association="Self.FK_TaiKhoanAdmin_LoaiAdmin">
+            <End Role="LoaiAdmin" EntitySet="LoaiAdmins" />
+            <End Role="TaiKhoanAdmin" EntitySet="TaiKhoanAdmins" />
+          </AssociationSet>
           <AssociationSet Name="FK_SanPham_LoaiSanPham" Association="Self.FK_SanPham_LoaiSanPham">
             <End Role="LoaiSanPham" EntitySet="LoaiSanPhams" />
             <End Role="SanPham" EntitySet="SanPhams" />
@@ -554,51 +580,13 @@
             <End Role="LoaiTaiKhoan" EntitySet="LoaiTaiKhoans" />
             <End Role="TaiKhoan" EntitySet="TaiKhoans" />
           </AssociationSet>
-          <EntitySet Name="HinhAnhs" EntityType="shopthethaoModel.HinhAnh" />
-          <AssociationSet Name="FK_HinhAnh_SanPham" Association="shopthethaoModel.FK_HinhAnh_SanPham">
-            <End Role="SanPham" EntitySet="SanPhams" />
-            <End Role="HinhAnh" EntitySet="HinhAnhs" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="HinhAnh">
-          <Key>
-            <PropertyRef Name="MaHinhAnh" />
-          </Key>
-          <Property Name="MaHinhAnh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="URL" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="MaSanPham" Type="Int32" />
-          <NavigationProperty Name="SanPham" Relationship="shopthethaoModel.FK_HinhAnh_SanPham" FromRole="HinhAnh" ToRole="SanPham" />
-        </EntityType>
-        <Association Name="FK_HinhAnh_SanPham">
-          <End Type="shopthethaoModel.SanPham" Role="SanPham" Multiplicity="0..1" />
-          <End Type="shopthethaoModel.HinhAnh" Role="HinhAnh" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SanPham">
-              <PropertyRef Name="MaSanPham" />
-            </Principal>
-            <Dependent Role="HinhAnh">
-              <PropertyRef Name="MaSanPham" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="shopthethaoModelStoreContainer" CdmEntityContainer="shopthethaoEntities2">
-          <EntitySetMapping Name="Admins">
-            <EntityTypeMapping TypeName="shopthethaoModel.Admin">
-              <MappingFragment StoreEntitySet="Admin">
-                <ScalarProperty Name="MaAdmin" ColumnName="MaAdmin" />
-                <ScalarProperty Name="TaiKhoanAdmin" ColumnName="TaiKhoanAdmin" />
-                <ScalarProperty Name="TenHienThi" ColumnName="TenHienThi" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="MatKhauAdmin" ColumnName="MatKhauAdmin" />
-                <ScalarProperty Name="MaLoaiAdmin" ColumnName="MaLoaiAdmin" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+        <EntityContainerMapping StorageEntityContainer="shopthethaoModelStoreContainer" CdmEntityContainer="shopthethaoEntities4">
           <EntitySetMapping Name="ChiTietDonDatHangs">
             <EntityTypeMapping TypeName="shopthethaoModel.ChiTietDonDatHang">
               <MappingFragment StoreEntitySet="ChiTietDonDatHang">
@@ -630,10 +618,19 @@
             <EntityTypeMapping TypeName="shopthethaoModel.HangSanXuat">
               <MappingFragment StoreEntitySet="HangSanXuat">
                 <ScalarProperty Name="MaHangSanXuat" ColumnName="MaHangSanXuat" />
+                <ScalarProperty Name="MaHSX" ColumnName="MaHSX" />
                 <ScalarProperty Name="TenHangSanXuat" ColumnName="TenHangSanXuat" />
                 <ScalarProperty Name="LogoURL" ColumnName="LogoURL" />
                 <ScalarProperty Name="BiXoa" ColumnName="BiXoa" />
-                <ScalarProperty Name="MaHSX" ColumnName="MaHSX" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HinhAnhs">
+            <EntityTypeMapping TypeName="shopthethaoModel.HinhAnh">
+              <MappingFragment StoreEntitySet="HinhAnh">
+                <ScalarProperty Name="MaHinhAnh" ColumnName="MaHinhAnh" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -649,9 +646,9 @@
             <EntityTypeMapping TypeName="shopthethaoModel.LoaiSanPham">
               <MappingFragment StoreEntitySet="LoaiSanPham">
                 <ScalarProperty Name="MaLoaiSanPham" ColumnName="MaLoaiSanPham" />
+                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
                 <ScalarProperty Name="TenLoaiSanPham" ColumnName="TenLoaiSanPham" />
                 <ScalarProperty Name="BiXoa" ColumnName="BiXoa" />
-                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -666,9 +663,10 @@
           <EntitySetMapping Name="SanPhams">
             <EntityTypeMapping TypeName="shopthethaoModel.SanPham">
               <MappingFragment StoreEntitySet="SanPham">
-                <ScalarProperty Name="URLAnhDaiDien" ColumnName="URLAnhDaiDien" />
                 <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
                 <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
+                <ScalarProperty Name="URLAnhDaiDien" ColumnName="URLAnhDaiDien" />
                 <ScalarProperty Name="GiaSanPham" ColumnName="GiaSanPham" />
                 <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap" />
                 <ScalarProperty Name="SoLuongTon" ColumnName="SoLuongTon" />
@@ -680,7 +678,6 @@
                 <ScalarProperty Name="MaHangSanXuat" ColumnName="MaHangSanXuat" />
                 <ScalarProperty Name="MaTinhTrang" ColumnName="MaTinhTrang" />
                 <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
-                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -701,20 +698,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TaiKhoanAdmins">
+            <EntityTypeMapping TypeName="shopthethaoModel.TaiKhoanAdmin">
+              <MappingFragment StoreEntitySet="TaiKhoanAdmin">
+                <ScalarProperty Name="MaAdmin" ColumnName="MaAdmin" />
+                <ScalarProperty Name="TaiKhoan" ColumnName="TaiKhoan" />
+                <ScalarProperty Name="TenHienThi" ColumnName="TenHienThi" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MatKhauAdmin" ColumnName="MatKhauAdmin" />
+                <ScalarProperty Name="MaLoaiAdmin" ColumnName="MaLoaiAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TinhTrangs">
             <EntityTypeMapping TypeName="shopthethaoModel.TinhTrang">
               <MappingFragment StoreEntitySet="TinhTrang">
                 <ScalarProperty Name="MaTinhTrang" ColumnName="MaTinhTrang" />
                 <ScalarProperty Name="TenTinhTrang" ColumnName="TenTinhTrang" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="HinhAnhs">
-            <EntityTypeMapping TypeName="shopthethaoModel.HinhAnh">
-              <MappingFragment StoreEntitySet="HinhAnh">
-                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
-                <ScalarProperty Name="URL" ColumnName="URL" />
-                <ScalarProperty Name="MaHinhAnh" ColumnName="MaHinhAnh" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

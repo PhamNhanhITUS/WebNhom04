@@ -1,18 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="shopthethaoModelStoreContainer" CdmEntityContainer="shopthethaoEntities2">
-    <EntitySetMapping Name="Admins">
-      <EntityTypeMapping TypeName="shopthethaoModel.Admin">
-        <MappingFragment StoreEntitySet="Admin">
-          <ScalarProperty Name="MaAdmin" ColumnName="MaAdmin" />
-          <ScalarProperty Name="TaiKhoanAdmin" ColumnName="TaiKhoanAdmin" />
-          <ScalarProperty Name="TenHienThi" ColumnName="TenHienThi" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="MatKhauAdmin" ColumnName="MatKhauAdmin" />
-          <ScalarProperty Name="MaLoaiAdmin" ColumnName="MaLoaiAdmin" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
+  <EntityContainerMapping StorageEntityContainer="shopthethaoModelStoreContainer" CdmEntityContainer="shopthethaoEntities4">
     <EntitySetMapping Name="ChiTietDonDatHangs">
       <EntityTypeMapping TypeName="shopthethaoModel.ChiTietDonDatHang">
         <MappingFragment StoreEntitySet="ChiTietDonDatHang">
@@ -44,10 +32,19 @@
       <EntityTypeMapping TypeName="shopthethaoModel.HangSanXuat">
         <MappingFragment StoreEntitySet="HangSanXuat">
           <ScalarProperty Name="MaHangSanXuat" ColumnName="MaHangSanXuat" />
+          <ScalarProperty Name="MaHSX" ColumnName="MaHSX" />
           <ScalarProperty Name="TenHangSanXuat" ColumnName="TenHangSanXuat" />
           <ScalarProperty Name="LogoURL" ColumnName="LogoURL" />
           <ScalarProperty Name="BiXoa" ColumnName="BiXoa" />
-          <ScalarProperty Name="MaHSX" ColumnName="MaHSX" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HinhAnhs">
+      <EntityTypeMapping TypeName="shopthethaoModel.HinhAnh">
+        <MappingFragment StoreEntitySet="HinhAnh">
+          <ScalarProperty Name="MaHinhAnh" ColumnName="MaHinhAnh" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -63,9 +60,9 @@
       <EntityTypeMapping TypeName="shopthethaoModel.LoaiSanPham">
         <MappingFragment StoreEntitySet="LoaiSanPham">
           <ScalarProperty Name="MaLoaiSanPham" ColumnName="MaLoaiSanPham" />
+          <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
           <ScalarProperty Name="TenLoaiSanPham" ColumnName="TenLoaiSanPham" />
           <ScalarProperty Name="BiXoa" ColumnName="BiXoa" />
-          <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -80,9 +77,10 @@
     <EntitySetMapping Name="SanPhams">
       <EntityTypeMapping TypeName="shopthethaoModel.SanPham">
         <MappingFragment StoreEntitySet="SanPham">
-          <ScalarProperty Name="URLAnhDaiDien" ColumnName="URLAnhDaiDien" />
           <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
           <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
+          <ScalarProperty Name="URLAnhDaiDien" ColumnName="URLAnhDaiDien" />
           <ScalarProperty Name="GiaSanPham" ColumnName="GiaSanPham" />
           <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap" />
           <ScalarProperty Name="SoLuongTon" ColumnName="SoLuongTon" />
@@ -94,7 +92,6 @@
           <ScalarProperty Name="MaHangSanXuat" ColumnName="MaHangSanXuat" />
           <ScalarProperty Name="MaTinhTrang" ColumnName="MaTinhTrang" />
           <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
-          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -115,20 +112,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="TaiKhoanAdmins">
+      <EntityTypeMapping TypeName="shopthethaoModel.TaiKhoanAdmin">
+        <MappingFragment StoreEntitySet="TaiKhoanAdmin">
+          <ScalarProperty Name="MaAdmin" ColumnName="MaAdmin" />
+          <ScalarProperty Name="TaiKhoan" ColumnName="TaiKhoan" />
+          <ScalarProperty Name="TenHienThi" ColumnName="TenHienThi" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="MatKhauAdmin" ColumnName="MatKhauAdmin" />
+          <ScalarProperty Name="MaLoaiAdmin" ColumnName="MaLoaiAdmin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="TinhTrangs">
       <EntityTypeMapping TypeName="shopthethaoModel.TinhTrang">
         <MappingFragment StoreEntitySet="TinhTrang">
           <ScalarProperty Name="MaTinhTrang" ColumnName="MaTinhTrang" />
           <ScalarProperty Name="TenTinhTrang" ColumnName="TenTinhTrang" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="HinhAnhs">
-      <EntityTypeMapping TypeName="shopthethaoModel.HinhAnh">
-        <MappingFragment StoreEntitySet="HinhAnh">
-          <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
-          <ScalarProperty Name="URL" ColumnName="URL" />
-          <ScalarProperty Name="MaHinhAnh" ColumnName="MaHinhAnh" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

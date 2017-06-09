@@ -21,10 +21,10 @@ namespace shopthethao.Models
         }
     
         public int MaHangSanXuat { get; set; }
+        public string MaHSX { get; set; }
         public string TenHangSanXuat { get; set; }
         public string LogoURL { get; set; }
         public Nullable<bool> BiXoa { get; set; }
-        public string MaHSX { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SanPham> SanPhams { get; set; }

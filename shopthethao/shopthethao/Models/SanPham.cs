@@ -22,7 +22,9 @@ namespace shopthethao.Models
         }
     
         public int MaSanPham { get; set; }
+        public string MaSP { get; set; }
         public string TenSanPham { get; set; }
+        public string URLAnhDaiDien { get; set; }
         public Nullable<int> GiaSanPham { get; set; }
         public Nullable<System.DateTime> NgayNhap { get; set; }
         public Nullable<int> SoLuongTon { get; set; }
@@ -34,14 +36,12 @@ namespace shopthethao.Models
         public Nullable<int> MaHangSanXuat { get; set; }
         public Nullable<int> MaTinhTrang { get; set; }
         public string TrangThai { get; set; }
-        public string MaSP { get; set; }
-        public string URLAnhDaiDien { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDonDatHang> ChiTietDonDatHangs { get; set; }
         public virtual HangSanXuat HangSanXuat { get; set; }
-        public virtual LoaiSanPham LoaiSanPham { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HinhAnh> HinhAnhs { get; set; }
+        public virtual LoaiSanPham LoaiSanPham { get; set; }
     }
 }

@@ -13,10 +13,10 @@ namespace shopthethao.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class shopthethaoEntities2 : DbContext
+    public partial class shopthethaoEntities4 : DbContext
     {
-        public shopthethaoEntities2()
-            : base("name=shopthethaoEntities2")
+        public shopthethaoEntities4()
+            : base("name=shopthethaoEntities4")
         {
         }
     
@@ -25,16 +25,16 @@ namespace shopthethao.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<ChiTietDonDatHang> ChiTietDonDatHangs { get; set; }
         public virtual DbSet<DonDatHang> DonDatHangs { get; set; }
         public virtual DbSet<HangSanXuat> HangSanXuats { get; set; }
+        public virtual DbSet<HinhAnh> HinhAnhs { get; set; }
         public virtual DbSet<LoaiAdmin> LoaiAdmins { get; set; }
         public virtual DbSet<LoaiSanPham> LoaiSanPhams { get; set; }
         public virtual DbSet<LoaiTaiKhoan> LoaiTaiKhoans { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
+        public virtual DbSet<TaiKhoanAdmin> TaiKhoanAdmins { get; set; }
         public virtual DbSet<TinhTrang> TinhTrangs { get; set; }
-        public virtual DbSet<HinhAnh> HinhAnhs { get; set; }
     }
 }

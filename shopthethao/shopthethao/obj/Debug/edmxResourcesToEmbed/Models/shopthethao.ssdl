@@ -1,16 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="shopthethaoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="Admin">
-    <Key>
-      <PropertyRef Name="MaAdmin" />
-    </Key>
-    <Property Name="MaAdmin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TaiKhoanAdmin" Type="nvarchar" MaxLength="30" />
-    <Property Name="TenHienThi" Type="nvarchar" MaxLength="50" />
-    <Property Name="Email" Type="nvarchar" MaxLength="50" />
-    <Property Name="MatKhauAdmin" Type="nvarchar" MaxLength="30" />
-    <Property Name="MaLoaiAdmin" Type="int" />
-  </EntityType>
   <EntityType Name="ChiTietDonDatHang">
     <Key>
       <PropertyRef Name="MaChiTietDonDatHang" />
@@ -103,7 +92,7 @@
     </Key>
     <Property Name="MaTaiKhoan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TenDangNhap" Type="nvarchar" MaxLength="50" />
-    <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
+    <Property Name="MatKhau" Type="nvarchar" MaxLength="100" />
     <Property Name="TenHienThi" Type="nvarchar" MaxLength="50" />
     <Property Name="DiaChi" Type="nvarchar" MaxLength="150" />
     <Property Name="DienThoai" Type="nvarchar" MaxLength="11" />
@@ -113,6 +102,17 @@
     <Property Name="MaLoaiTaiKhoan" Type="int" />
     <Property Name="BiXoa" Type="bit" />
   </EntityType>
+  <EntityType Name="TaiKhoanAdmin">
+    <Key>
+      <PropertyRef Name="MaAdmin" />
+    </Key>
+    <Property Name="MaAdmin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TaiKhoan" Type="nvarchar" MaxLength="30" />
+    <Property Name="TenHienThi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="MatKhauAdmin" Type="nvarchar" MaxLength="100" />
+    <Property Name="MaLoaiAdmin" Type="int" />
+  </EntityType>
   <EntityType Name="TinhTrang">
     <Key>
       <PropertyRef Name="MaTinhTrang" />
@@ -120,18 +120,6 @@
     <Property Name="MaTinhTrang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TenTinhTrang" Type="nvarchar" MaxLength="20" />
   </EntityType>
-  <Association Name="FK_Admin_LoaiAdmin">
-    <End Role="LoaiAdmin" Type="Self.LoaiAdmin" Multiplicity="0..1" />
-    <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LoaiAdmin">
-        <PropertyRef Name="MaLoaiAdmin" />
-      </Principal>
-      <Dependent Role="Admin">
-        <PropertyRef Name="MaLoaiAdmin" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ChiTietDonDatHang_DonDatHang">
     <End Role="DonDatHang" Type="Self.DonDatHang" Multiplicity="0..1" />
     <End Role="ChiTietDonDatHang" Type="Self.ChiTietDonDatHang" Multiplicity="*" />
@@ -228,8 +216,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TaiKhoanAdmin_LoaiAdmin">
+    <End Role="LoaiAdmin" Type="Self.LoaiAdmin" Multiplicity="0..1" />
+    <End Role="TaiKhoanAdmin" Type="Self.TaiKhoanAdmin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiAdmin">
+        <PropertyRef Name="MaLoaiAdmin" />
+      </Principal>
+      <Dependent Role="TaiKhoanAdmin">
+        <PropertyRef Name="MaLoaiAdmin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="shopthethaoModelStoreContainer">
-    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ChiTietDonDatHang" EntityType="Self.ChiTietDonDatHang" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DonDatHang" EntityType="Self.DonDatHang" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HangSanXuat" EntityType="Self.HangSanXuat" Schema="dbo" store:Type="Tables" />
@@ -239,11 +238,8 @@
     <EntitySet Name="LoaiTaiKhoan" EntityType="Self.LoaiTaiKhoan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaiKhoanAdmin" EntityType="Self.TaiKhoanAdmin" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TinhTrang" EntityType="Self.TinhTrang" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_Admin_LoaiAdmin" Association="Self.FK_Admin_LoaiAdmin">
-      <End Role="LoaiAdmin" EntitySet="LoaiAdmin" />
-      <End Role="Admin" EntitySet="Admin" />
-    </AssociationSet>
     <AssociationSet Name="FK_ChiTietDonDatHang_DonDatHang" Association="Self.FK_ChiTietDonDatHang_DonDatHang">
       <End Role="DonDatHang" EntitySet="DonDatHang" />
       <End Role="ChiTietDonDatHang" EntitySet="ChiTietDonDatHang" />
@@ -275,6 +271,10 @@
     <AssociationSet Name="FK_TaiKhoan_LoaiTaiKhoan" Association="Self.FK_TaiKhoan_LoaiTaiKhoan">
       <End Role="LoaiTaiKhoan" EntitySet="LoaiTaiKhoan" />
       <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaiKhoanAdmin_LoaiAdmin" Association="Self.FK_TaiKhoanAdmin_LoaiAdmin">
+      <End Role="LoaiAdmin" EntitySet="LoaiAdmin" />
+      <End Role="TaiKhoanAdmin" EntitySet="TaiKhoanAdmin" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

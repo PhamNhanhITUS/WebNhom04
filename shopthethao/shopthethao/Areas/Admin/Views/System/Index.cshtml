@@ -35,11 +35,11 @@
                             </thead>
 
                             <tbody>
-                            @foreach (var item in Model as List<Admin>)
+                            @foreach (var item in Model as List<TaiKhoanAdmin>)
                             {
                                 <tr>
                                     <td>@item.TenHienThi</td>
-                                    <td>@item.TaiKhoanAdmin</td>
+                                    <td>@item.TaiKhoan</td>
                                     <td>@item.Email</td>
                                     <td><button type="button" class="btn btn-success btn-xs">@item.LoaiAdmin.TenLoaiAdmin</button></td>
                                     <td>

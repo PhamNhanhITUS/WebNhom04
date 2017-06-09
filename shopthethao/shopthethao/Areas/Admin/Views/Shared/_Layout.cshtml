@@ -225,6 +225,18 @@
         $('#ModalNotiUser').modal('show')
     </script>
 }
+@if (Session["KTThemNhanVien"] != null)
+{
+    <script>
+        $('#ModalAddAdmin').modal('show')
+    </script>
+}
+@if (Session["ThemNhanVienThanhCong"] != null)
+{
+    <script>
+        $('#ModalNotiAdmin').modal('show')
+    </script>
+}
 
 <script>
     $('#ModalNotiCate').on('hide.bs.modal', function (e) {
@@ -270,6 +282,16 @@
     $('#ModalNotiUser').on('hide.bs.modal', function (e) {
      @{
          Session.Remove("ThemTaiKhoanThanhCong");
+     }
+    })
+    $('#ModalNotiAdmin').on('hide.bs.modal', function (e) {
+     @{
+         Session.Remove("ThemNhanVienThanhCong");
+     }
+    })
+    $('#ModalAddAdmin').on('hide.bs.modal', function (e) {
+     @{
+         Session.Remove("KTThemNhanVien");
      }
     })
 </script>

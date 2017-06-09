@@ -11,7 +11,7 @@ namespace shopthethao.Controllers
     public class ProductController : Controller
     {
         //GET: Product
-       shopthethaoEntities2 db = new shopthethaoEntities2();
+        shopthethaoEntities4 db = new shopthethaoEntities4();
         public ActionResult Index(int? page)
         {
             ViewBag.ShowCategory = ShowCategory();
