@@ -37,41 +37,34 @@ namespace shopthethao.Areas.Admin.Controllers
             string password = CreateMD5(fc["password"].ToString());
             string username = fc["username"].ToString();
             string email = fc["email"].ToString();
-            string phone = fc["phone"].ToString();
 
-            if (db.TaiKhoans.Where(u => u.TenDangNhap == username && u.BiXoa == false).SingleOrDefault() != null)
+            if (db.Admins.Where(u => u.TaiKhoanAdmin == username).SingleOrDefault() != null)
             {
-                Session["KTThemTaiKhoan"] = "Tên đăng nhập đã được đăng ký";
+                Session["KTThemNhanVien"] = "Tên đăng nhập đã được đăng ký";
                 return RedirectToAction("Index");
             }
-            else if (db.TaiKhoans.Where(u => u.Email == email).SingleOrDefault() != null)
+            else if (db.Admins.Where(u => u.Email == email).SingleOrDefault() != null)
             {
-                Session["KTThemTaiKhoan"] = "Email đã đã được đăng ký";
-                return RedirectToAction("Index");
-            }
-            else if (db.TaiKhoans.Where(u => u.DienThoai == phone).SingleOrDefault() != null)
-            {
-                Session["KTThemTaiKhoan"] = "Số diện đã được đăng ký";
+                Session["KTThemNhanVien"] = "Email đã đã được đăng ký";
                 return RedirectToAction("Index");
             }
             else
             {
-                TaiKhoan taiKhoan = new TaiKhoan
+                shopthethao.Models.Admin admin = new shopthethao.Models.Admin
                 {
-                    TenDangNhap = fc["username"].ToString(),
-                    MatKhau = password.ToString(),
+                    TaiKhoanAdmin = fc["username"].ToString(),
+                    MatKhauAdmin = password.ToString(),
                     TenHienThi = fc["name"].ToString(),
                     Email = fc["email"].ToString(),
-                    DienThoai = fc["phone"].ToString(),
-                    MaLoaiTaiKhoan = int.Parse(fc["usergroup"]),
-                    BiXoa = false
+                    MaLoaiAdmin = int.Parse(fc["admingroup"])
+
                 };
-                db.TaiKhoans.Add(taiKhoan);
+                db.Admins.Add(admin);
                 db.SaveChanges();
 
                 if (db.SaveChanges() == 0)
                 {
-                    Session["ThemTaiKhoanThanhCong"] = "";
+                    Session["ThemNhanVienThanhCong"] = "";
                     return RedirectToAction("Index");
                 }
                 else
