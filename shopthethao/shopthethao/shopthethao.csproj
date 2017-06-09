@@ -1940,7 +1940,6 @@
     <Content Include="Areas\Admin\Views\System\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\ModalCategory.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\ModalManufacturer.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\ModalProduct.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\ModalUser.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\ModalSystem.cshtml" />
     <Content Include="Areas\Admin\Views\User\Change.cshtml" />
@@ -1974,6 +1973,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Assets\Logo\" />
+    <Folder Include="Assets\Product\" />
     <Folder Include="Views\Logo\" />
   </ItemGroup>
   <ItemGroup>
