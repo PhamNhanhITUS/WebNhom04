@@ -1,0 +1,50 @@
+﻿@model shopthethao.Models.Admin
+@using shopthethao.Models
+@{
+    ViewBag.Title = "Change";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Sửa tài khoản nhân viên</h3>
+            </div>
+            <!-- <div class="title_right">
+            </div> -->
+        </div>
+        <div class="clearfix"></div>
+        <div class="row" style="padding-top:20px;">
+            <div class="form-group col-md-12" style="padding:0px 10px;margin-bottom:0px;">
+                <div class="form-group">
+                    <div class="col-md-2"></div>
+                    <label class="control-label col-md-2">Loại tài khoản nhân viên</label>
+                    <form data-toggle="validator" role="form" action="@Url.Action("ChangeForm", "System")" method="post">
+                        <input type="hidden" value="@Model.MaAdmin" name="id" />
+                        <div class="col-md-3">
+                            <select class="select2_single form-control" tabindex="-1" name="admingroup">
+                                <option selected disabled>@Model.LoaiAdmin.TenLoaiAdmin</option>
+                                @if (ViewBag.User != null)
+                                {
+
+                                    foreach (var item in ViewBag.User as List<LoaiAdmin>)
+                                    {
+                                        <option value="@item.MaLoaiAdmin">@item.TenLoaiAdmin</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary">Sửa</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

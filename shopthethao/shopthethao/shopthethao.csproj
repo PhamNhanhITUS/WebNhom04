@@ -1952,6 +1952,7 @@
     <Content Include="Areas\Admin\Views\Delete\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\ModalDelete.cshtml" />
     <Content Include="Areas\Admin\Views\User\ListDelete.cshtml" />
+    <Content Include="Areas\Admin\Views\System\Change.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
