@@ -14,7 +14,7 @@ namespace shopthethao.Areas.Admin.Controllers
         // GET: Admin/Product
         public ActionResult Index()
         {
-            return View();
+            return View(db.SanPhams.Where(x => x.BiXoa == false).ToList());
         }
         public ActionResult AddProduct()
         {

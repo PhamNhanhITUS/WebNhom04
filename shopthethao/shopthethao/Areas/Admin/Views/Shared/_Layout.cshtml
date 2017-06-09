@@ -144,6 +144,7 @@
             @Html.Partial("~/Areas/Admin/Views/Shared/ModalSystem.cshtml")
             @Html.Partial("~/Areas/Admin/Views/Shared/ModalUser.cshtml")
             @Html.Partial("~/Areas/Admin/Views/Shared/ModalDelete.cshtml")
+            @Html.Partial("~/Areas/Admin/Views/Shared/ModalProduct.cshtml")
             <!-- /top navigation -->
             <!-- page content -->
             @RenderBody()
@@ -177,12 +178,6 @@
         $('#ModalNotiCate').modal('show')
     </script>
 }
-@if (Session["XoaLoaiSPThanhCong"] != null)
-{
-    <script>
-        $('#ModalDeleteCate').modal('show')
-    </script>
-}
 @if (Session["TrungLoaiSP"] != null)
 {
     <script>
@@ -193,12 +188,6 @@
 {
     <script>
         $('#ModalNotiErrManu').modal('show')
-    </script>
-}
-@if (Session["XoaHSXThanhCong"] != null)
-{
-    <script>
-        $('#ModalDeleteManu').modal('show')
     </script>
 }
 @if (Session["PhucHoiThanhCong"] != null)
@@ -237,17 +226,18 @@
         $('#ModalNotiAdmin').modal('show')
     </script>
 }
+@if (Session["ThemSanPhamThanhCong"] != null)
+{
+    <script>
+        $('#ModalAddProduct').modal('show')
+    </script>
+}
 
 <script>
     $('#ModalNotiCate').on('hide.bs.modal', function (e) {
       @{
         Session.Remove("ThemLoaiSPThanhCong");
       }
-    })
-    $('#ModalDeleteCate').on('hide.bs.modal', function (e) {
-     @{
-        Session.Remove("XoaLoaiSPThanhCong");
-     }
     })
     $('#ModalNotiErrCate').on('hide.bs.modal', function (e) {
       @{
@@ -258,11 +248,6 @@
       @{
         Session.Remove("TrungHSX");
        }
-    })
-    $('#ModalDeleteManu').on('hide.bs.modal', function (e) {
-     @{
-         Session.Remove("XoaHSXThanhCong");
-     }
     })
     $('#ModalRestore').on('hide.bs.modal', function (e) {
      @{
@@ -292,6 +277,11 @@
     $('#ModalAddAdmin').on('hide.bs.modal', function (e) {
      @{
          Session.Remove("KTThemNhanVien");
+     }
+    })
+    $('#ModalAddProduct').on('hide.bs.modal', function (e) {
+     @{
+         Session.Remove("ThemSanPhamThanhCong");
      }
     })
 </script>
