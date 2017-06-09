@@ -1962,6 +1962,7 @@
     <Content Include="Models\shopthethao.edmx.diagram">
       <DependentUpon>shopthethao.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\Shared\ModalProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

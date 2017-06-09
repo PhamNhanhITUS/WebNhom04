@@ -37,8 +37,8 @@ namespace shopthethao.Areas.Admin.Controllers
 
             if (db.SanPhams.Where(x => x.MaSP == id).SingleOrDefault() != null)
             {
-                Session["TrungSanPham"] = "";
-                return RedirectToAction("Index");
+                Session["TrungSanPham"] = "Mã sản phẩm đã tồn tại";
+                return RedirectToAction("AddProduct", "Product");
             }
             else
             {
@@ -81,6 +81,7 @@ namespace shopthethao.Areas.Admin.Controllers
                     if (db.SaveChanges() == 0)
                     {
                         Session["ThemSanPhamThanhCong"] = "";
+                        Session.Remove("TrungSanPham");
                         return RedirectToAction("Index", "Product");
                     }
                     else

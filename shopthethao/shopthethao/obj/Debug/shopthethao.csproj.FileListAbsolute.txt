@@ -108,3 +108,4 @@ C:\Users\phamnhanh\Source\Repos\WebNhom042\shopthethao\shopthethao\bin\System.We
 C:\Users\phamnhanh\Source\Repos\WebNhom042\shopthethao\shopthethao\bin\System.Web.Mvc.xml
 C:\Users\phamnhanh\Source\Repos\WebNhom042\shopthethao\shopthethao\obj\Debug\shopthethao.dll
 C:\Users\phamnhanh\Source\Repos\WebNhom042\shopthethao\shopthethao\obj\Debug\shopthethao.pdb
+C:\Users\phamnhanh\Source\Repos\WebNhom042\shopthethao\shopthethao\obj\Debug\shopthethao.csprojResolveAssemblyReference.cache

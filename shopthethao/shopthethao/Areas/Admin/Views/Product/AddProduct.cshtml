@@ -16,6 +16,9 @@
         <div class="clearfix"></div>
         <div class="x_content">
             <br>
+            <div class="col-sm-12">
+                <p style="color:red;">@if (Session["TrungSanPham"] != null){ @Session["TrungSanPham"];}</p>
+            </div>
             <form data-toggle="validator" role="form" action="@Url.Action("Add", "Product")" method="post" enctype = "multipart/form-data" class="form-horizontal form-label-left">
                     <label class="control-label col-md-2 col-sm-2 col-xs-12">
                         Mã sản phẩm
