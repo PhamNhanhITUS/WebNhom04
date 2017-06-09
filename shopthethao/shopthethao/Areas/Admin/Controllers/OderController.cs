@@ -19,7 +19,14 @@ namespace shopthethao.Areas.Admin.Controllers
         {
             return View(db.DonDatHangs.First(x => x.MaDonDatHang == ID && x.BiXoa == false));
         }
-        public ActionResult Change()
+        public ActionResult Change(int? ID)
+        {
+            ViewBag.Status = db.TinhTrangs.ToList();
+            var list = db.DonDatHangs.First(x => x.MaDonDatHang == ID);
+            return View(list);
+        }
+        
+        public ActionResult ChangeForm(FormCollection fc)
         {
             return View();
         }

@@ -1,4 +1,4 @@
-﻿@model shopthethao.Models.TaiKhoanAdmin
+﻿@model shopthethao.Models.DonDatHang
 @using shopthethao.Models
 @{
     ViewBag.Title = "Change";
@@ -9,7 +9,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Sửa tài khoản</h3>
+                <h3>Sửa đơn hàng</h3>
             </div>
             <!-- <div class="title_right">
             </div> -->
@@ -19,18 +19,18 @@
             <div class="form-group col-md-12" style="padding:0px 10px;margin-bottom:0px;">
                 <div class="form-group">
                     <div class="col-md-2"></div>
-                    <label class="control-label col-md-2">Loại tài khoản</label>
-                    <form data-toggle="validator" role="form" action="@Url.Action("ChangeForm", "User")" method="post">
-                        <input type="hidden" value="@Model.MaTaiKhoan" name="id" />
+                    <label class="control-label col-md-2">Tình trạng đơn hàng</label>
+                    <form data-toggle="validator" role="form" action="@Url.Action("ChangeForm", "Oder")" method="post">
+                        <input type="hidden" value="@Model.MaDonDatHang" name="id" />
                         <div class="col-md-3">
                             <select class="select2_single form-control" tabindex="-1" name="admingroup">
-                                <option selected disabled>@Model.LoaiTaiKhoan.TenLoaiTaiKhoan</option>
-                                @if (ViewBag.User != null)
+                                <option selected disabled>@Model.TinhTrang.TenTinhTrang</option>
+                                @if (ViewBag.Status != null)
                                 {
 
-                                    foreach (var item in ViewBag.User as List<LoaiTaiKhoan>)
+                                    foreach (var item in ViewBag.Status as List<TinhTrang>)
                                     {
-                                        <option value="@item.MaLoaiTaiKhoan">@item.TenLoaiTaiKhoan</option>
+                                        <option value="@item.MaTinhTrang">@item.TenTinhTrang</option>
                                     }
                                 }
                             </select>
