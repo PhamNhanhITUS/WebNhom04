@@ -61,7 +61,7 @@ namespace shopthethao.Areas.Admin.Controllers
 
            
                 var p = db.LoaiSanPhams.First(x => x.MaLoaiSanPham == id);
-                p.MaLoai = fc["id"].ToString();
+                p.MaLoai = fc["idCate"].ToString();
                 p.TenLoaiSanPham = fc["name"].ToString();
                 db.SaveChanges();
 

@@ -30,14 +30,18 @@
         <div class="login_wrapper">
             <div class="animate form login_form">
                 <section class="login_content">
-                    <form data-toggle="validator" role="form">
+                    
+                    <form data-toggle="validator" role="form" action="@Url.Action("Login", "Home")" method="post">
                         <h1>Đăng nhập</h1>
+                        <div class="col-sm-12">
+                            <p style="color:red;">@if (Session["LoiDangNhapAdmin"] != null){ @Session["LoiDangNhapAdmin"];}</p>
+                        </div>
                         <div>
-                            <input type="text" class="form-control" placeholder="Username" required>
+                            <input type="text" class="form-control" name="username" placeholder="Username" required>
                             <div class="help-block with-errors"></div>
                         </div>
                         <div>
-                            <input type="password" class="form-control" placeholder="Password" required>
+                            <input type="password" class="form-control" name="password" placeholder="Password" required>
                             <div class="help-block with-errors"></div>
                         </div>
                         <div>

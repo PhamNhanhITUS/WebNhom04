@@ -2,175 +2,176 @@
 @{
     Layout = null;
 }
+@if (Session["MaTaiKhoanAdmin"] != null)
+{
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Trang quản trị | shopthethao.com</title>
+        <!-- Bootstrap -->
+        <link href="/Assets/Admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link href="/Assets/Admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <!-- NProgress -->
+        <!-- <link href="../vendors/nprogress/nprogress.css" rel="stylesheet"> -->
+        <!-- Datatables -->
+        <link href="/Assets/Admin/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Trang quản trị | shopthethao.com</title>
-    <!-- Bootstrap -->
-    <link href="/Assets/Admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="/Assets/Admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <!-- <link href="../vendors/nprogress/nprogress.css" rel="stylesheet"> -->
-    <!-- Datatables -->
-    <link href="/Assets/Admin/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom Theme Style -->
-    <link href="/Assets/Admin/build/css/custom.min.css" rel="stylesheet">
-</head>
-<body class="nav-md">
-    <div class="container body">
-        <div class="main_container">
-            <div class="col-md-3 left_col">
-                <div class="left_col scroll-view">
-                    <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>ShopTheThao!</span></a>
-                    </div>
-                    <div class="clearfix"></div>
-                    <!-- menu profile quick info -->
-                    <div class="profile clearfix">
-                        <div class="profile_pic">
-                            <img src="/Assets/Admin/images/img.jpg" alt="..." class="img-circle profile_img">
+        <!-- Custom Theme Style -->
+        <link href="/Assets/Admin/build/css/custom.min.css" rel="stylesheet">
+    </head>
+    <body class="nav-md">
+        <div class="container body">
+            <div class="main_container">
+                <div class="col-md-3 left_col">
+                    <div class="left_col scroll-view">
+                        <div class="navbar nav_title" style="border: 0;">
+                            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>ShopTheThao!</span></a>
                         </div>
-                        <div class="profile_info">
-                            <span>Xin chào,</span>
-                            <h2>Phạm Nhanh</h2>
+                        <div class="clearfix"></div>
+                        <!-- menu profile quick info -->
+                        <div class="profile clearfix">
+                            <div class="profile_pic">
+                                <img src="/Assets/Admin/images/img.jpg" alt="..." class="img-circle profile_img">
+                            </div>
+                            <div class="profile_info">
+                                <span>Xin chào,</span>
+                                <h2>Phạm Nhanh</h2>
+                            </div>
                         </div>
+                        <!-- /menu profile quick info -->
+                        <br />
+                        <!-- sidebar menu -->
+                        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                            <div class="menu_section">
+                                <h3>Quản lý</h3>
+                                <ul class="nav side-menu">
+                                    <li>
+                                        <a href="@Url.Action("Dashboard","Home")"><i class="fa fa-home"></i> Bảng điều khiển</a>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-table"></i> Sản phẩm <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="@Url.Action("Index","Product")">Danh sách</a></li>
+                                            <li><a href="@Url.Action("Index", "Category")">Loại sản phẩm</a></li>
+                                            <li><a href="@Url.Action("Index","Manufacturer")">Hãng sản xuất</a></li>
+                                            <li><a href="@Url.Action("Index","Delete")">Bị xoá</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-user"></i> Tài khoản <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="@Url.Action("Index","User")">Danh sách</a></li>
+                                            <li><a href="@Url.Action("ListDelete","User")">Bị xoá</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-file-text"></i> Đơn đặt hàng <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="@Url.Action("Index","Oder")">Danh sách</a></li>
+                                            <li><a href="@Url.Action("ListDelete","Oder")">Bị xoá</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-file-text"></i> Hệ thống <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="@Url.Action("Index","System")">Nhân viên</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /sidebar menu -->
                     </div>
-                    <!-- /menu profile quick info -->
-                    <br />
-                    <!-- sidebar menu -->
-                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                        <div class="menu_section">
-                            <h3>Quản lý</h3>
-                            <ul class="nav side-menu">
-                                <li>
-                                    <a href="@Url.Action("Dashboard","Home")"><i class="fa fa-home"></i> Bảng điều khiển</a>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-table"></i> Sản phẩm <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="@Url.Action("Index","Product")">Danh sách</a></li>
-                                        <li><a href="@Url.Action("Index", "Category")">Loại sản phẩm</a></li>
-                                        <li><a href="@Url.Action("Index","Manufacturer")">Hãng sản xuất</a></li>
-                                        <li><a href="@Url.Action("Index","Delete")">Bị xoá</a></li>
+                </div>
+                <!-- top navigation -->
+                <div class="top_nav">
+                    <div class="nav_menu">
+                        <nav>
+                            <div class="nav toggle">
+                                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                            </div>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="">
+                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <img src="/Assets/Admin/images/img.jpg" alt="">Phạm Nhanh
+                                        <span class="fa fa-angle-down"></span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                        <li><a href="@Url.Action("Index", "Profile", new { ID = 1})"> Thông tin cá nhân</a></li>
+                                        <li><a href="@Url.Action("Logout", "Profile")"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a></li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <a><i class="fa fa-user"></i> Tài khoản <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="@Url.Action("Index","User")">Danh sách</a></li>
-                                        <li><a href="@Url.Action("ListDelete","User")">Bị xoá</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-file-text"></i> Đơn đặt hàng <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="@Url.Action("Index","Oder")">Danh sách</a></li>
-                                        <li><a href="@Url.Action("ListDelete","Oder")">Bị xoá</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-file-text"></i> Hệ thống <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="@Url.Action("Index","System")">Nhân viên</a></li>
+                                <li role="presentation" class="dropdown">
+                                    <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-envelope-o"></i>
+                                        <span class="badge bg-green">6</span>
+                                    </a>
+                                    <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                        <li>
+                                            <a>
+                                                <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                                                <span>
+                                                    <span>John Smith</span>
+                                                    <span class="time">3 mins ago</span>
+                                                </span>
+                                                <span class="message">
+                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <div class="text-center">
+                                                <a>
+                                                    <strong>See All Alerts</strong>
+                                                    <i class="fa fa-angle-right"></i>
+                                                </a>
+                                            </div>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
-                        </div>
+                        </nav>
                     </div>
-                    <!-- /sidebar menu -->
                 </div>
+                <!-- /Modal -->
+                @Html.Partial("~/Areas/Admin/Views/Shared/ModalCategory.cshtml")
+                @Html.Partial("~/Areas/Admin/Views/Shared/ModalManufacturer.cshtml")
+                @Html.Partial("~/Areas/Admin/Views/Shared/ModalSystem.cshtml")
+                @Html.Partial("~/Areas/Admin/Views/Shared/ModalUser.cshtml")
+                @Html.Partial("~/Areas/Admin/Views/Shared/ModalDelete.cshtml")
+                @Html.Partial("~/Areas/Admin/Views/Shared/ModalProduct.cshtml")
+                <!-- /top navigation -->
+                <!-- page content -->
+                @RenderBody()
+                <!-- footer content -->
+                <footer>
+                    <div class="pull-right">
+                        Copyright by <a href="https://shopthethao.com">Shopthethao.com</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
             </div>
-            <!-- top navigation -->
-            <div class="top_nav">
-                <div class="nav_menu">
-                    <nav>
-                        <div class="nav toggle">
-                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                        </div>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="">
-                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="/Assets/Admin/images/img.jpg" alt="">Phạm Nhanh
-                                    <span class="fa fa-angle-down"></span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                    <li><a href="@Url.Action("Index", "Profile", new { ID = 1})"> Thông tin cá nhân</a></li>
-                                    <li><a href="@Url.Action("Logout", "Profile")"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a></li>
-                                </ul>
-                            </li>
-                            <li role="presentation" class="dropdown">
-                                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa fa-envelope-o"></i>
-                                    <span class="badge bg-green">6</span>
-                                </a>
-                                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                    <li>
-                                        <a>
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div class="text-center">
-                                            <a>
-                                                <strong>See All Alerts</strong>
-                                                <i class="fa fa-angle-right"></i>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-            <!-- /Modal -->
-            @Html.Partial("~/Areas/Admin/Views/Shared/ModalCategory.cshtml")
-            @Html.Partial("~/Areas/Admin/Views/Shared/ModalManufacturer.cshtml")
-            @Html.Partial("~/Areas/Admin/Views/Shared/ModalSystem.cshtml")
-            @Html.Partial("~/Areas/Admin/Views/Shared/ModalUser.cshtml")
-            @Html.Partial("~/Areas/Admin/Views/Shared/ModalDelete.cshtml")
-            @Html.Partial("~/Areas/Admin/Views/Shared/ModalProduct.cshtml")
-            <!-- /top navigation -->
-            <!-- page content -->
-            @RenderBody()
-            <!-- footer content -->
-            <footer>
-                <div class="pull-right">
-                    Copyright by <a href="https://shopthethao.com">Shopthethao.com</a>
-                </div>
-                <div class="clearfix"></div>
-            </footer>
-            <!-- /footer content -->
         </div>
-    </div>
-    <!-- jQuery -->
-    <script src="/Assets/Admin/vendors/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="/Assets/Admin/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- Datatables -->
-    <script src="/Assets/Admin/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="/Assets/Admin/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <!-- <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script> -->
-    <!-- Custom Theme Scripts -->
-    <script src="/Assets/Admin/build/js/custom.min.js"></script>
-    <script src="~/Assets/Client/js/validator.js"></script>
-    <script src="~/Assets/Client/js/validator.min.js"></script>
-</body>
+        <!-- jQuery -->
+        <script src="/Assets/Admin/vendors/jquery/dist/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="/Assets/Admin/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- Datatables -->
+        <script src="/Assets/Admin/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="/Assets/Admin/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <!-- <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script> -->
+        <!-- Custom Theme Scripts -->
+        <script src="/Assets/Admin/build/js/custom.min.js"></script>
+        <script src="~/Assets/Client/js/validator.js"></script>
+        <script src="~/Assets/Client/js/validator.min.js"></script>
+    </body>
 </html>
 @if (Session["ThemLoaiSPThanhCong"] != null)
 {
@@ -178,68 +179,68 @@
         $('#ModalNotiCate').modal('show')
     </script>
 }
-@if (Session["TrungLoaiSP"] != null)
-{
-    <script>
+    @if (Session["TrungLoaiSP"] != null)
+    {
+        <script>
         $('#ModalNotiErrCate').modal('show')
-    </script>
-}
-@if (Session["TrungHSX"] != null)
-{
-    <script>
+        </script>
+    }
+    @if (Session["TrungHSX"] != null)
+    {
+        <script>
         $('#ModalNotiErrManu').modal('show')
-    </script>
-}
-@if (Session["PhucHoiThanhCong"] != null)
-{
-    <script>
+        </script>
+    }
+    @if (Session["PhucHoiThanhCong"] != null)
+    {
+        <script>
         $('#ModalRestore').modal('show')
-    </script>
-}
-@if (Session["XoaThanhCong"] != null)
-{
-    <script>
+        </script>
+    }
+    @if (Session["XoaThanhCong"] != null)
+    {
+        <script>
         $('#ModalDelete').modal('show')
-    </script>
-}
-@if (Session["KTThemTaiKhoan"] != null)
-{
-    <script>
+        </script>
+    }
+    @if (Session["KTThemTaiKhoan"] != null)
+    {
+        <script>
         $('#ModalAddUser').modal('show')
-    </script>
-}
-@if (Session["ThemTaiKhoanThanhCong"] != null)
-{
-    <script>
+        </script>
+    }
+    @if (Session["ThemTaiKhoanThanhCong"] != null)
+    {
+        <script>
         $('#ModalNotiUser').modal('show')
-    </script>
-}
-@if (Session["KTThemNhanVien"] != null)
-{
-    <script>
+        </script>
+    }
+    @if (Session["KTThemNhanVien"] != null)
+    {
+        <script>
         $('#ModalAddAdmin').modal('show')
-    </script>
-}
-@if (Session["ThemNhanVienThanhCong"] != null)
-{
-    <script>
+        </script>
+    }
+    @if (Session["ThemNhanVienThanhCong"] != null)
+    {
+        <script>
         $('#ModalNotiAdmin').modal('show')
-    </script>
-}
-@if (Session["ThemSanPhamThanhCong"] != null)
-{
-    <script>
+        </script>
+    }
+    @if (Session["ThemSanPhamThanhCong"] != null)
+    {
+        <script>
         $('#ModalAddProduct').modal('show')
-    </script>
-}
-@if (Session["SuaSanPhamThanhCong"] != null)
-{
-    <script>
+        </script>
+    }
+    @if (Session["SuaSanPhamThanhCong"] != null)
+    {
+        <script>
         $('#ModalChangeProduct').modal('show')
-    </script>
-}
+        </script>
+    }
 
-<script>
+    <script>
     $('#ModalNotiCate').on('hide.bs.modal', function (e) {
       @{
         Session.Remove("ThemLoaiSPThanhCong");
@@ -295,4 +296,9 @@
          Session.Remove("SuaSanPhamThanhCong");
      }
     })
-</script>
+    </script>
+}
+else
+{
+    @Html.
+}
