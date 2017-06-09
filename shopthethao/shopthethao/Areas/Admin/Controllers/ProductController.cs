@@ -104,7 +104,61 @@ namespace shopthethao.Areas.Admin.Controllers
             var list = db.SanPhams.First(x => x.MaSanPham == ID);
             return View(list);
         }
-        public ActionResult DeleteAll()
+        public ActionResult ChangeForm(FormCollection fc, HttpPostedFileBase picture)
+        {
+            var id = int.Parse(fc["id"]);
+            var idProduct = fc["idProduct"].ToString();
+            var name = fc["name"].ToString();
+            var category = int.Parse(fc["category"]);
+            var manufacturer = int.Parse(fc["manufacturer"]);
+            var price = int.Parse(fc["price"]);
+            var quantity = int.Parse(fc["quantity"]);
+            var sale = int.Parse(fc["sale"]);
+            var description = fc["description"].ToString();
+
+            var p = db.SanPhams.First(x => x.MaSanPham == id);
+            p.MaSP = idProduct;
+            p.TenSanPham = name;
+            p.GiaSanPham = price;
+            p.SoLuongTon = quantity;
+            p.MoTa = description;
+            p.MaHangSanXuat = manufacturer;
+            p.MaLoaiSanPham = category;
+            p.MaKhuyenMai = sale;
+
+            db.SaveChanges();
+
+            var lastInsertName = p.MaSP;
+            var lastInsertId = p.MaSanPham;
+
+            if (picture != null && picture.ContentLength > 0)
+            {
+                string fileName = Path.GetFileName(lastInsertId.ToString() + "_" + picture.FileName);
+
+                string dirPath = Server.MapPath("~/Assets/Product");
+                string targetDirPath = Path.Combine(dirPath, lastInsertName.ToString());
+                Directory.CreateDirectory(targetDirPath);
+
+                string path = Path.Combine(targetDirPath, fileName);
+
+                picture.SaveAs(path);
+                p.URLAnhDaiDien = fileName;
+
+                db.SaveChanges();
+
+                if (db.SaveChanges() == 0)
+                {
+                    Session["SuaSanPhamThanhCong"] = "";
+                    return RedirectToAction("Index", "Product");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Product");
+                }
+            }
+            return RedirectToAction("Index", "Product");
+        }
+        public ActionResult Delete(int? ID)
         {
             return View();
         }

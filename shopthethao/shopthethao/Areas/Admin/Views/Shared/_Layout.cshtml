@@ -232,6 +232,12 @@
         $('#ModalAddProduct').modal('show')
     </script>
 }
+@if (Session["SuaSanPhamThanhCong"] != null)
+{
+    <script>
+        $('#ModalChangeProduct').modal('show')
+    </script>
+}
 
 <script>
     $('#ModalNotiCate').on('hide.bs.modal', function (e) {
@@ -282,6 +288,11 @@
     $('#ModalAddProduct').on('hide.bs.modal', function (e) {
      @{
          Session.Remove("ThemSanPhamThanhCong");
+     }
+    })
+    $('#ModalChangeProduct').on('hide.bs.modal', function (e) {
+     @{
+         Session.Remove("SuaSanPhamThanhCong");
      }
     })
 </script>

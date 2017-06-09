@@ -1,8 +1,123 @@
-﻿
+﻿@using shopthethao.Models
+@model shopthethao.Models.SanPham
 @{
     ViewBag.Title = "Change";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Change</h2>
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Thêm sản phẩm mới</h3>
+            </div>
+            <!-- <div class="title_right">
+            </div> -->
+        </div>
+        <div class="clearfix"></div>
+        <div class="x_content">
+            <br>
+            <form data-toggle="validator" role="form" action="@Url.Action("ChangeForm", "Product")" method="post" enctype="multipart/form-data" class="form-horizontal form-label-left">
+                <label class="control-label col-md-2 col-sm-2 col-xs-12">
+                    Mã sản phẩm
+                </label>
+                <input type="hidden"  name="id" value="@Model.MaSanPham"/>
+                <div class="col-md-2 col-sm-2 col-xs-12 form-group" style="margin-bottom:10px;">
+                    <input type="text" name="idProduct" value="@Model.MaSP" class="form-control col-md-7 col-xs-12" placeholder="Mã sản phẩm" required>
+                    <div class="help-block with-errors"></div>
+                </div>
+                <label class="control-label col-md-2 col-sm-2 col-xs-12">
+                    Tên sản phẩm
+                </label>
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group" style="margin-bottom:10px;">
+                    <input type="text" name="name" value="@Model.TenSanPham" class="form-control col-md-7 col-xs-12" placeholder="Tên sản phẩm" required>
+                    <div class="help-block with-errors"></div>
+                </div>
+                <label class="control-label col-md-2 col-sm-2 col-xs-12">
+                    Loại sản phẩm
+                </label>
+                <div class="col-md-2 col-sm-2 col-xs-12 form-group" style="margin-bottom:10px;">
+                    <select name="category" class="form-control col-md-7 col-xs-12">
+                        <option selected value="@Model.MaLoaiSanPham">@Model.LoaiSanPham.TenLoaiSanPham</option>
+                        @if (ViewBag.Category != null)
+                        {
+                            foreach (var item in ViewBag.Category as List<LoaiSanPham>)
+                            {
+                                <option value="@item.MaLoaiSanPham">@item.TenLoaiSanPham</option>
+                            }
+                        }
+
+                    </select>
+                </div>
+                <label class="control-label col-md-2 col-sm-2 col-xs-12">
+                    Hãng sản xuất
+                </label>
+                <div class="col-md-2 col-sm-2 col-xs-12 form-group" style="margin-bottom:10px;">
+                    <select name="manufacturer" class="form-control col-md-7 col-xs-12">
+                        <option selected value="@Model.MaHangSanXuat">@Model.HangSanXuat.TenHangSanXuat</option>
+                        @if (ViewBag.Manufacturer != null)
+                        {
+                            foreach (var item in ViewBag.Manufacturer as List<HangSanXuat>)
+                            {
+                                <option value="@item.MaHangSanXuat">@item.TenHangSanXuat</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <label class="control-label col-md-1 col-sm-1 col-xs-12">
+                    Giá tiền
+                </label>
+                <div class="col-md-2 col-sm-2 col-xs-12 form-group" style="margin-bottom:10px;">
+                    <input type="number" name="price" value="@Model.GiaSanPham" class="form-control col-md-7 col-xs-12" min="0" placeholder="Giá tiền" data-error="Giá tiền không đúng định dạng" required>
+                    <div class="help-block with-errors"></div>
+                </div>
+                <label class="control-label col-md-2 col-sm-2 col-xs-12">
+                    Số lượng nhập
+                </label>
+                <div class="col-md-2 col-sm-2 col-xs-12 form-group form-group" style="margin-bottom:10px;">
+                    <input type="number" name="quantity" value="@Model.SoLuongTon" class="form-control col-md-7 col-xs-12" placeholder="Số lượng nhập" min="0" data-error="Số lượng nhập không đúng định dạng" required>
+                    <div class="help-block with-errors"></div>
+                </div>
+                <label class="control-label col-md-2 col-sm-2 col-xs-12">
+                    Khuyến mãi
+                </label>
+                <div class="col-md-2 col-sm-2 col-xs-12 form-group" style="margin-bottom:10px;">
+                    <select name="sale" class="form-control col-md-7 col-xs-12">
+                        <option selected value="@Model.MaKhuyenMai">@Model.KhuyenMaiSanPham.TenKhuyenMai</option>
+                        @if (ViewBag.Sale != null)
+                        {
+                            foreach (var item in ViewBag.Sale as List<KhuyenMaiSanPham>)
+                            {
+                                <option value="@item.MaKhuyenMai">@item.TenKhuyenMai</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <label class="control-label col-md-1 col-sm-1 col-xs-12">
+                    Hình ảnh
+                </label>
+                <div class="col-md-2 col-sm-2 col-xs-12 form-group" style="margin-bottom:10px;">
+                    <input name="picture" value="@Model.URLAnhDaiDien" type="file" class="form-control col-md-7 col-xs-12">
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2 col-sm-2 col-xs-12">
+                        Mô tả
+                    </label>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <textarea name="description" type="text" class="form-control col-md-7 col-xs-12">@Model.MoTa</textarea>
+                    </div>
+                </div>
+                <div class="form-group" style="padding-top:20px;">
+                    <div class="col-md-2 col-sm-2"></div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <button class="btn btn-primary" type="reset">Nhập lại</button>
+                        <button type="submit" class="btn btn-success">Chỉnh sửa</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 
