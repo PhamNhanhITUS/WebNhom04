@@ -28,7 +28,15 @@ namespace shopthethao.Areas.Admin.Controllers
         
         public ActionResult ChangeForm(FormCollection fc)
         {
-            return View();
+            var id = int.Parse(fc["id"]);
+            var p = db.DonDatHangs.First(x => x.MaDonDatHang == id);
+            p.MaTinhTrang = int.Parse(fc["status"]);
+            db.SaveChanges();
+            if (db.SaveChanges() == 0)
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Change");
         }
         public ActionResult Delete()
         {
