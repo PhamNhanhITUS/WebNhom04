@@ -15,7 +15,7 @@ namespace shopthethao.Areas.Admin.Controllers
         {
             ViewBag.Category = db.LoaiSanPhams.Where(x => x.BiXoa == true).ToList();
             ViewBag.Manufacturer = db.HangSanXuats.Where(x => x.BiXoa == true).ToList();
-            return View(db.SanPhams.Where(x=>x.BiXoa == true));
+            return View(db.SanPhams.Where(x=>x.BiXoa == true).ToList());
         }
 
         public ActionResult RestoreCate(int? ID)
@@ -65,6 +65,30 @@ namespace shopthethao.Areas.Admin.Controllers
             if (db.SaveChanges() == 0)
             {
                 Session["XoaThanhCong"] = "";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+        public ActionResult RestoreProduct(int? ID)
+        {
+
+            var p = db.SanPhams.First(x => x.MaSanPham == ID);
+            p.BiXoa = false;
+            db.SaveChanges();
+            if (db.SaveChanges() == 0)
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+        public ActionResult DeleteProduct(int? ID)
+        {
+
+            var p = db.SanPhams.First(x => x.MaSanPham == ID);
+            db.SanPhams.Remove(p);
+            db.SaveChanges();
+            if (db.SaveChanges() == 0)
+            {
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");

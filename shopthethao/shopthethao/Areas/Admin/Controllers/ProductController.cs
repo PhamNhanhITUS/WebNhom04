@@ -160,7 +160,10 @@ namespace shopthethao.Areas.Admin.Controllers
         }
         public ActionResult Delete(int? ID)
         {
-            return View();
+            var p = db.SanPhams.First(x => x.MaSanPham== ID);
+            p.BiXoa = true;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
