@@ -71,9 +71,9 @@ namespace shopthethao.Controllers
             string pass = CreateMD5(fc["password"].ToString());
             string newPass = CreateMD5(fc["newPassword"].ToString());
 
-            var p = db.TaiKhoans.First(x => x.MaTaiKhoan == id && x.MatKhau == pass);
+            var p = db.TaiKhoans.First(x => x.MaTaiKhoan == id);
 
-            if(p != null)
+            if(p.MatKhau == pass)
             {
                 p.MatKhau = newPass;
                 db.SaveChanges();

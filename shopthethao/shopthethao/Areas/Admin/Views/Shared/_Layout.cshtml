@@ -36,7 +36,7 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>ShopTheThao!</span></a>
+                            <a href="index.html" class="site_title"><span>ShopTheThao!</span></a>
                         </div>
                         <div class="clearfix"></div>
                         <!-- menu profile quick info -->
@@ -46,7 +46,7 @@
                             </div>
                             <div class="profile_info">
                                 <span>Xin chào,</span>
-                                <h2>Phạm Nhanh</h2>
+                                <h2>@Session["TenHienThiAdmin"]</h2>
                             </div>
                         </div>
                         <!-- /menu profile quick info -->
@@ -108,11 +108,11 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="/Assets/Admin/images/img.jpg" alt="">Phạm Nhanh
+                                        <img src="/Assets/Admin/images/img.jpg" alt="">@Session["TenHienThiAdmin"]
                                         <span class="fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                        <li><a href="@Url.Action("Index", "Profile", new { ID = 1})"> Thông tin cá nhân</a></li>
+                                        <li><a href="@Url.Action("Index", "Profile", new { ID = Session["MaTaiKhoanAdmin"]})"> Thông tin cá nhân</a></li>
                                         <li><a href="@Url.Action("Logout", "Profile")"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a></li>
                                     </ul>
                                 </li>
@@ -248,6 +248,12 @@ if (Session["ThemLoaiSPThanhCong"] != null)
         $('#ModalChangeProduct').modal('show')
         </script>
     }
+    if (Session["DoiMatKhauAdminThanhCong"] != null)
+    {
+        <script>
+        $('#ModalChangePass').modal('show')
+        </script>
+    }
 
     <script>
     $('#ModalNotiCate').on('hide.bs.modal', function (e) {
@@ -305,6 +311,11 @@ if (Session["ThemLoaiSPThanhCong"] != null)
          Session.Remove("SuaSanPhamThanhCong");
      }
     })
+        $('#ModalChangePass').on('hide.bs.modal', function (e) {
+     @{
+         Session.Remove("DoiMatKhauAdminThanhCong");
+     }
+        })
     </script>
     }
   

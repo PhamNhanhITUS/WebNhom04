@@ -41,7 +41,7 @@ namespace shopthethao.Areas.Admin.Controllers
             if (t != null)
             {
 
-                Session["TenDangNhapAdmin"] = t.TenHienThi;
+                Session["TenHienThiAdmin"] = t.TenHienThi;
                 Session["MaTaiKhoanAdmin"] = t.MaAdmin;
                 if(t.MaLoaiAdmin == 1)
                 {
