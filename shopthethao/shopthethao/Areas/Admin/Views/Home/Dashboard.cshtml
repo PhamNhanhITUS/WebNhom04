@@ -12,29 +12,33 @@
         <div class="row top_tiles">
             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="tile-stats">
+                    @{var totalOrder = ViewBag.totalOrder;}
                     <div class="icon"><i class="fa fa-file-text"></i></div>
-                    <div class="count">179</div>
+                    <div class="count">@totalOrder</div>
                     <h3>Đơn đặt hàng</h3>
                 </div>
             </div>
             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="tile-stats">
+                    @{var totalProduct = ViewBag.totalProduct;}
                     <div class="icon"><i class="fa fa-table"></i></div>
-                    <div class="count">179</div>
+                    <div class="count">@totalProduct</div>
                     <h3>Sản phẩm</h3>
                 </div>
             </div>
             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="tile-stats">
+                    @{var totalWraning = ViewBag.totalWraning;}
                     <div class="icon"><i class="fa fa-file-o"></i></div>
-                    <div class="count">79</div>
+                    <div class="count">@totalWraning</div>
                     <h3>Đơn chờ duyệt</h3>
                 </div>
             </div>
             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="tile-stats">
+                    @{var totalUser = ViewBag.totalUser;}
                     <div class="icon"><i class="fa fa-user"></i></div>
-                    <div class="count">179</div>
+                    <div class="count">@totalUser</div>
                     <h3>Tài khoản</h3>
                 </div>
             </div>
@@ -46,83 +50,102 @@
                 <div class="dashboard_graph x_panel">
                     <div class="row x_title">
                         <div class="col-md-6">
-                            <h3>Thống kê <small>Năm</small></h3>
-                            <div class="col-md-6">
-                                <select id="dropNam" class="selectpicker">
-                                    @foreach (var item in ViewData["yearDDH"] as List<int>)
-                                    {
-                                        <option value="@item">@item</option>
-                                    }
-                                </select>
-                                
-                            </div>
+                            <h3>Thống kê doanh thu <small>theo năm</small></h3>
                           
                         </div>
                       
                     </div>
                     <div class="x_content">
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-10">
                                 <div class="panel">
-                                    <div class="col-md-6">
-                                        <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                                            <select id="dropThongKe" class="selectpicker">
-                                                <option value="1">Loại Sản Phẩm</option>
-                                                <option value="2">Hãng Sản Xuất</option>
-                                                <option value="3">Sản Phẩm</option>
-                                            </select>
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-lg-1" style="padding:0px;">
+                                                <p >Chọn năm: </p>
+                                            </div>
+                                            <div class="col-lg-10">
+                                                <select id="dropNam" class="selectpicker" style="width:60px;height:25px;">
+                                                    @foreach (var item in ViewData["yearDDH"] as List<int>)
+                                                    {
+                                                        <option value="@item">@item</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                            
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <select id="dropThang" class="selectpicker">
-                                            <option value="13">Tất cả</option>
-                                            @for (var item = 1; item < 13; item++)
-                                            {
-                                                <option value="@item">@item</option>
-                                            }
-                                          
-                                        </select>
-
-                                    </div>
-                                    <div class="panel-body" id="divthongketheodanhmuc">
-                                        <canvas id="canvas" height="150"></canvas>
+                                    <div class="panel-body" id="divthongketheonam">
+                                        <canvas id="canvasNam" height="130"></canvas>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="demo-container" style="height:250px">
-                            <div id="chart_plot_03" class="demo-placeholder"></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="panel">
-                                <div class="panel-heading">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <h3 class="panel-title">Doanh thu theo năm</h3>
-                                        </div>
-                                        <div class="col-lg-4" style="padding-top:10px;">
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel-body" id="divthongketheonam">
-                                    <canvas id="canvasNam" height="150"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="demo-container" style="height:250px">
-                        <div id="chart_plot_03" class="demo-placeholder"></div>
                     </div>
                 </div>
                 </div>
             </div>
-        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="dashboard_graph x_panel">
+                    <div class="row x_title">
+                        <div class="col-md-6">
+                            <h3>Thống kê <small></small></h3>
+                        </div>
+
+                    </div>
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-2">
+                                <div class="col-lg-2" style="padding:0px;">
+                                    <p style="float:right;">Chọn: </p>
+                                </div>
+                                <div class="col-lg-10">
+                                     <select id="dropThongKe" class="selectpicker" style="width:120px;height:25px;">
+                                         <option value="1">Loại Sản Phẩm</option>
+                                         <option value="2">Hãng Sản Xuất</option>
+                                         <option value="3">Sản Phẩm</option>
+                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="col-lg-4" style="padding:0px;">
+                                    <p style="float:right;">Chọn tháng: </p>
+                                </div>
+                                <div class="col-lg-8">
+                                    <select id="dropThang" class="selectpicker" style="width:70px;height:25px;">
+                                        <option value="13">Tất cả</option>
+                                        @for (var item = 1; item < 13; item++)
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-9">
+                                <div class="col-lg-6">
+                                    <div class="panel">
+                                        <div class="panel-body" id="divthongketheodanhmuc">
+                                            <canvas id="canvas" height="300"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
 
     </div>
-</div>
 <!-- /page content -->
 <script>
     function OnSuccess1(reponse) {

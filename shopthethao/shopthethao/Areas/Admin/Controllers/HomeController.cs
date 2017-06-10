@@ -53,6 +53,10 @@ namespace shopthethao.Areas.Admin.Controllers
 
         public ActionResult Dashboard()
         {
+            ViewBag.totalOrder = db.DonDatHangs.Count();
+            ViewBag.totalProduct = db.SanPhams.Count();
+            ViewBag.totalWraning = db.DonDatHangs.Where(x=>x.MaTinhTrang == 1).Count();
+            ViewBag.totalUser = db.TaiKhoans.Count();
             var ddh = db.DonDatHangs.OrderByDescending(s => s.NgayLap.Value.Year).Select(s => s.NgayLap.Value.Year).Distinct();
             List<int> lstyear = new List<int>();
             foreach (var item in ddh)
