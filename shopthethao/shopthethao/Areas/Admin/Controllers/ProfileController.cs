@@ -15,6 +15,10 @@ namespace shopthethao.Areas.Admin.Controllers
         shopthethaoEntities5 db = new shopthethaoEntities5();
         public ActionResult Index(int? ID)
         {
+            if (ID.HasValue == false)
+            {
+                return RedirectToAction("Dashboard", "Home");
+            }
             var list = db.TaiKhoanAdmins.First(x => x.MaAdmin == ID);
             return View(list);
         }

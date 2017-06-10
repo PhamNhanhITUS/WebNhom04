@@ -20,6 +20,10 @@ namespace shopthethao.Areas.Admin.Controllers
 
         public ActionResult RestoreCate(int? ID)
         {
+            if (ID.HasValue == false)
+            {
+                return RedirectToAction("Index", "Delete");
+            }
             var p = db.LoaiSanPhams.First(x => x.MaLoaiSanPham == ID);
             p.BiXoa = false;
             db.SaveChanges();
@@ -31,7 +35,10 @@ namespace shopthethao.Areas.Admin.Controllers
         }
         public ActionResult DeleteCate(int? ID)
         {
-
+            if (ID.HasValue == false)
+            {
+                return RedirectToAction("Index", "Delete");
+            }
             var p = db.LoaiSanPhams.First(x => x.MaLoaiSanPham == ID);
             db.LoaiSanPhams.Remove(p);
             db.SaveChanges();
@@ -43,7 +50,10 @@ namespace shopthethao.Areas.Admin.Controllers
         }
         public ActionResult RestoreManu(int? ID)
         {
-
+            if (ID.HasValue == false)
+            {
+                return RedirectToAction("Index", "Delete");
+            }
             var p = db.HangSanXuats.First(x => x.MaHangSanXuat == ID);
             p.BiXoa = false;
             db.SaveChanges();
@@ -55,7 +65,10 @@ namespace shopthethao.Areas.Admin.Controllers
         }
         public ActionResult DeleteManu(int? ID)
         {
-
+            if (ID.HasValue == false)
+            {
+                return RedirectToAction("Index", "Delete");
+            }
             var p = db.HangSanXuats.First(x => x.MaHangSanXuat == ID);
             db.HangSanXuats.Remove(p);
             db.SaveChanges();
@@ -68,7 +81,10 @@ namespace shopthethao.Areas.Admin.Controllers
         }
         public ActionResult RestoreProduct(int? ID)
         {
-
+            if (ID.HasValue == false)
+            {
+                return RedirectToAction("Index", "Delete");
+            }
             var p = db.SanPhams.First(x => x.MaSanPham == ID);
             p.BiXoa = false;
             db.SaveChanges();
@@ -80,7 +96,10 @@ namespace shopthethao.Areas.Admin.Controllers
         }
         public ActionResult DeleteProduct(int? ID)
         {
-
+            if (ID.HasValue == false)
+            {
+                return RedirectToAction("Index", "Delete");
+            }
             var p = db.SanPhams.First(x => x.MaSanPham == ID);
             db.SanPhams.Remove(p);
             db.SaveChanges();

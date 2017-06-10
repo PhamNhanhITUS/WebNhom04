@@ -76,6 +76,10 @@ namespace shopthethao.Areas.Admin.Controllers
         }
         public ActionResult Change(int? ID)
         {
+            if (ID.HasValue == false)
+            {
+                return RedirectToAction("Index", "Manufacturer");
+            }
             var list = db.HangSanXuats.First(x => x.MaHangSanXuat == ID);
             return View(list);
         }
@@ -120,7 +124,10 @@ namespace shopthethao.Areas.Admin.Controllers
         }
         public ActionResult Delete(int? ID)
         {
-
+            if (ID.HasValue == false)
+            {
+                return RedirectToAction("Index", "Manufacturer");
+            }
             var p = db.HangSanXuats.First(x => x.MaHangSanXuat == ID);
             if (p.SanPhams.Count == 0)
             {

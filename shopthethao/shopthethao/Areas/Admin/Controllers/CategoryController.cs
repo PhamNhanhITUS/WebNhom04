@@ -50,6 +50,10 @@ namespace shopthethao.Areas.Admin.Controllers
         }
         public ActionResult Change(int? ID)
         {
+            if (ID.HasValue == false)
+            {
+                return RedirectToAction("Index", "Category");
+            }
             var list = db.LoaiSanPhams.First(x => x.MaLoaiSanPham == ID);
             return View(list);
         }
@@ -76,7 +80,10 @@ namespace shopthethao.Areas.Admin.Controllers
         }
         public ActionResult Delete(int? ID)
         {
-            
+            if (ID.HasValue == false)
+            {
+                return RedirectToAction("Index", "Category");
+            }
             var p = db.LoaiSanPhams.First(x => x.MaLoaiSanPham == ID);
 
             if(p.SanPhams.Count == 0)

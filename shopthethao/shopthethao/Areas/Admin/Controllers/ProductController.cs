@@ -100,6 +100,10 @@ namespace shopthethao.Areas.Admin.Controllers
 
         public ActionResult Change(int? ID)
         {
+            if (ID.HasValue == false)
+            {
+                return RedirectToAction("Index", "Product");
+            }
             ViewBag.Category = db.LoaiSanPhams.Where(x => x.BiXoa == false).ToList();
             ViewBag.Manufacturer = db.HangSanXuats.Where(x => x.BiXoa == false).ToList();
             ViewBag.Sale = db.KhuyenMaiSanPhams.ToList();
@@ -162,6 +166,10 @@ namespace shopthethao.Areas.Admin.Controllers
         }
         public ActionResult Delete(int? ID)
         {
+            if (ID.HasValue == false)
+            {
+                return RedirectToAction("Index", "Product");
+            }
             var p = db.SanPhams.First(x => x.MaSanPham== ID);
             p.BiXoa = true;
             db.SaveChanges();
@@ -169,6 +177,10 @@ namespace shopthethao.Areas.Admin.Controllers
         }
         public ActionResult Picture(int? ID)
         {
+            if (ID.HasValue == false)
+            {
+                return RedirectToAction("Index", "Product");
+            }
             var p = db.SanPhams.First(x => x.MaSanPham == ID);
             ViewBag.NameProduct = p.TenSanPham;
             ViewBag.IDProduct = p.MaSanPham;

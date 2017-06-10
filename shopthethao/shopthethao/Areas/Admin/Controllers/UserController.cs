@@ -82,6 +82,10 @@ namespace shopthethao.Areas.Admin.Controllers
         }
         public ActionResult Change(int? ID)
         {
+            if (ID.HasValue == false)
+            {
+                return RedirectToAction("Index", "User");
+            }
             ViewBag.User = db.LoaiTaiKhoans.ToList();
             var list = db.TaiKhoans.First(x => x.MaTaiKhoan == ID);
             return View(list);
@@ -89,6 +93,7 @@ namespace shopthethao.Areas.Admin.Controllers
 
         public ActionResult ChangeForm(FormCollection fc)
         {
+
             var id = int.Parse(fc["id"]);
             var p = db.TaiKhoans.First(x => x.MaTaiKhoan == id);
             p.MaLoaiTaiKhoan = int.Parse(fc["usergroup"]);
@@ -101,6 +106,10 @@ namespace shopthethao.Areas.Admin.Controllers
         }
         public ActionResult Delete(int? ID)
         {
+            if (ID.HasValue == false)
+            {
+                return RedirectToAction("Index", "User");
+            }
             var p = db.TaiKhoans.First(x => x.MaTaiKhoan == ID);
             p.BiXoa = true;
             db.SaveChanges();
@@ -112,6 +121,10 @@ namespace shopthethao.Areas.Admin.Controllers
         }
         public ActionResult RestoreUser(int? ID)
         {
+            if (ID.HasValue == false)
+            {
+                return RedirectToAction("ListDelete", "User");
+            }
             var p = db.TaiKhoans.First(x => x.MaTaiKhoan == ID);
             p.BiXoa = false;
             db.SaveChanges();
@@ -119,6 +132,10 @@ namespace shopthethao.Areas.Admin.Controllers
         }
         public ActionResult DeleteUser(int? ID)
         {
+            if (ID.HasValue == false)
+            {
+                return RedirectToAction("ListDelete", "User");
+            }
             var p = db.TaiKhoans.First(x => x.MaTaiKhoan == ID);
             db.TaiKhoans.Remove(p);
             db.SaveChanges();

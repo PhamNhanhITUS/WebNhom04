@@ -76,6 +76,10 @@ namespace shopthethao.Areas.Admin.Controllers
         }
         public ActionResult Change(int? ID)
         {
+            if (ID.HasValue == false)
+            {
+                return RedirectToAction("Index", "System");
+            }
             ViewBag.Admin = db.LoaiAdmins.ToList();
             var list = db.TaiKhoanAdmins.First(x => x.MaAdmin == ID);
             return View(list);
@@ -94,7 +98,10 @@ namespace shopthethao.Areas.Admin.Controllers
         }
         public ActionResult Delete(int? ID)
         {
-            
+            if (ID.HasValue == false)
+            {
+                return RedirectToAction("Index", "System");
+            }
             var p = db.TaiKhoanAdmins.First(x => x.MaAdmin == ID);
             db.TaiKhoanAdmins.Remove(p);
             db.SaveChanges();
