@@ -13,7 +13,7 @@ namespace shopthethao.Areas.Admin.Controllers
         shopthethaoEntities5 db = new shopthethaoEntities5();
         public ActionResult Index()
         {
-            return View(db.DonDatHangs.Where(x => x.BiXoa == false).ToList());
+            return View(db.DonDatHangs.OrderBy(x=>x.TinhTrang.MaTinhTrang).Where(x => x.BiXoa == false).ToList());
         }
         public ActionResult Detail(int? ID)
         {
