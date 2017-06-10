@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace shopthethao.Areas.Admin.Controllers
+﻿namespace shopthethao.Areas.Admin.Controllers
 {
-    public class ThongKeDoanhThu
+    internal class ThongKeDoanhThu
     {
-        public string Label;
-        public Decimal DoanhThu;
+        public decimal DoanhThu { get; set; }
+        public string Label { get; set; }
     }
 }
