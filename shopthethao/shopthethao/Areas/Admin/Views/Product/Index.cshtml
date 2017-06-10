@@ -32,7 +32,7 @@
                                     <th>HSX</th>
                                     <th>Tình trạng</th>
                                     <th>Trạng thái</th>
-                                    <th style="width: 105px;">Thao tác</th>
+                                    <th style="width: 155px;">Thao tác</th>
                                 </tr>
                             </thead>
 
@@ -60,6 +60,7 @@
                                         <td><button type="button" class="btn btn-warning btn-xs">Hết hàng</button></td>
                                     }
                                     <td>
+                                        <a href="@Url.Action("Picture","Product", new { ID = item.MaSanPham })" class="btn btn-info btn-xs"><i class="fa fa-picture-o"></i> Ảnh </a>
                                         <a href="@Url.Action("Change","Product", new { ID = item.MaSanPham })" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
                                         <a href="@Url.Action("Delete","Product", new { ID = item.MaSanPham })" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
                                     </td>

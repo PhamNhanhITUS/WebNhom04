@@ -40,7 +40,7 @@
       <PropertyRef Name="MaHinhAnh" />
     </Key>
     <Property Name="MaHinhAnh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="URL" Type="nvarchar" MaxLength="20" />
+    <Property Name="URL" Type="nvarchar" MaxLength="100" />
     <Property Name="MaSanPham" Type="int" />
   </EntityType>
   <EntityType Name="KhuyenMaiSanPham">

@@ -46,7 +46,7 @@
       <PropertyRef Name="MaHinhAnh" />
     </Key>
     <Property Name="MaHinhAnh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="URL" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="URL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="MaSanPham" Type="Int32" />
     <NavigationProperty Name="SanPham" Relationship="Self.FK_HinhAnh_SanPham" FromRole="HinhAnh" ToRole="SanPham" />
   </EntityType>

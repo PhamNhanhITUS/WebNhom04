@@ -25,7 +25,6 @@ namespace shopthethao.Areas.Admin.Controllers
             db.SaveChanges();
             if(db.SaveChanges() == 0)
             {
-                Session["PhucHoiThanhCong"] = "";
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");
@@ -38,7 +37,6 @@ namespace shopthethao.Areas.Admin.Controllers
             db.SaveChanges();
             if(db.SaveChanges() == 0)
             {
-                Session["XoaThanhCong"] = "";
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");
@@ -51,7 +49,6 @@ namespace shopthethao.Areas.Admin.Controllers
             db.SaveChanges();
             if (db.SaveChanges() == 0)
             {
-                Session["PhucHoiThanhCong"] = "";
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");

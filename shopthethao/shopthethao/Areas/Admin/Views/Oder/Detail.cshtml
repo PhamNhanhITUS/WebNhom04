@@ -100,7 +100,10 @@
                             <tr>
                                 <td>@item.SanPham.TenSanPham</td>
                                 <td>
-                                    <img src="~/Assets/HinhAnh/@item.SanPham.MaSP/@item.SanPham.URLAnhDaiDien" alt="" class="img-responsive" style="width: 40px; height: 40px;">
+                                    <div style="width: 60px; height: 60px;">
+                                        <img src="~/Assets/Product/@item.SanPham.MaSP/@item.SanPham.URLAnhDaiDien" alt="" class="img-responsive" style="max-height:100%;max-width:100%;">
+                                    </div>
+                                    
                                 </td>
                                 <td>@item.SoLuong</td>
                                 <td>@string.Format("{0:n0}", item.SanPham.GiaSanPham) &#x20ab;</td>

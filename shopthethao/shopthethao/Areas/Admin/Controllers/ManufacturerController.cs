@@ -129,6 +129,7 @@ namespace shopthethao.Areas.Admin.Controllers
 
                 if (db.SaveChanges() == 0)
                 {
+                    
                     return RedirectToAction("Index", "Manufacturer");
                 }
                 else

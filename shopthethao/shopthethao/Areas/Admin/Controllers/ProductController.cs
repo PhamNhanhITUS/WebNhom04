@@ -11,6 +11,8 @@ namespace shopthethao.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         shopthethaoEntities5 db = new shopthethaoEntities5();
+        private object lastInsertId;
+
         // GET: Admin/Product
         public ActionResult Index()
         {
@@ -127,7 +129,7 @@ namespace shopthethao.Areas.Admin.Controllers
             p.MaKhuyenMai = sale;
 
             db.SaveChanges();
-
+            Session["SuaSanPhamThanhCong"] = "";
             var lastInsertName = p.MaSP;
             var lastInsertId = p.MaSanPham;
 
@@ -165,5 +167,60 @@ namespace shopthethao.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public ActionResult Picture(int? ID)
+        {
+            var p = db.SanPhams.First(x => x.MaSanPham == ID);
+            ViewBag.NameProduct = p.TenSanPham;
+            ViewBag.IDProduct = p.MaSanPham;
+            ViewBag.ID = p.MaSP;
+            return View(db.HinhAnhs.Where(x=>x.MaSanPham == ID).ToList());
+        }
+        public ActionResult AddPicture(FormCollection fc, HttpPostedFileBase picture)
+        {
+            var id = int.Parse(fc["id"]);
+            var idPro = fc["idPro"].ToString();
+
+            if (picture != null && picture.ContentLength > 0)
+            {
+                string fileName = Path.GetFileName(id.ToString() + "_" + picture.FileName);
+
+                string dirPath = Server.MapPath("~/Assets/Product");
+                string targetDirPath = Path.Combine(dirPath, idPro.ToString());
+                //Directory.CreateDirectory(targetDirPath);
+
+                string path = Path.Combine(targetDirPath, fileName);
+
+                picture.SaveAs(path);
+                HinhAnh pic = new HinhAnh
+                {
+                    MaSanPham = id,
+                    URL = fileName,
+                };
+                db.HinhAnhs.Add(pic);
+                db.SaveChanges();
+
+                if (db.SaveChanges() == 0)
+                {
+                    return RedirectToAction("Picture", "Product", new { ID = id});
+                }
+                else
+                {
+                    return RedirectToAction("Picture", "Product", new { ID = id });
+                }
+            }
+            else
+            {
+                return RedirectToAction("Picture", "Product", new { ID = id });
+            }
+        }
+        public ActionResult DeletePicture(int? ID, int? idPro)
+        {
+            var p = db.HinhAnhs.First(x => x.MaHinhAnh == ID);
+            db.HinhAnhs.Remove(p);
+            db.SaveChanges();
+            return RedirectToAction("Picture", "Product", new { ID = idPro });
+        }
+
+
     }
 }

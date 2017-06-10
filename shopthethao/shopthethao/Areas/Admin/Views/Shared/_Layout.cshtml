@@ -177,6 +177,9 @@
         <script src="/Assets/Admin/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
         <!-- <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script> -->
         <!-- Custom Theme Scripts -->
+
+        
+        <script src="/Assets/Admin/build/js/custom.min.js"></script>
         <script src="/Assets/Admin/build/js/custom.js"></script>
         <script src="~/Assets/Client/js/validator.js"></script>
         <script src="~/Assets/Client/js/validator.min.js"></script>
@@ -204,12 +207,6 @@ if (Session["ThemLoaiSPThanhCong"] != null)
     {
         <script>
         $('#ModalRestore').modal('show')
-        </script>
-    }
-    if (Session["XoaThanhCong"] != null)
-    {
-        <script>
-        $('#ModalDelete').modal('show')
         </script>
     }
     if (Session["KTThemTaiKhoan"] != null)
@@ -274,11 +271,6 @@ if (Session["ThemLoaiSPThanhCong"] != null)
     $('#ModalRestore').on('hide.bs.modal', function (e) {
      @{
          Session.Remove("PhucHoiThanhCong");
-     }
-    })
-    $('#ModalDelete').on('hide.bs.modal', function (e) {
-     @{
-         Session.Remove("XoaThanhCong");
      }
     })
     $('#ModalAddUser').on('hide.bs.modal', function (e) {
