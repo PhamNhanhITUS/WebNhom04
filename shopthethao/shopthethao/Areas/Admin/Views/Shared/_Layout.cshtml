@@ -2,9 +2,6 @@
 @{
     Layout = null;
 }
-
-@if(Session["MaTaiKhoanAdmin"] != null)
-{
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -25,6 +22,8 @@
 
         <!-- Custom Theme Style -->
         <link href="/Assets/Admin/build/css/custom.min.css" rel="stylesheet">
+        <!-- jQuery -->
+        <script src="/Assets/Admin/vendors/jquery/dist/jquery.min.js"></script>
     </head>
     <body class="nav-md">
         <div class="container body">
@@ -160,8 +159,7 @@
                 <!-- /footer content -->
             </div>
         </div>
-        <!-- jQuery -->
-        <script src="/Assets/Admin/vendors/jquery/dist/jquery.min.js"></script>
+
         <!-- Bootstrap -->
         <script src="/Assets/Admin/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
         <!-- Datatables -->
@@ -169,72 +167,72 @@
         <script src="/Assets/Admin/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
         <!-- <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script> -->
         <!-- Custom Theme Scripts -->
-        <script src="/Assets/Admin/build/js/custom.min.js"></script>
+        @*<script src="/Assets/Admin/build/js/custom.min.js"></script>*@
         <script src="~/Assets/Client/js/validator.js"></script>
         <script src="~/Assets/Client/js/validator.min.js"></script>
     </body>
 </html>
-if (Session["ThemLoaiSPThanhCong"] != null)
+@if (Session["ThemLoaiSPThanhCong"] != null)
 {
     <script>
         $('#ModalNotiCate').modal('show')
     </script>
 }
-    if (Session["TrungLoaiSP"] != null)
+    @if (Session["TrungLoaiSP"] != null)
     {
         <script>
         $('#ModalNotiErrCate').modal('show')
         </script>
     }
-    if (Session["TrungHSX"] != null)
+    @if (Session["TrungHSX"] != null)
     {
         <script>
         $('#ModalNotiErrManu').modal('show')
         </script>
     }
-    if (Session["PhucHoiThanhCong"] != null)
+    @if (Session["PhucHoiThanhCong"] != null)
     {
         <script>
         $('#ModalRestore').modal('show')
         </script>
     }
-    if (Session["XoaThanhCong"] != null)
+    @if (Session["XoaThanhCong"] != null)
     {
         <script>
         $('#ModalDelete').modal('show')
         </script>
     }
-    if (Session["KTThemTaiKhoan"] != null)
+    @if (Session["KTThemTaiKhoan"] != null)
     {
         <script>
         $('#ModalAddUser').modal('show')
         </script>
     }
-    if (Session["ThemTaiKhoanThanhCong"] != null)
+    @if (Session["ThemTaiKhoanThanhCong"] != null)
     {
         <script>
         $('#ModalNotiUser').modal('show')
         </script>
     }
-    if (Session["KTThemNhanVien"] != null)
+    @if (Session["KTThemNhanVien"] != null)
     {
         <script>
         $('#ModalAddAdmin').modal('show')
         </script>
     }
-    if (Session["ThemNhanVienThanhCong"] != null)
+    @if (Session["ThemNhanVienThanhCong"] != null)
     {
         <script>
         $('#ModalNotiAdmin').modal('show')
         </script>
     }
-    if (Session["ThemSanPhamThanhCong"] != null)
+    @if (Session["ThemSanPhamThanhCong"] != null)
     {
         <script>
         $('#ModalAddProduct').modal('show')
         </script>
     }
-    if (Session["SuaSanPhamThanhCong"] != null)
+    @if (Session["SuaSanPhamThanhCong"] != null)
     {
         <script>
         $('#ModalChangeProduct').modal('show')
@@ -298,8 +296,3 @@ if (Session["ThemLoaiSPThanhCong"] != null)
      }
     })
     </script>
-}
-else
-{
-    @Url.Action("Index", "Error404")
-}

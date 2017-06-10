@@ -3,7 +3,7 @@
     ViewBag.Title = "Dashboard";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <!-- page content -->
 <div class="right_col" role="main">
     <div class="">
@@ -44,20 +44,77 @@
                 <div class="dashboard_graph x_panel">
                     <div class="row x_title">
                         <div class="col-md-6">
-                            <h3>Thống kê <small>Theo loại sản phẩm</small></h3>
-                        </div>
-                        <div class="col-md-6">
-                            <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                                <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+                            <h3>Thống kê <small>Năm</small></h3>
+                            <div class="col-md-6">
+                                <select id="dropNam" class="selectpicker">
+                                    @foreach (var item in ViewData["yearDDH"] as List<int>)
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                </select>
+                                
                             </div>
+                          
                         </div>
+                      
                     </div>
                     <div class="x_content">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="panel">
+                                    <div class="col-md-6">
+                                        <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                                            <select id="dropThongKe" class="selectpicker">
+                                                <option value="1">Loại Sản Phẩm</option>
+                                                <option value="2">Hãng Sản Xuất</option>
+                                                <option value="3">Sản Phẩm</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select id="dropThang" class="selectpicker">
+                                            <option value="13">Tất cả</option>
+                                            @for (var item = 1; item < 13; item++)
+                                            {
+                                                <option value="@item">@item</option>
+                                            }
+                                          
+                                        </select>
+
+                                    </div>
+                                    <div class="panel-body" id="divthongketheodanhmuc">
+                                        <canvas id="canvas" height="150"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="demo-container" style="height:250px">
                             <div id="chart_plot_03" class="demo-placeholder"></div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <h3 class="panel-title">Doanh thu theo năm</h3>
+                                        </div>
+                                        <div class="col-lg-4" style="padding-top:10px;">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-body" id="divthongketheonam">
+                                    <canvas id="canvasNam" height="150"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="demo-container" style="height:250px">
+                        <div id="chart_plot_03" class="demo-placeholder"></div>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -65,4 +122,164 @@
     </div>
 </div>
 <!-- /page content -->
+<script>
+    function OnSuccess1(reponse) {
+        console.log(reponse);
+        var arrDoanhThuTheoThang = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        var length = Object.keys(reponse).length;
+        for (var i = 0 ; i < length ; i++) {
+            arrDoanhThuTheoThang.splice(reponse[i].Label - 1, 1, reponse[i].DoanhThu);
+        }
+        var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+        var config = {
+            type: 'line',
+            data: {
+                labels: MONTHS,
+                datasets: [{
+                    label: "Doanh thu",
+                    backgroundColor: "#FF5733",
+                    borderColor: "#FF5733",
+                    data: arrDoanhThuTheoThang,
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Thống Kê Doanh Thu Tháng'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Tháng'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'triệu VNĐ'
+                        }
+                    }]
+                }
+            }
+        };
+        var ctx = document.getElementById("canvasNam").getContext("2d");
+        window.myLine = new Chart(ctx, config);
+    }
+    $.ajax({
+        url: "@Url.Action("thongKeTheoThang")",
+        method: "POST",
+    async: false,
+    data: { id: 2017 },
+    success: OnSuccess1,
+    });
+</script>
+<script>
+    function OnSuccess_(reponse) {
+        //console.log(reponse);
+        var arrLabel = new Array();
+        var arrDoanhThu = new Array();
+        var arrColor = new Array();
+        var length = Object.keys(reponse).length;
+        if (length == 0) {
+            arrDoanhThu.push(1);
+            arrLabel.push("Không có doanh thu");
+        }
+        else {
+            for (var i = 0 ; i < length ; i++) {
+                arrLabel.push(reponse[i].Label);
+                arrDoanhThu.push(reponse[i].DoanhThu);
+            }
+        }
+        console.log(arrDoanhThu);
+        console.log(arrLabel);
+        // Vẽ biểu đồ
+        var data = {
+            datasets: [{
+                data: arrDoanhThu,
+                backgroundColor: [
+               'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+                ],
+            }],
+            labels: arrLabel,
+        
+        };
+        var options= {
+            responsive: true,
+            title: {
+                display: true,
+                text: 'Thống Kê Doanh Thu Theo Tháng'
+            },
+        }
+        var canvas = document.getElementById("canvas");
 
+        var myDoughnutChart = new Chart(canvas, {
+            type: 'doughnut',
+            data: data,
+            options:options
+        });
+
+        //swal("Good", "Thành công", "success");
+    }
+    function OnErrorCall_(repo) {
+        swal("Error", "Lỗi không kết nối Sever", "error");
+    }
+    $.ajax({
+        url: "@Url.Action("thongKeDoanhThu")",
+        method: "POST",
+    async: false,
+    data: { id: 1},
+    success: OnSuccess_,
+        error: OnErrorCall_
+    });
+
+    $('#dropThongKe').change(function (e) {
+        $('#canvas').remove(); // this is my <canvas> element
+        $('#divthongketheodanhmuc').append('<canvas id="canvas" height="150"><canvas>');
+        var value = $('#dropThongKe').val();
+        var nam=$('dropNam').val();
+        var thang=$('dropThang').val();
+        //Thống kế doanh thu 
+        $.ajax({
+            url: "@Url.Action("thongKeDoanhThu")",
+            method: "POST",
+        async: false,
+        data: { id: value, nam: nam,thang:thang},
+        success: OnSuccess_,
+        error: OnErrorCall_
+    });
+    });
+    $('#dropThang').change(function (e) {
+        $('#canvas').remove(); // this is my <canvas> element
+        $('#divthongketheodanhmuc').append('<canvas id="canvas" height="150"><canvas>');
+        var value = $('#dropThongKe').val();
+        var nam=$('#dropNam').val();
+        var thang=$('#dropThang').val();
+        //Thống kế doanh thu 
+        $.ajax({
+            url: "@Url.Action("thongKeDoanhThu")",
+            method: "POST",
+        async: false,
+        data: { id: value , nam: nam,thang:thang},
+        success: OnSuccess_,
+        error: OnErrorCall_
+    });
+    });
+</script>

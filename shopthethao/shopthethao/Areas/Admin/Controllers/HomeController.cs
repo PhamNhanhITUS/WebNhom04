@@ -40,8 +40,8 @@ namespace shopthethao.Areas.Admin.Controllers
             var t = db.TaiKhoanAdmins.Where(u => u.TaiKhoan == username && u.MatKhauAdmin == password).SingleOrDefault();
             if (t != null)
             {
-                Session["TenDangNhapAdmin"] = t.TenHienThi;
-                Session["MaTaiKhoanAdmin"] = t.MaAdmin;
+                //Session["TenDangNhapAdmin"] = t.TenHienThi;
+                //Session["MaTaiKhoanAdmin"] = t.MaAdmin;
                 return RedirectToAction("Dashboard", "Home");
             }
             else
@@ -50,13 +50,98 @@ namespace shopthethao.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-        //public JsonResult thongKeDoanhThu(int id)
-        //{
-        //    var mix = db.LoaiSanPhams.Select(l => new { l.MaLoaiSanPham, l.TenLoaiSanPham,  });
-        //}
+
         public ActionResult Dashboard()
         {
+            var ddh = db.DonDatHangs.OrderByDescending(s => s.NgayLap.Value.Year).Select(s => s.NgayLap.Value.Year).Distinct();
+            List<int> lstyear = new List<int>();
+            foreach (var item in ddh)
+            {
+                lstyear.Add(item);
+            }
+            ViewData["yearDDH"] = lstyear;
             return View();
+        }
+        //Thống kê doanh thu theo 1: Loại sản phẩm   2: Hãng sản xuất  3: Sản phẩm
+        public JsonResult thongKeDoanhThu(int id, int? nam,int? thang)
+        {
+            if(nam==null)
+            {
+                nam = DateTime.Now.Year;
+                thang = 13;
+            }
+            if (id==1)
+            {
+                var mix = (from lsp in db.LoaiSanPhams.DefaultIfEmpty()
+                           join sp in db.SanPhams on lsp.MaLoaiSanPham equals sp.MaLoaiSanPham
+                           join ctddh in db.ChiTietDonDatHangs on sp.MaSanPham equals ctddh.MaSanPham
+                           where ctddh.DonDatHang.MaTinhTrang == 3 &&ctddh.DonDatHang.NgayLap.Value.Year==nam
+                           select new { MaLoai = lsp.MaLoaiSanPham, TenLoaiSP = lsp.TenLoaiSanPham, Gia = ctddh.GiaBan * ctddh.SoLuong , NgayLap=ctddh.DonDatHang.NgayLap})
+                           .ToList() ;
+                if(thang!=13)
+                {
+                    mix = mix.Where(m=>m.NgayLap.Value.Month==thang).ToList();
+                }
+                var dataChart = (
+                            from rst in mix
+                            group rst by new { rst.MaLoai, rst.TenLoaiSP } into gr
+                            select new ThongKeDoanhThu { Label = gr.Key.TenLoaiSP, DoanhThu = Convert.ToDecimal(gr.Sum(dt => dt.Gia)) }
+                    ).ToList();
+                return Json(dataChart, JsonRequestBehavior.AllowGet);
+            }
+            else if(id==2)
+            {
+                var mix = (from lsp in db.HangSanXuats.DefaultIfEmpty()
+                           join sp in db.SanPhams on lsp.MaHangSanXuat equals sp.MaHangSanXuat
+                           join ctddh in db.ChiTietDonDatHangs on sp.MaSanPham equals ctddh.MaSanPham
+                           where ctddh.DonDatHang.MaTinhTrang == 3
+                           select new { MaLoai = lsp.MaHangSanXuat, TenLoaiSP = lsp.TenHangSanXuat, Gia = ctddh.GiaBan * ctddh.SoLuong, NgayLap = ctddh.DonDatHang.NgayLap }
+                    ).ToList();
+                if (thang != 13)
+                {
+                    mix = mix.Where(m => m.NgayLap.Value.Month == thang).ToList();
+                }
+                var dataChart = (
+                                    from rst in mix
+                                    group rst by new { rst.MaLoai, rst.TenLoaiSP } into gr
+                                    select new ThongKeDoanhThu { Label = gr.Key.TenLoaiSP, DoanhThu = Convert.ToDecimal(gr.Sum(dt => dt.Gia)) }
+                                 ).ToList();
+                return Json(dataChart, JsonRequestBehavior.AllowGet);
+            }
+            else if(id==3)
+            {
+                var mix = (from sp in db.SanPhams
+                           join ctddh in db.ChiTietDonDatHangs on sp.MaSanPham equals ctddh.MaSanPham
+                           where ctddh.DonDatHang.MaTinhTrang == 3
+                           select new { MaLoai = sp.MaSP, TenLoaiSP = sp.TenSanPham, Gia = ctddh.GiaBan * ctddh.SoLuong, NgayLap = ctddh.DonDatHang.NgayLap }
+                    ).ToList();
+                if (thang != 13)
+                {
+                    mix = mix.Where(m => m.NgayLap.Value.Month == thang).ToList();
+                }
+                var dataChart = (
+                                    from rst in mix
+                                    group rst by new { rst.MaLoai, rst.TenLoaiSP } into gr
+                                    select new ThongKeDoanhThu { Label = gr.Key.MaLoai, DoanhThu = Convert.ToDecimal(gr.Sum(dt => dt.Gia)) }
+                                 ).ToList();
+                return Json(dataChart, JsonRequestBehavior.AllowGet);
+            }
+            return Json(null, JsonRequestBehavior.AllowGet);
+        }
+        //Thống kê doanh thu theo tháng trong năm
+        public JsonResult thongkeTheoThang(int id)
+        {
+            var mix = (from ddh in db.DonDatHangs
+                       where ddh.MaTinhTrang == 3 && ddh.NgayLap.Value.Year == id
+                       select new { NgayLap = ddh.NgayLap, Gia = ddh.TongThanhTien }
+                    ).ToList();
+            var ma = mix.OrderBy(s => s.NgayLap.Value.Month);
+            var dataChart = (
+                                   from rst in ma
+                                   group rst by new { rst.NgayLap.Value.Month } into gr
+                                   select new ThongKeDoanhThu { Label = gr.Key.Month.ToString(), DoanhThu = Convert.ToDecimal(gr.Sum(dt => dt.Gia))/1000000 }
+                                ).ToList();
+            return Json(dataChart, JsonRequestBehavior.AllowGet);
         }
     }
 }
