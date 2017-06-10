@@ -120,18 +120,27 @@ namespace shopthethao.Areas.Admin.Controllers
         }
         public ActionResult Delete(int? ID)
         {
-            var p = db.HangSanXuats.First(x => x.MaHangSanXuat == ID);
-            p.BiXoa = true;
-            db.SaveChanges();
 
-            if (db.SaveChanges() == 0)
+            var p = db.HangSanXuats.First(x => x.MaHangSanXuat == ID);
+            if (p.SanPhams.Count == 0)
             {
-                return RedirectToAction("Index", "Manufacturer");
+                p.BiXoa = true;
+                db.SaveChanges();
+
+                if (db.SaveChanges() == 0)
+                {
+                    return RedirectToAction("Index", "Manufacturer");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Manufacturer");
+                }
             }
             else
             {
                 return RedirectToAction("Index", "Manufacturer");
             }
+
         }
     }
 }

@@ -21,7 +21,7 @@
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><img src="/Assets/Client/images/home/product1.jpg" alt="" /></a>
+                                        <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><img src="~/Assets/Product/@item.MaSP/@item.URLAnhDaiDien" alt="" /></a>
                                         <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><h4>@item.TenSanPham</h4></a>
                                         <h5>@item.GiaSanPham VNĐ</h5>
                                         @if (Session["TenDangNhap"] != null)
@@ -52,7 +52,7 @@
                                         <div class="product-image-wrapper">
                                             <div class="single-products">
                                                 <div class="productinfo text-center">
-                                                    <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><img src="/Assets/Client/images/home/product1.jpg" alt="" /></a>
+                                                    <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><img src="~/Assets/Product/@item.MaSP/@item.URLAnhDaiDien" alt="" /></a>
                                                     <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><h4>@item.TenSanPham</h4></a>
                                                     <h5>@item.GiaSanPham VNĐ</h5>
                                                     @if (Session["TenDangNhap"] != null)
@@ -78,8 +78,8 @@
                                         <div class="product-image-wrapper">
                                             <div class="single-products">
                                                 <div class="productinfo text-center">
-                                                    <a href=""><img src="/Assets/Client/images/home/product1.jpg" alt="" /></a>
-                                                    <a href=""><h4>@item.TenSanPham</h4></a>
+                                                    <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><img src="~/Assets/Product/@item.MaSP/@item.URLAnhDaiDien" alt="" /></a>
+                                                    <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><h4>@item.TenSanPham</h4></a>
                                                     <h5>@string.Format("{0:n0}", item.GiaSanPham) VNĐ</h5>
                                                     @if (Session["TenDangNhap"] != null)
                                                     {

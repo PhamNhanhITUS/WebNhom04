@@ -76,13 +76,22 @@ namespace shopthethao.Areas.Admin.Controllers
         }
         public ActionResult Delete(int? ID)
         {
+            
             var p = db.LoaiSanPhams.First(x => x.MaLoaiSanPham == ID);
-            p.BiXoa = true;
-            db.SaveChanges();
 
-            if (db.SaveChanges() == 0)
+            if(p.SanPhams.Count == 0)
             {
-                return RedirectToAction("Index", "Category");
+                p.BiXoa = true;
+                db.SaveChanges();
+
+                if (db.SaveChanges() == 0)
+                {
+                    return RedirectToAction("Index", "Category");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Category");
+                }
             }
             else
             {

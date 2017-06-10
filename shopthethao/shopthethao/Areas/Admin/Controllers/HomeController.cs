@@ -50,7 +50,10 @@ namespace shopthethao.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-
+        //public JsonResult thongKeDoanhThu(int id)
+        //{
+        //    var mix = db.LoaiSanPhams.Select(l => new { l.MaLoaiSanPham, l.TenLoaiSanPham,  });
+        //}
         public ActionResult Dashboard()
         {
             return View();

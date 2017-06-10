@@ -26,7 +26,7 @@
                                 </thead>
                                 <tbody>
                                     @{ 
-                                        var total = "";
+                                        var total = 0;
                                     }
                                     @foreach (var item in Model)
                                     {
@@ -47,7 +47,7 @@
                                                 </div>
                                             </td>
                                             @{var cart_total = item.Product.GiaSanPham * item.Quantity;
-                                                total += cart_total;
+                                                total += cart_total.Value;
                                              }
                                             <td class="cart_total" style="font-size:20px;">
                                                 <p class="cart_total_price">@string.Format("{0:n0}", cart_total) VNĐ</p>

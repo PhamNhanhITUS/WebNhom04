@@ -1965,6 +1965,7 @@
     </Content>
     <Content Include="Areas\Admin\Views\Shared\ModalProduct.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Change.cshtml" />
+    <Content Include="Areas\Admin\Views\Error404\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1975,7 +1976,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Error404\" />
     <Folder Include="Assets\Logo\" />
     <Folder Include="Assets\Product\" />
     <Folder Include="Views\Logo\" />

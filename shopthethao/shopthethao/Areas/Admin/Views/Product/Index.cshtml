@@ -51,7 +51,7 @@
                                     <td>@item.LoaiSanPham.TenLoaiSanPham</td>
                                     <td>@item.HangSanXuat.TenHangSanXuat</td>
                                     <td>@item.KhuyenMaiSanPham.TenKhuyenMai</td>
-                                    @if (item.TrangThai == true)
+                                    @if (item.SoLuongTon > 0)
                                     {
                                         <td><button type="button" class="btn btn-success btn-xs">Còn hàng</button></td>
                                     }

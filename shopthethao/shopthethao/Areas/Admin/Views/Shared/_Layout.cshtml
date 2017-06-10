@@ -2,7 +2,8 @@
 @{
     Layout = null;
 }
-@if (Session["MaTaiKhoanAdmin"] != null)
+
+@if(Session["MaTaiKhoanAdmin"] != null)
 {
     <!DOCTYPE html>
     <html lang="en">
@@ -173,67 +174,67 @@
         <script src="~/Assets/Client/js/validator.min.js"></script>
     </body>
 </html>
-@if (Session["ThemLoaiSPThanhCong"] != null)
+if (Session["ThemLoaiSPThanhCong"] != null)
 {
     <script>
         $('#ModalNotiCate').modal('show')
     </script>
 }
-    @if (Session["TrungLoaiSP"] != null)
+    if (Session["TrungLoaiSP"] != null)
     {
         <script>
         $('#ModalNotiErrCate').modal('show')
         </script>
     }
-    @if (Session["TrungHSX"] != null)
+    if (Session["TrungHSX"] != null)
     {
         <script>
         $('#ModalNotiErrManu').modal('show')
         </script>
     }
-    @if (Session["PhucHoiThanhCong"] != null)
+    if (Session["PhucHoiThanhCong"] != null)
     {
         <script>
         $('#ModalRestore').modal('show')
         </script>
     }
-    @if (Session["XoaThanhCong"] != null)
+    if (Session["XoaThanhCong"] != null)
     {
         <script>
         $('#ModalDelete').modal('show')
         </script>
     }
-    @if (Session["KTThemTaiKhoan"] != null)
+    if (Session["KTThemTaiKhoan"] != null)
     {
         <script>
         $('#ModalAddUser').modal('show')
         </script>
     }
-    @if (Session["ThemTaiKhoanThanhCong"] != null)
+    if (Session["ThemTaiKhoanThanhCong"] != null)
     {
         <script>
         $('#ModalNotiUser').modal('show')
         </script>
     }
-    @if (Session["KTThemNhanVien"] != null)
+    if (Session["KTThemNhanVien"] != null)
     {
         <script>
         $('#ModalAddAdmin').modal('show')
         </script>
     }
-    @if (Session["ThemNhanVienThanhCong"] != null)
+    if (Session["ThemNhanVienThanhCong"] != null)
     {
         <script>
         $('#ModalNotiAdmin').modal('show')
         </script>
     }
-    @if (Session["ThemSanPhamThanhCong"] != null)
+    if (Session["ThemSanPhamThanhCong"] != null)
     {
         <script>
         $('#ModalAddProduct').modal('show')
         </script>
     }
-    @if (Session["SuaSanPhamThanhCong"] != null)
+    if (Session["SuaSanPhamThanhCong"] != null)
     {
         <script>
         $('#ModalChangeProduct').modal('show')
@@ -300,5 +301,5 @@
 }
 else
 {
-    @Html.
+    @Url.Action("Index", "Error404")
 }
