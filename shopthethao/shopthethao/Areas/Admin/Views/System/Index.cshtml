@@ -4,6 +4,12 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
+@if (Session["Admin"] == null)
+{
+    Response.Redirect("~/Admin/Error404");
+}
+@if (Session["Admin"] != null)
+{
 <div class="right_col" role="main">
     <div class="">
         <div class="page-title">
@@ -43,8 +49,8 @@
                                     <td>@item.Email</td>
                                     <td><button type="button" class="btn btn-success btn-xs">@item.LoaiAdmin.TenLoaiAdmin</button></td>
                                     <td>
-                                        <a href="@Url.Action("Change","System", new { ID = @item.MaAdmin })" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
-                                        <a href="@Url.Action("Delete","System", new { ID = @item.MaAdmin })" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Đã chắc chắn XÓA vĩnh viễn?"><i class="fa fa-trash-o"></i> Xóa </a>
+                                        <a href="@Url.Action("Change", "System", new { ID = @item.MaAdmin })" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
+                                        <a href="@Url.Action("Delete", "System", new { ID = @item.MaAdmin })" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Đã chắc chắn XÓA vĩnh viễn?"><i class="fa fa-trash-o"></i> Xóa </a>
                                     </td>
                                 </tr>
                             }
@@ -57,4 +63,5 @@
     </div>
 </div>
 <!-- /page content -->
+}
 

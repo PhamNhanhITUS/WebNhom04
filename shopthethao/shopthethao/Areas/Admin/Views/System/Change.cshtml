@@ -5,7 +5,12 @@
     ViewBag.Title = "Change";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
+@if (Session["Admin"] == null)
+{
+    Response.Redirect("~/Admin/Error404");
+}
+@if (Session["Admin"] != null)
+{
 <div class="right_col" role="main">
     <div class="">
         <div class="page-title">
@@ -46,6 +51,7 @@
         </div>
     </div>
 </div>
+}
 
 
 

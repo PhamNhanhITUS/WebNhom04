@@ -40,8 +40,13 @@ namespace shopthethao.Areas.Admin.Controllers
             var t = db.TaiKhoanAdmins.Where(u => u.TaiKhoan == username && u.MatKhauAdmin == password).SingleOrDefault();
             if (t != null)
             {
-                //Session["TenDangNhapAdmin"] = t.TenHienThi;
-                //Session["MaTaiKhoanAdmin"] = t.MaAdmin;
+
+                Session["TenDangNhapAdmin"] = t.TenHienThi;
+                Session["MaTaiKhoanAdmin"] = t.MaAdmin;
+                if(t.MaLoaiAdmin == 1)
+                {
+                    Session["Admin"] = "";
+                }
                 return RedirectToAction("Dashboard", "Home");
             }
             else
