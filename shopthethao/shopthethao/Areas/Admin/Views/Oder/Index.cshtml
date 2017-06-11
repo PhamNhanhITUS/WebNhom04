@@ -44,12 +44,12 @@
                                     <td>@item.TaiKhoan.TenHienThi</td>
                                     <td>@item.TongThanhTien</td>
 
-                                    @if(item.TinhTrang.MaTinhTrang == 1){
-                                         <td><a href="" class="btn btn-primary btn-xs">@item.TinhTrang.TenTinhTrang </a></td>
+                                    @if (item.TinhTrang.MaTinhTrang == 1) {
+                                         <td><a href="@Url.Action("Change", "Oder", new { ID=item.MaDonDatHang})" class="btn btn-primary btn-xs">@item.TinhTrang.TenTinhTrang </a></td>
                                     }
                                     else if (item.TinhTrang.MaTinhTrang == 2)
                                     {
-                                        <td><a href="" class="btn btn-warning btn-xs">@item.TinhTrang.TenTinhTrang </a></td>
+                                        <td><a href="@Url.Action("Change", "Oder", new { ID=item.MaDonDatHang})"  class="btn btn-warning btn-xs">@item.TinhTrang.TenTinhTrang </a></td>
                                     }
                                     else if (item.TinhTrang.MaTinhTrang == 3)
                                     {
@@ -59,11 +59,8 @@
                                     {
                                         <td><button type="button" class="btn btn-danger btn-xs">@item.TinhTrang.TenTinhTrang</button></td>
                                     }
-
-
                                     <td>
                                         <a href="@Url.Action("Detail","Oder", new { ID = item.MaDonDatHang })" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Xem </a>
-                                        <a href="@Url.Action("Change","Oder", new { ID = item.MaDonDatHang })" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Đã chắc chắn chưa"><i class="fa fa-pencil"></i> Sửa </a>
                                         <a href="@Url.Action("Delete","Oder", new { ID = item.MaDonDatHang })" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Đã chắc chắn chưa"><i class="fa fa-trash-o"></i> Xóa </a>
                                     </td>
                                 </tr>
