@@ -14,6 +14,12 @@ namespace shopthethao.Models
     
     public partial class TaiKhoan
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TaiKhoan()
+        {
+            this.DonDatHangs = new HashSet<DonDatHang>();
+        }
+    
         public int MaTaiKhoan { get; set; }
         public string TenDangNhap { get; set; }
         public string MatKhau { get; set; }
@@ -26,6 +32,8 @@ namespace shopthethao.Models
         public Nullable<int> MaLoaiTaiKhoan { get; set; }
         public Nullable<bool> BiXoa { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DonDatHang> DonDatHangs { get; set; }
         public virtual LoaiTaiKhoan LoaiTaiKhoan { get; set; }
     }
 }
