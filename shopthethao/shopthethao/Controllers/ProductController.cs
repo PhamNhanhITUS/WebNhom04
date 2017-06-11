@@ -99,9 +99,12 @@ namespace shopthethao.Controllers
             
             ViewBag.ShowCategory = ShowCategory();
             ViewBag.ShowManufacturer = ShowManufacturer();
-
-            var list = db.SanPhams.Where(x => x.MaLoaiSanPham == category && x.MaHangSanXuat == manufacturer && (x.GiaSanPham > toPrice && x.GiaSanPham < formPrice)).ToList();
-
+            
+            var list = db.SanPhams.Where(x => x.GiaSanPham >= toPrice && x.GiaSanPham <= formPrice).ToList();
+            if (category != 0)
+                list = list.Where(x=>x.MaLoaiSanPham==category).ToList();
+            if (manufacturer != 0)
+                list = list.Where(x=>x.MaHangSanXuat==manufacturer).ToList();
             int pageSize = 9;
             int pageNumber = (page ?? 1);
             return View(list.ToPagedList(pageNumber, pageSize));
