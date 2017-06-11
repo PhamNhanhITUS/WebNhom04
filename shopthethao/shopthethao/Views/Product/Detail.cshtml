@@ -10,7 +10,7 @@
     <div class="container">
         <div class="breadcrumbs">
             <ol class="breadcrumb">
-                <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
                 <li class="active">Chi tiết sản phẩm</li>
             </ol>
         </div>
@@ -18,30 +18,25 @@
             <div class="col-sm-12 padding-right">
                 <div class="product-details">
                     <!--product-details-->
-                    <div class="col-sm-5">
-                        <div class="view-product">
-                            <img src="/Assets/Client/images/product-details/1.jpg" alt="" />
-                        </div>
-                        <div id="similar-product" class="carousel slide" data-ride="carousel" style="margin-top:10px;">
+                    <div class="col-sm-6" style="padding:0px;">
+                            
+                        <div id="similar-product" class="carousel slide view-product" data-ride="carousel" style="margin-top:10px;">
 
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <a href=""><img src="/Assets/Client/images/product-details/similar1.jpg" alt=""></a>
-                                    <a href=""><img src="/Assets/Client/images/product-details/similar2.jpg" alt=""></a>
-                                    <a href=""><img src="/Assets/Client/images/product-details/similar3.jpg" alt=""></a>
+                                    <img src="~/Assets/Product/@Model.MaSP/@Model.URLAnhDaiDien" alt="" style="max-height:100%;max-width:100%;" />
                                 </div>
-                                <div class="item">
-                                    <a href=""><img src="/Assets/Client/images/product-details/similar1.jpg" alt=""></a>
-                                    <a href=""><img src="/Assets/Client/images/product-details/similar2.jpg" alt=""></a>
-                                    <a href=""><img src="/Assets/Client/images/product-details/similar3.jpg" alt=""></a>
-                                </div>
-                                <div class="item">
-                                    <a href=""><img src="/Assets/Client/images/product-details/similar1.jpg" alt=""></a>
-                                    <a href=""><img src="/Assets/Client/images/product-details/similar2.jpg" alt=""></a>
-                                    <a href=""><img src="/Assets/Client/images/product-details/similar3.jpg" alt=""></a>
-                                </div>
+                                @{
+                                    var listPic = Model.HinhAnhs.Where(x => x.MaSanPham == Model.MaSanPham).ToList();
 
+                                        }
+                                @foreach (var item in listPic as List<HinhAnh>)
+                                {
+                                    <div class="item">
+                                        <img src="~/Assets/Product/@item.SanPham.MaSP/@item.URL" alt="" style="max-height:100%;max-width:100%;" />
+                                    </div>
+                                }
                             </div>
 
                             <!-- Controls -->
@@ -54,11 +49,11 @@
                         </div>
 
                     </div>
-                    <div class="col-sm-7">
+                    <div class="col-sm-6" style="padding:0px;">
                             <div class="product-information">
                                 <!--/product-information-->
                                 <h1>@Model.TenSanPham</h1>
-                                <p>Mã sản phẩm: @Model.MaSanPham</p>
+                                <p style="font-size:16px;">Mã sản phẩm: @Model.MaSanPham</p>
                                 <img src="/Assets/Client/images/product-details/rating.png" alt="" />
                                 <div>
                                     <form data-toggle="validator" role="form" action="@Url.Action("AddItem","Cart")" method="get">
@@ -66,7 +61,7 @@
                                             <p>
                                                 <span>@string.Format("{0:n0}", @Model.GiaSanPham) VNĐ</span>
                                             </p>
-                                            <label>Số lượng:</label>
+                                            <label style="font-size:16px;">Số lượng:</label>
                                             <input type="hidden" name="productId" value="@Model.MaSanPham"/>
                                             <input type="number" value="1" min="1" name="quantity" />
                                             <button type="submit" class="btn btn-fefault cart"><i class="fa fa-shopping-cart"></i>Thêm</button>
@@ -74,15 +69,21 @@
                                         </span>
                                     </form>
                                 </div>
-
-                                <p><b>Trạng thái:</b> </p>
-                                <p><b>Tình trạng:</b> <img src="/Assets/Client/images/product-details/new.jpg" alt="" /></p>
+                                
+                                @if (Model.SoLuongTon < 0)
+                                {
+                                    <p style="font-size:16px;"><b>Trạng thái: Tạm hết hàng</b></p>
+                                }
+                                else
+                                {
+                                    <p style="font-size:16px;"><b>Trạng thái: Còn hàng</b></p>
+                                }
+                                <p style="padding-top:10px;font-size:16px;"><b>Giảm giá:</b> @if(Model.MaKhuyenMai != 1){<img src="~/Assets/Client/images/home/sale.png" class="new" alt="" />}(@Model.KhuyenMaiSanPham.TenKhuyenMai)</p>
                                 @if (Model.MaHangSanXuat != null)
                                 {
-                                    <p><b>Thương hiệu:</b> @Model.HangSanXuat.TenHangSanXuat</p>
+                                    <p style="padding-top:10px;font-size:16px;"><b>Thương hiệu:</b> @Model.HangSanXuat.TenHangSanXuat</p>
                                 }
                                 
-                                <a href=""><img src="/Assets/Client/images/product-details/share.png" class="share img-responsive" alt="" /></a>
                             </div><!--/product-information-->
                         
                     </div>
@@ -92,34 +93,26 @@
                     <!--category-tab-->
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
-                            <li><a href="#details" data-toggle="tab">Thông tin chi tiết</a></li>
-                            <li class="active"><a href="#reviews" data-toggle="tab">Nhận xét</a></li>
+                            <li class="active"><a data-toggle="tab" href="#detail">Thông tin chi tiết</a></li>
+                            <li ><a data-toggle="tab" href="#comment">Nhận xét</a></li>
                         </ul>
                     </div>
                     <div class="tab-content">
-                        <div class="tab-pane fade active in" id="reviews">
+                        <div class="tab-pane fade in active" id="#detail">
                             <div class="col-sm-12">
                                 <ul>
-                                    <li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
+                                    <li><a href=""><i class="fa fa-user"></i>Đăng lúc</a></li>
                                     <li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
                                     <li><a href=""><i class="fa fa-calendar-o"></i>24 04 2017</a></li>
                                 </ul>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                                <p><b>Viết nhận xét</b></p>
-
-                                <form action="#">
-                                    <span>
-                                        <input type="text" placeholder="Họ tên" />
-                                        <input type="email" placeholder="Địa chỉ email" />
-                                    </span>
-                                    <textarea name=""></textarea>
-                                    <button type="button" class="btn btn-default pull-right">
-                                        Nhận xét
-                                    </button>
-                                </form>
+                                <p>@Model.MoTa</p>
                             </div>
                         </div>
-
+                        <div class="tab-pane fade" id="#comment">
+                            <div class="col-sm-12">
+                                <p>@Model.MoTa</p>
+                            </div>
+                        </div>
                     </div>
                 </div><!--/category-tab-->
 
@@ -136,9 +129,9 @@
                                         <div class="product-image-wrapper">
                                             <div class="single-products">
                                                 <div class="productinfo text-center">
-                                                    <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><img src="/Assets/Client/images/home/product1.jpg" alt="" /></a>
+                                                    <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><img src="~/Assets/Product/@item.MaSP/@item.URLAnhDaiDien" alt="" /></a>
                                                     <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><h4>@item.TenSanPham</h4></a>
-                                                    <h5>@item.GiaSanPham VNĐ</h5>
+                                                    <h4>@string.Format("{0:n0}", item.GiaSanPham) VNĐ</h4>
                                                     @if (Session["TenDangNhap"] != null)
                                                     {
                                                         <a href="@Url.Action("AddItem", "Cart", new { productId = @item.MaSanPham, quantity = 1 })" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>

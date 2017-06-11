@@ -85,7 +85,7 @@ namespace shopthethao.Controllers
             if(fc["txtPrice"].ToString() == null)
             {
                 toPrice = 100000;
-                formPrice = 1500000;
+                formPrice = 10000000;
             }
             else
             {
@@ -100,7 +100,7 @@ namespace shopthethao.Controllers
             ViewBag.ShowCategory = ShowCategory();
             ViewBag.ShowManufacturer = ShowManufacturer();
 
-            var list = db.SanPhams.Where(x => x.MaLoaiSanPham == category || x.MaHangSanXuat == manufacturer || (x.GiaSanPham > toPrice && x.GiaSanPham < formPrice)).ToList();
+            var list = db.SanPhams.Where(x => x.MaLoaiSanPham == category && x.MaHangSanXuat == manufacturer && (x.GiaSanPham > toPrice && x.GiaSanPham < formPrice)).ToList();
 
             int pageSize = 9;
             int pageNumber = (page ?? 1);

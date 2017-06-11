@@ -23,7 +23,7 @@
                                     <div class="productinfo text-center">
                                         <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><img src="~/Assets/Product/@item.MaSP/@item.URLAnhDaiDien" alt="" /></a>
                                         <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><h4>@item.TenSanPham</h4></a>
-                                        <h5>@item.GiaSanPham VNĐ</h5>
+                                        <h4>@string.Format("{0:n0}", item.GiaSanPham) VNĐ</h4>
                                         @if (Session["TenDangNhap"] != null)
                                         {
                                         <a href="@Url.Action("AddItem", "Cart", new { productId = @item.MaSanPham, quantity = 1 })" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
@@ -54,7 +54,7 @@
                                                 <div class="productinfo text-center">
                                                     <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><img src="~/Assets/Product/@item.MaSP/@item.URLAnhDaiDien" alt="" /></a>
                                                     <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><h4>@item.TenSanPham</h4></a>
-                                                    <h5>@item.GiaSanPham VNĐ</h5>
+                                                    <h4>@string.Format("{0:n0}", item.GiaSanPham) VNĐ</h4>
                                                     @if (Session["TenDangNhap"] != null)
                                                     {
                                                         <a href="@Url.Action("AddItem", "Cart", new { productId = @item.MaSanPham, quantity = 1 })" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
@@ -80,7 +80,7 @@
                                                 <div class="productinfo text-center">
                                                     <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><img src="~/Assets/Product/@item.MaSP/@item.URLAnhDaiDien" alt="" /></a>
                                                     <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><h4>@item.TenSanPham</h4></a>
-                                                    <h5>@string.Format("{0:n0}", item.GiaSanPham) VNĐ</h5>
+                                                    <h4>@string.Format("{0:n0}", item.GiaSanPham) VNĐ</h4>
                                                     @if (Session["TenDangNhap"] != null)
                                                     {
                                                         <a href="@Url.Action("AddItem", "Cart", new { productId = @item.MaSanPham, quantity = 1 })" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>

@@ -30,11 +30,14 @@
                         {
                             <tr>
                                 <td class="cart_product">
-                                    <a href=""><img src="/Assets/Client/images/cart/one.png" alt=""></a>
+                                    <div style="width:100px;height:100px;">
+                                        <a href=""><img src="~/Assets/Product/@item.Product.MaSP/@item.Product.URLAnhDaiDien" alt="" style="max-height:100%;max-width:100%;"></a>
+                                    </div>
+                                    
                                 </td>
                                 <td class="cart_description" style="padding-left:20px;">
                                     <h4><a href="">@item.Product.TenSanPham</a></h4>
-                                    <p>Web ID: 1089772</p>
+                                    <p>Mã sản phẩm: @item.Product.MaSP</p>
                                 </td>
                                 <td class="cart_price">
                                     <p>@string.Format("{0:n0}", item.Product.GiaSanPham)</p> 
@@ -47,7 +50,7 @@
                                     </div>
                                 </td>
                                 <td class="cart_total">
-                                    <p class="cart_total_price">500.000 VNĐ</p>
+                                    <p class="cart_total_price">@string.Format("{0:n0}", item.Product.GiaSanPham * item.Quantity) VNĐ</p>
                                 </td>
                                 <td class="cart_delete">
                                     <a data-id="@item.Product.MaSanPham" class="btn-delete" href=""><i class="fa fa-times"></i></a>
@@ -62,7 +65,7 @@
                 <button id="btnContinue" class="btn btn-default btn-custom">Quay về cửa hàng</button>
                 <button id="btnDeleteAll" class="btn btn-default btn-custom">Xóa tất cả</button>
                 <button id="btnUpdate" class="btn btn-default btn-custom">Cập nhập</button>
-                <button @*id="btnPayment"*@ class="btn btn-default btn-custom" onclick="location.href='@Url.Action("Payment","Cart", new { ID = Session["MaTaiKhoan"]})'" >Thanh toán</button>
+                <button class="btn btn-default btn-custom" onclick="location.href='@Url.Action("Payment","Cart", new { ID = Session["MaTaiKhoan"]})'" >Thanh toán</button>
             </div>
         </div>
         }

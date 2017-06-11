@@ -1200,7 +1200,7 @@ h2.title {
 
 .item-control {
   position: absolute;
-  top: 35%;
+  top: 45%;
 }
 .item-control i {
   background: #FE980F;
@@ -1249,7 +1249,7 @@ h2.title {
   color: #FE980F;
   float: left;
   font-family: 'Roboto', sans-serif;
-  font-size: 30px;
+  font-size: 34px;
   font-weight: 700;
   margin-right: 20px;
   margin-top: 0px;
@@ -1588,7 +1588,7 @@ h2.title {
 
 
 #cart_items .cart_info .image {
-  padding-left: 30px;
+  padding-left: 20px;
 }
 
 
@@ -1622,7 +1622,7 @@ h2.title {
 
 .cart_product {
   display: block;
-  margin: 15px -70px 10px 25px;
+  margin: 15px -70px 10px 10px;
 }
 
 .cart_quantity_button a {

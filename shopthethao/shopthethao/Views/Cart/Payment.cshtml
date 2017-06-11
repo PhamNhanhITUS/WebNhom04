@@ -7,6 +7,13 @@
 }
 @if(Session["MaTaiKhoan"] != null) {
 <div class="container">
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+            <li><a href="@Url.Action("Index","Cart")">Giỏ hàng</a></li>
+            <li class="active">Thanh toán</li>
+        </ol>
+    </div>
     <div class="row">
         <div class="col-md-12" style="padding:0px 0px 40px 0px;">
             <div class="col-md-8">
@@ -32,25 +39,27 @@
                                     {
                                         <tr>
                                             <td class="cart_product">
-                                                <a href=""><img src="/Assets/Client/images/cart/one.png" alt=""></a>
+                                                <div style="width:60px;height:60px;">
+                                                    <a href=""><img src="~/Assets/Product/@item.Product.MaSP/@item.Product.URLAnhDaiDien" alt="" style="max-height:100%;max-width:100%;"></a>
+                                                </div>
                                             </td>
                                             <td class="cart_description" style="padding-left:20px;">
-                                                <h4><a href="">@item.Product.TenSanPham</a></h4>
-                                                <p>Mã: @item.Product.MaSP</p>
+                                                <h4 ><a href="@Url.Action("Detail","Product", new { id = item.Product.MaSanPham})" style="font-size:14px;">@item.Product.TenSanPham</a></h4>
+                                                <p style="font-size:12px;">Mã: @item.Product.MaSP</p>
                                             </td>
                                             <td class="cart_price">
-                                                <p>@string.Format("{0:n0}", item.Product.GiaSanPham) VNĐ</p>
+                                                <p  style="font-size:16px;">@string.Format("{0:n0}", item.Product.GiaSanPham) VNĐ</p>
                                             </td>
-                                            <td class="cart_quantity" style="font-size:18px;">
+                                            <td class="cart_quantity">
                                                 <div class="cart_quantity_button">
-                                                    <p>@item.Quantity</p>
+                                                    <p style="font-size:16px;">@item.Quantity</p>
                                                 </div>
                                             </td>
                                             @{var cart_total = item.Product.GiaSanPham * item.Quantity;
                                                 total += cart_total.Value;
                                              }
-                                            <td class="cart_total" style="font-size:20px;">
-                                                <p class="cart_total_price">@string.Format("{0:n0}", cart_total) VNĐ</p>
+                                            <td class="cart_total">
+                                                <p style="font-size:18px;" class="cart_total_price">@string.Format("{0:n0}", cart_total) VNĐ</p>
                                             </td>
                                             <td class="cart_delete">
                                                 <a data-id="@item.Product.MaSanPham" class="btn-delete" href=""><i class="fa fa-times"></i></a>

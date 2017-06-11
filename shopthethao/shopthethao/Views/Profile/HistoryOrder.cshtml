@@ -39,7 +39,9 @@
                                         {
                                             <tr>
                                                 <td class="cart_product">
-                                                    <a href=""><img src="/Assets/Client/images/cart/one.png" alt=""></a>
+                                                    <div style="width:100px;height:100px;">
+                                                        <a href=""><img src="~/Assets/Product/@item1.SanPham.MaSP/@item1.SanPham.URLAnhDaiDien" alt="" style="max-height:100%;max-width:100%;"></a>
+                                                    </div>
                                                 </td>
                                                 <td class="cart_description" style="padding-left:20px;">
                                                     <h4><a href="">@item1.SanPham.TenSanPham</a></h4>
@@ -67,7 +69,7 @@
                 </div>
                 }
             <ul class="pagination" style="margin-bottom:0px;padding-left:0px;">
-                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                @Html.PagedListPager(Model, page => Url.Action("HistoryOrder", new { ID = @Session["MaTaiKhoan"], page }))
             </ul>
         </div>
     </section>
