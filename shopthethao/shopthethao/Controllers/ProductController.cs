@@ -30,6 +30,8 @@ namespace shopthethao.Controllers
             }
 
             var p = db.SanPhams.First(x => x.MaSanPham == id);
+            p.SoLuongXem++;
+            db.SaveChanges();
             ViewBag.Detail = db.SanPhams.Where(x => x.MaLoaiSanPham == p.MaLoaiSanPham).Take(4).ToList();
             return View(p);
         }

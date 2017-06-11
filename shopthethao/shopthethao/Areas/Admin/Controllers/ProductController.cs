@@ -50,6 +50,8 @@ namespace shopthethao.Areas.Admin.Controllers
                     TenSanPham = name,
                     GiaSanPham = price,
                     SoLuongTon = quantity,
+                    SoLuongXem=0,
+                    SoLuongBan=0,
                     NgayNhap = DateTime.Now,
                     MoTa = description,
                     MaHangSanXuat = manufacturer,

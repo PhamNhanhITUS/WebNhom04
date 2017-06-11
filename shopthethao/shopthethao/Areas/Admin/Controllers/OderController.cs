@@ -36,10 +36,9 @@ namespace shopthethao.Areas.Admin.Controllers
         
         public ActionResult ChangeForm(FormCollection fc)
         {
-            var id = (fc["id"]);
+            var id = (fc["id"]).ToString();
             var p = db.DonDatHangs.First(x => x.MaDonDatHang == id);
             p.MaTinhTrang = int.Parse(fc["status"]);
-            db.SaveChanges();
             if (db.SaveChanges() == 0)
             {
                 return RedirectToAction("Index");
