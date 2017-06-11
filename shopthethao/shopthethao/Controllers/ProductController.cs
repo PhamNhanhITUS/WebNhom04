@@ -82,18 +82,9 @@ namespace shopthethao.Controllers
         {
             int toPrice;
             int formPrice;
-            if(fc["txtPrice"].ToString() == null)
-            {
-                toPrice = 100000;
-                formPrice = 10000000;
-            }
-            else
-            {
-                string[] txtPrice = fc["txtPrice"].ToString().Split(',');
-                toPrice = int.Parse(txtPrice[0] + "000");
-                formPrice = int.Parse(txtPrice[1] + "000");
-            }
-            
+            string[] txtPrice = fc["txtPrice"].ToString().Split(',');
+            toPrice = int.Parse(txtPrice[0] + "000");
+            formPrice = int.Parse(txtPrice[1] + "000");
             int category = int.Parse(fc["cbbCategory"]);
             int manufacturer = int.Parse(fc["cbbManufacture"]);
             
