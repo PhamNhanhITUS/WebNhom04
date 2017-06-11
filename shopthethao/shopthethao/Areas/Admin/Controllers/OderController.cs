@@ -10,22 +10,22 @@ namespace shopthethao.Areas.Admin.Controllers
     public class OderController : Controller
     {
         // GET: Admin/Oder
-        shopthethaoEntities5 db = new shopthethaoEntities5();
+        shopthethaoEntities db = new shopthethaoEntities();
         public ActionResult Index()
         {
             return View(db.DonDatHangs.OrderBy(x=>x.TinhTrang.MaTinhTrang).Where(x => x.BiXoa == false).ToList());
         }
-        public ActionResult Detail(int? ID)
+        public ActionResult Detail(string ID)
         {
-            if (ID.HasValue == false)
+            if (string.IsNullOrWhiteSpace(ID))
             {
                 return RedirectToAction("Index", "Oder");
             }
             return View(db.DonDatHangs.First(x => x.MaDonDatHang == ID && x.BiXoa == false));
         }
-        public ActionResult Change(int? ID)
+        public ActionResult Change(string ID)
         {
-            if (ID.HasValue == false)
+            if (string.IsNullOrWhiteSpace(ID))
             {
                 return RedirectToAction("Index", "Oder");
             }
@@ -36,7 +36,7 @@ namespace shopthethao.Areas.Admin.Controllers
         
         public ActionResult ChangeForm(FormCollection fc)
         {
-            var id = int.Parse(fc["id"]);
+            var id = (fc["id"]);
             var p = db.DonDatHangs.First(x => x.MaDonDatHang == id);
             p.MaTinhTrang = int.Parse(fc["status"]);
             db.SaveChanges();
@@ -46,13 +46,13 @@ namespace shopthethao.Areas.Admin.Controllers
             }
             return RedirectToAction("Change");
         }
-        public ActionResult Delete(int? ID)
+        public ActionResult Delete(string ID)
         {
-            if (ID.HasValue == false)
+            if (string.IsNullOrWhiteSpace(ID))
             {
                 return RedirectToAction("Index", "Oder");
             }
-            var p = db.DonDatHangs.First(x => x.MaDonDatHang== ID);
+            var p = db.DonDatHangs.First(x => x.MaDonDatHang == ID);
             p.BiXoa = true;
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -61,9 +61,9 @@ namespace shopthethao.Areas.Admin.Controllers
         {
             return View(db.DonDatHangs.Where(x => x.BiXoa == true).ToList());
         }
-        public ActionResult RestoreOder(int? ID)
+        public ActionResult RestoreOder(string ID)
         {
-            if (ID.HasValue == false)
+            if (string.IsNullOrEmpty(ID))
             {
                 return RedirectToAction("ListDelete", "Oder");
             }
@@ -72,9 +72,9 @@ namespace shopthethao.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("ListDelete", "Oder");
         }
-        public ActionResult DeleteOder(int? ID)
+        public ActionResult DeleteOder(string ID)
         {
-            if (ID.HasValue == false)
+            if (string.IsNullOrWhiteSpace(ID))
             {
                 return RedirectToAction("ListDelete", "Oder");
             }

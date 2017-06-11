@@ -10,7 +10,7 @@ namespace shopthethao.Areas.Admin.Controllers
 {
     public class ManufacturerController : Controller
     {
-        shopthethaoEntities5 db = new shopthethaoEntities5();
+        shopthethaoEntities db = new shopthethaoEntities();
         // GET: Admin/Manufacturer
         public ActionResult Index()
         {

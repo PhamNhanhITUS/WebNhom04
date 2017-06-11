@@ -10,7 +10,7 @@ namespace shopthethao.Controllers
 {
     public class CartController : Controller
     {
-        shopthethaoEntities5 db = new shopthethaoEntities5();
+        shopthethaoEntities db = new shopthethaoEntities();
 
         private const string CartSession = "CartSession";
         // GET: Cart
@@ -25,7 +25,7 @@ namespace shopthethao.Controllers
             return View(list);
         }
 
-        public ActionResult AddItem(int productId, int quantity)
+        public ActionResult AddItem(int productId, int quantity, int price)
         {
             var product = db.SanPhams.First(x => x.MaSanPham == productId);
             var cart = Session[CartSession];
@@ -49,6 +49,7 @@ namespace shopthethao.Controllers
                     var item = new CartItem();
                     item.Product = product;
                     item.Quantity = quantity;
+                    item.price = price;
                     list.Add(item);
                 }
                 //Gán vào session
@@ -60,6 +61,7 @@ namespace shopthethao.Controllers
                 var item = new CartItem();
                 item.Product = product;
                 item.Quantity = quantity;
+                item.price = price;
                 var list = new List<CartItem>();
                 list.Add(item);
                 //Gán vào session
@@ -116,7 +118,14 @@ namespace shopthethao.Controllers
             }
             return View(list);
         }
-
+        public string MaDonHang()
+        {
+            string ma = "";
+            DateTime now = DateTime.Now;
+          
+            ma +=""+ now.Year + (now.Month>9?now.Month.ToString() : "0"+now.Month) + (now.Day > 9 ? now.Day.ToString() : "0" + now.Day) + (now.Hour>9?now.Hour.ToString():"0"+now.Hour) + (now.Minute > 9 ? now.Minute.ToString() : "0" + now.Minute) + (now.Second > 9 ? now.Second.ToString() : "0" + now.Second);
+            return ma;
+        }
         [HttpPost]
         public ActionResult Payment(FormCollection fc)
         {
@@ -125,7 +134,7 @@ namespace shopthethao.Controllers
 
             DonDatHang order = new DonDatHang
             {
-
+                MaDonDatHang = MaDonHang(),
                 NgayLap = DateTime.Now,
                 MaTaiKhoan = int.Parse(fc["id"]),
                 MaTinhTrang = 1,
@@ -150,7 +159,7 @@ namespace shopthethao.Controllers
                     ChiTietDonDatHang orderDetail = new ChiTietDonDatHang
                     {
                         SoLuong = item.Quantity,
-                        GiaBan = item.Product.GiaSanPham,
+                        GiaBan = (int)(item.price),
                         MaDonDatHang = idOrder,
                         MaSanPham = item.Product.MaSanPham
                     };

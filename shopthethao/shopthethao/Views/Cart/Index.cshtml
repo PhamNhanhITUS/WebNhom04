@@ -40,7 +40,7 @@
                                     <p>Mã sản phẩm: @item.Product.MaSP</p>
                                 </td>
                                 <td class="cart_price">
-                                    <p>@string.Format("{0:n0}", item.Product.GiaSanPham)</p> 
+                                    <p>@string.Format("{0:n0}", item.price)</p> 
                                 </td>
                                 <td class="cart_quantity">
                                     <div class="cart_quantity_button">
@@ -50,7 +50,7 @@
                                     </div>
                                 </td>
                                 <td class="cart_total">
-                                    <p class="cart_total_price">@string.Format("{0:n0}", item.Product.GiaSanPham * item.Quantity) VNĐ</p>
+                                    <p class="cart_total_price">@string.Format("{0:n0}", item.price * item.Quantity) VNĐ</p>
                                 </td>
                                 <td class="cart_delete">
                                     <a data-id="@item.Product.MaSanPham" class="btn-delete" href=""><i class="fa fa-times"></i></a>

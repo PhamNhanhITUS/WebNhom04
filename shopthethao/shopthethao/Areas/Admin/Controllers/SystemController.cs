@@ -12,7 +12,7 @@ namespace shopthethao.Areas.Admin.Controllers
     public class SystemController : Controller
     {
         // GET: Admin/System
-        shopthethaoEntities5 db = new shopthethaoEntities5();
+        shopthethaoEntities db = new shopthethaoEntities();
         public ActionResult Index()
         {
             return View(db.TaiKhoanAdmins.ToList());

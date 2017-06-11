@@ -61,7 +61,16 @@
                                             <p>
                                                 <span>@string.Format("{0:n0}", @Model.GiaSanPham) VNĐ</span>
                                             </p>
+                                            @{ var price = Model.GiaSanPham;}
+
+                                            @if (Model.KhuyenMaiSanPham.MaKhuyenMai != 1 && Model.KhuyenMaiSanPham.NgayBatDau <= DateTime.Now && Model.KhuyenMaiSanPham.NgayKetThuc >= DateTime.Now)
+                                            {
+                                                price -= price * Model.KhuyenMaiSanPham.GiaTri/100;
+                                                <span>@string.Format("{0:n0}", @price) VNĐ</span>
+                                            }
+                                            
                                             <label style="font-size:16px;">Số lượng:</label>
+                                            <input type="hidden" name="price" value="@price" />
                                             <input type="hidden" name="productId" value="@Model.MaSanPham"/>
                                             <input type="number" value="1" min="1" name="quantity" />
                                             <button type="submit" class="btn btn-fefault cart"><i class="fa fa-shopping-cart"></i>Thêm</button>

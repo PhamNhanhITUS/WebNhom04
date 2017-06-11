@@ -9,7 +9,7 @@ namespace shopthethao.Areas.Admin.Controllers
 {
     public class DeleteController : Controller
     {
-        shopthethaoEntities5 db = new shopthethaoEntities5();
+        shopthethaoEntities db = new shopthethaoEntities();
         // GET: Admin/Delete
         public ActionResult Index()
         {

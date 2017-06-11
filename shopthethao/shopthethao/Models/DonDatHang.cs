@@ -20,7 +20,7 @@ namespace shopthethao.Models
             this.ChiTietDonDatHangs = new HashSet<ChiTietDonDatHang>();
         }
     
-        public int MaDonDatHang { get; set; }
+        public string MaDonDatHang { get; set; }
         public Nullable<System.DateTime> NgayLap { get; set; }
         public Nullable<int> TongThanhTien { get; set; }
         public Nullable<int> MaTaiKhoan { get; set; }
@@ -33,7 +33,6 @@ namespace shopthethao.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDonDatHang> ChiTietDonDatHangs { get; set; }
-        public virtual TaiKhoan TaiKhoan { get; set; }
         public virtual TinhTrang TinhTrang { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace shopthethao.Areas.Admin.Controllers
 {
     public class CategoryController : Controller
     {
-        shopthethaoEntities5 db = new shopthethaoEntities5();
+        shopthethaoEntities db = new shopthethaoEntities();
         // GET: Admin/Category
         public ActionResult Index()
         {

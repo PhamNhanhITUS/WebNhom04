@@ -13,10 +13,10 @@ namespace shopthethao.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class shopthethaoEntities5 : DbContext
+    public partial class shopthethaoEntities : DbContext
     {
-        public shopthethaoEntities5()
-            : base("name=shopthethaoEntities5")
+        public shopthethaoEntities()
+            : base("name=shopthethaoEntities")
         {
         }
     
@@ -34,7 +34,6 @@ namespace shopthethao.Models
         public virtual DbSet<LoaiSanPham> LoaiSanPhams { get; set; }
         public virtual DbSet<LoaiTaiKhoan> LoaiTaiKhoans { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<TaiKhoanAdmin> TaiKhoanAdmins { get; set; }
         public virtual DbSet<TinhTrang> TinhTrangs { get; set; }

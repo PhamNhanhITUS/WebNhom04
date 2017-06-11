@@ -10,5 +10,6 @@ namespace shopthethao.Models
     {
         public SanPham Product { set; get; }
         public int Quantity { set; get; }
+        public decimal price { set; get; }
     }
 }

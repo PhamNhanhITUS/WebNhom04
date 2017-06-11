@@ -10,7 +10,7 @@ namespace shopthethao.Areas.Admin.Controllers
 {
     public class ProductController : Controller
     {
-        shopthethaoEntities5 db = new shopthethaoEntities5();
+        shopthethaoEntities db = new shopthethaoEntities();
         private object lastInsertId;
 
         // GET: Admin/Product
