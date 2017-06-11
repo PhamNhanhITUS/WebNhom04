@@ -20,5 +20,7 @@ begin
 			where MaSanPham=@MaSanPham
 			fetch next from cur into @MaSanPham, @SoLuong
 		end
+			close cur
+		deallocate cur
 	end
 end
