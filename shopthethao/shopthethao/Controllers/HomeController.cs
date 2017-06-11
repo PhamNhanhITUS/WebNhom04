@@ -12,7 +12,7 @@ namespace shopthethao.Controllers
     public class HomeController : Controller
     {
         //GET: Home
-        shopthethaoEntities5 db = new shopthethaoEntities5();
+        shopthethaoEntities db = new shopthethaoEntities();
         public ActionResult Index()
         {
             ViewBag.BestProduct = BestProduct();

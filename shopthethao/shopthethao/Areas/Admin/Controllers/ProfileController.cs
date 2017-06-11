@@ -12,7 +12,7 @@ namespace shopthethao.Areas.Admin.Controllers
     public class ProfileController : Controller
     {
         // GET: Admin/Profile
-        shopthethaoEntities5 db = new shopthethaoEntities5();
+        shopthethaoEntities db = new shopthethaoEntities();
         public ActionResult Index(int? ID)
         {
             if (ID.HasValue == false)

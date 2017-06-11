@@ -17,16 +17,24 @@
                     <h2 class="title text-center">Sản phẩm bán chạy</h2>
                     @foreach (var item in bestProduct)
                     {
+
+
                         <div class="col-sm-3">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><img src="~/Assets/Product/@item.MaSP/@item.URLAnhDaiDien" alt="" /></a>
-                                        <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><h4>@item.TenSanPham</h4></a>
+                                        <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham })"><img src="~/Assets/Product/@item.MaSP/@item.URLAnhDaiDien" alt="" /></a>
+                                        <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham })"><h4>@item.TenSanPham</h4></a>
                                         <h4>@string.Format("{0:n0}", item.GiaSanPham) VNĐ</h4>
+                                        @{ var price = item.GiaSanPham - item.GiaSanPham * item.KhuyenMaiSanPham.GiaTri / 100;
+                                        }
+                                        @if (item.MaKhuyenMai != 1)
+                                        {
+                                            <h4>@string.Format("{0:n0}", price) VNĐ</h4>
+                                        }
                                         @if (Session["TenDangNhap"] != null)
                                         {
-                                        <a href="@Url.Action("AddItem", "Cart", new { productId = @item.MaSanPham, quantity = 1 })" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                        <a href="@Url.Action("AddItem", "Cart", new { productId = @item.MaSanPham, quantity = 1 , price=price})" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
                                         }
                                         else
                                         {
@@ -34,6 +42,10 @@
                                             
                                         }
                                     </div>
+                                    @if (item.MaKhuyenMai != 1)
+                                    {
+                                        <img src="~/Assets/Client/images/home/sale.png" class="new" alt="" />
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -55,9 +67,15 @@
                                                     <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><img src="~/Assets/Product/@item.MaSP/@item.URLAnhDaiDien" alt="" /></a>
                                                     <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><h4>@item.TenSanPham</h4></a>
                                                     <h4>@string.Format("{0:n0}", item.GiaSanPham) VNĐ</h4>
+                                                    @{ var price = item.GiaSanPham - item.GiaSanPham * item.KhuyenMaiSanPham.GiaTri / 100;
+                                                    }
+                                                    @if (item.MaKhuyenMai != 1)
+                                                    {
+                                                        <h4>@string.Format("{0:n0}", price) VNĐ</h4>
+                                                    }
                                                     @if (Session["TenDangNhap"] != null)
                                                     {
-                                                        <a href="@Url.Action("AddItem", "Cart", new { productId = @item.MaSanPham, quantity = 1 })" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                        <a href="@Url.Action("AddItem", "Cart", new { productId = @item.MaSanPham, quantity = 1 , price=price})" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
                                                     }
                                                     else
                                                     {
@@ -65,6 +83,10 @@
 
                                                     }
                                                 </div>
+                                                @if (item.MaKhuyenMai != 1)
+                                                {
+                                                    <img src="~/Assets/Client/images/home/sale.png" class="new" alt="" />
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -81,9 +103,15 @@
                                                     <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><img src="~/Assets/Product/@item.MaSP/@item.URLAnhDaiDien" alt="" /></a>
                                                     <a href="@Url.Action("Detail", "Product", new { id = @item.MaSanPham})"><h4>@item.TenSanPham</h4></a>
                                                     <h4>@string.Format("{0:n0}", item.GiaSanPham) VNĐ</h4>
+                                                    @{ var price = item.GiaSanPham - item.GiaSanPham * item.KhuyenMaiSanPham.GiaTri / 100;
+                                                    }
+                                                    @if (item.MaKhuyenMai != 1)
+                                                    {
+                                                        <h4>@string.Format("{0:n0}", price) VNĐ</h4>
+                                                    }
                                                     @if (Session["TenDangNhap"] != null)
                                                     {
-                                                        <a href="@Url.Action("AddItem", "Cart", new { productId = @item.MaSanPham, quantity = 1 })" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                        <a href="@Url.Action("AddItem", "Cart", new { productId = @item.MaSanPham, quantity = 1 , price=price})" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
                                                     }
                                                     else
                                                     {
@@ -91,6 +119,10 @@
 
                                                     }
                                                 </div>
+                                                @if (item.MaKhuyenMai != 1)
+                                                {
+                                                    <img src="~/Assets/Client/images/home/sale.png" class="new" alt="" />
+                                                }
                                             </div>
                                         </div>
                                     </div>

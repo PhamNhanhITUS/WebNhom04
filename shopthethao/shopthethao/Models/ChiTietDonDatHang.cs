@@ -17,7 +17,7 @@ namespace shopthethao.Models
         public int MaChiTietDonDatHang { get; set; }
         public Nullable<int> SoLuong { get; set; }
         public Nullable<int> GiaBan { get; set; }
-        public Nullable<int> MaDonDatHang { get; set; }
+        public string MaDonDatHang { get; set; }
         public Nullable<int> MaSanPham { get; set; }
     
         public virtual DonDatHang DonDatHang { get; set; }
