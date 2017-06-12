@@ -138,15 +138,15 @@ namespace shopthethao.Controllers
         public List<SanPham> BestProduct()
         {
 
-            return ViewBag.BestProduct = db.SanPhams.OrderBy(y => y.SoLuongBan).Take(8).ToList();
+            return ViewBag.BestProduct = db.SanPhams.OrderBy(y => y.SoLuongBan).Where(x => x.BiXoa == false).Take(8).ToList();
         }
         public List<SanPham> NewProduct_1()
         {
-            return ViewBag.NewProduct_1 = db.SanPhams.OrderByDescending(y => y.MaSanPham).Take(4).ToList();
+            return ViewBag.NewProduct_1 = db.SanPhams.OrderByDescending(y => y.MaSanPham).Where(x => x.BiXoa == false).Take(4).ToList();
         }
         public List<SanPham> NewProduct_2()
         {
-            return ViewBag.NewProduct_2 = db.SanPhams.OrderByDescending(y => y.MaSanPham).Skip(4).Take(4).ToList();
+            return ViewBag.NewProduct_2 = db.SanPhams.OrderByDescending(y => y.MaSanPham).Where(x=>x.BiXoa==false).Skip(4).Take(4).ToList();
         }
     }
 }

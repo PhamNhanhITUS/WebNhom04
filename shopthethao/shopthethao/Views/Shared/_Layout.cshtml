@@ -27,8 +27,64 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/Assets/Client/images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/Assets/Client/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="/Assets/Client/images/ico/apple-touch-icon-57-precomposed.png">
+    <style>
+        #mapCanvas {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
 </head><!--/head-->
 <body>
+
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script>
+
+        // This example displays a marker at the center of Australia.
+        // When the user clicks the marker, an info window opens.
+        //21.046300, 105.793266
+        function initMap() {
+            var uluru = { lat: 10.7626389, lng: 106.6820265 };
+            var map = new google.maps.Map(document.getElementById('mapCanvas'), {
+                zoom: 18,
+                center: uluru
+            });
+
+            var contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+             '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+            '<div id="bodyContent">'+
+             '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+            'sandstone rock formation in the southern part of the '+
+            'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+            'south west of the nearest large town, Alice Springs; 450&#160;km '+
+            '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+            'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+            'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+            'Aboriginal people of the area. It has many springs, waterholes, '+
+            'rock caves and ancient paintings. Uluru is listed as a World '+
+            'Heritage Site.</p>'+
+            '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+            '(last visited June 22, 2009).</p>'+
+            '</div>'+
+            '</div>';
+
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map,
+                title: 'Địa chỉ'
+            });
+            marker.addListener('click', function () {
+                infowindow.open(map, marker);
+            });
+        }
+        google.maps.event.addDomListener(window, 'load', initMap);
+    </script>
     <div id="fb-root"></div>
     <script>
     (function(d, s, id) {
@@ -84,8 +140,8 @@
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:white;padding:8px 12px;color:#696763;font-family:'Roboto', sans-serif;font-weight:300;padding-right:0px;"><i class="fa fa-user"></i> @Session["TenDangNhap"]</button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-                                                <button onclick="location.href='@Url.Action("Info","Profile", new { ID = Session["MaTaiKhoan"]})'" class="form-control dropdown-item" type="button" style="border:0px">Thông tin tài khoản</button>
-                                                <button onclick="location.href='@Url.Action("HistoryOrder","Profile", new { ID = Session["MaTaiKhoan"]})'" class="form-control dropdown-item" type="button" style="border:0px">Lịch sử mua hàng</button>
+                                                <button onclick="location.href='@Url.Action("Info","Profile")'" class="form-control dropdown-item" type="button" style="border:0px">Thông tin tài khoản</button>
+                                                <button onclick="location.href='@Url.Action("HistoryOrder","Profile")'" class="form-control dropdown-item" type="button" style="border:0px">Lịch sử mua hàng</button>
                                                 <button onclick="location.href='@Url.Action("Logout", "Profile")'" class="form-control dropdown-item" type="button" id="Logout" style="border:0px">Đăng xuất</button>
                                             </div>
                                         </div>

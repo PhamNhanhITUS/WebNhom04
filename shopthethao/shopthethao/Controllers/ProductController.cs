@@ -24,16 +24,19 @@ namespace shopthethao.Controllers
         public ActionResult Detail(int? id)
         {
             
-            if (id.HasValue == false)
+            if (db.SanPhams.Where(x=>x.MaSanPham == id) == null)
             {
                 return RedirectToAction("Index", "Product");
             }
-
-            var p = db.SanPhams.First(x => x.MaSanPham == id);
-            p.SoLuongXem++;
-            db.SaveChanges();
-            ViewBag.Detail = db.SanPhams.Where(x => x.MaLoaiSanPham == p.MaLoaiSanPham).Take(4).ToList();
-            return View(p);
+            else
+            {
+                var p = db.SanPhams.First(x => x.MaSanPham == id);
+                p.SoLuongXem++;
+                db.SaveChanges();
+                ViewBag.Detail = db.SanPhams.Where(x => x.MaLoaiSanPham == p.MaLoaiSanPham).Take(4).ToList();
+                return View(p);
+            }
+            
         }
         public List<SanPham> ShowProduct()
         {

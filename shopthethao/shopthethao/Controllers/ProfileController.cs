@@ -20,12 +20,9 @@ namespace shopthethao.Controllers
         {
             return View();
         }
-        public ActionResult Info(int? ID)
+        public ActionResult Info()
         {
-            if (ID.HasValue == false)
-            {
-                return RedirectToAction("Index", "Error404");
-            }
+            var ID = (int)Session["MaTaiKhoan"]; 
             var p =  db.TaiKhoans.First(x => x.MaTaiKhoan == ID);
             return View(p);
         }
@@ -81,8 +78,9 @@ namespace shopthethao.Controllers
             return RedirectToAction("Info", "Profile", new { ID = id });
         }
 
-        public ActionResult HistoryOrder(int? ID, int? page)
+        public ActionResult HistoryOrder(int? page)
         {
+            var ID = (int)Session["MaTaiKhoan"];
             var listOrder = db.DonDatHangs.Where(x => x.MaTaiKhoan == ID && x.BiXoa == false).ToList();
             int pageSize = 5;
             int pageNumber = (page ?? 1);

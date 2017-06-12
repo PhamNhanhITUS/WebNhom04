@@ -778,6 +778,7 @@
     <Content Include="Assets\Client\js\price-range.js" />
     <Content Include="Assets\Client\js\validator.js" />
     <Content Include="Assets\Client\js\validator.min.js" />
+    <Content Include="Assets\Client\Template\ResetPass.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
@@ -1113,7 +1114,6 @@
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\Info.cshtml" />
-    <Content Include="Views\Error404\Index.cshtml" />
     <Content Include="Views\Profile\HistoryOrder.cshtml" />
     <Content Include="Areas\Admin\Views\Profile\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
@@ -1149,6 +1149,7 @@
     <Content Include="Models\shopthethao.edmx.diagram">
       <DependentUpon>shopthethao.edmx</DependentUpon>
     </Content>
+    <Content Include="Views\Error404\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1168,6 +1169,12 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Assets\Admin\vendors\moment\moment.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{5c094fc9-f4f1-412b-870b-a8bccbfc6074}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

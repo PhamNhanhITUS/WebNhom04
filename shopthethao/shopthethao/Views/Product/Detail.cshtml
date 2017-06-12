@@ -47,33 +47,39 @@
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </div>
-
+                        <p style="padding-top:10px;font-size:16px;"><b>Giảm giá:</b> @if(Model.MaKhuyenMai != 1){<img src="~/Assets/Client/images/home/sale.png" class="new" alt="" />}(@Model.KhuyenMaiSanPham.TenKhuyenMai)</p>
                     </div>
                     <div class="col-sm-6" style="padding:0px;">
                             <div class="product-information">
                                 <!--/product-information-->
                                 <h1>@Model.TenSanPham</h1>
-                                <p style="font-size:16px;">Mã sản phẩm: @Model.MaSanPham</p>
+                                <p style="font-size:16px;">Mã sản phẩm: @Model.MaSP</p>
                                 <img src="/Assets/Client/images/product-details/rating.png" alt="" />
                                 <div>
                                     <form data-toggle="validator" role="form" action="@Url.Action("AddItem","Cart")" method="get">
                                         <span>
-                                            <p>
-                                                <span>@string.Format("{0:n0}", @Model.GiaSanPham) VNĐ</span>
-                                            </p>
-                                            @{ var price = Model.GiaSanPham;}
+                                            <div>
+                                                @{ var price = Model.GiaSanPham;}
 
-                                            @if (Model.KhuyenMaiSanPham.MaKhuyenMai != 1 && Model.KhuyenMaiSanPham.NgayBatDau <= DateTime.Now && Model.KhuyenMaiSanPham.NgayKetThuc >= DateTime.Now)
-                                            {
-                                                price -= price * Model.KhuyenMaiSanPham.GiaTri/100;
-                                                <span>@string.Format("{0:n0}", @price) VNĐ</span>
-                                            }
+                                                @if (Model.KhuyenMaiSanPham.MaKhuyenMai != 1 && Model.KhuyenMaiSanPham.NgayBatDau <= DateTime.Now && Model.KhuyenMaiSanPham.NgayKetThuc >= DateTime.Now)
+                                                {
+                                                    <span><del>@string.Format("{0:n0}", @Model.GiaSanPham) VNĐ</del></span>
+                                                    price -= price * Model.KhuyenMaiSanPham.GiaTri / 100;
+                                                    <span style="color:black;">@string.Format("{0:n0}", @price) VNĐ</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>@string.Format("{0:n0}", @Model.GiaSanPham) VNĐ</span>
+                                                }
+                                            </div>
+                                            <div>
+                                                <label style="font-size:16px;">Số lượng:</label>
+                                                <input type="hidden" name="price" value="@price" />
+                                                <input type="hidden" name="productId" value="@Model.MaSanPham" />
+                                                <input type="number" value="1" min="1" name="quantity" />
+                                                <button type="submit" class="btn btn-fefault cart"><i class="fa fa-shopping-cart"></i>Thêm</button>
+                                            </div>
                                             
-                                            <label style="font-size:16px;">Số lượng:</label>
-                                            <input type="hidden" name="price" value="@price" />
-                                            <input type="hidden" name="productId" value="@Model.MaSanPham"/>
-                                            <input type="number" value="1" min="1" name="quantity" />
-                                            <button type="submit" class="btn btn-fefault cart"><i class="fa fa-shopping-cart"></i>Thêm</button>
 
                                         </span>
                                     </form>
@@ -87,7 +93,7 @@
                                 {
                                     <p style="font-size:16px;"><b>Trạng thái: Còn hàng</b></p>
                                 }
-                                <p style="padding-top:10px;font-size:16px;"><b>Giảm giá:</b> @if(Model.MaKhuyenMai != 1){<img src="~/Assets/Client/images/home/sale.png" class="new" alt="" />}(@Model.KhuyenMaiSanPham.TenKhuyenMai)</p>
+                                
                                 @if (Model.MaHangSanXuat != null)
                                 {
                                     <p style="padding-top:10px;font-size:16px;"><b>Thương hiệu:</b> @Model.HangSanXuat.TenHangSanXuat</p>

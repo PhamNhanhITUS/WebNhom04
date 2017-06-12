@@ -107,8 +107,9 @@ namespace shopthethao.Controllers
             });
         }
 
-        public ActionResult Payment(int? ID)
+        public ActionResult Payment()
         {
+            var ID = (int)Session["MaTaiKhoan"];
             ViewBag.Info = db.TaiKhoans.Where(x => x.MaTaiKhoan == ID).ToList();
             var cart = Session[CartSession];
             var list = new List<CartItem>();
