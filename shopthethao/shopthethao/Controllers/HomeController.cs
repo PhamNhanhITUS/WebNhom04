@@ -22,26 +22,12 @@ namespace shopthethao.Controllers
             ViewBag.NewProduct_2 = NewProduct_2();
             return View();
         }
-        public static string CreateMD5(string input)
-        {
-            //Use input string to calculate MD5 hash
-           MD5 md5 = System.Security.Cryptography.MD5.Create();
-            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
-            byte[] hashBytes = md5.ComputeHash(inputBytes);
-
-            //Convert the byte array to hexadecimal string
-           StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < hashBytes.Length; i++)
-            {
-                sb.Append(hashBytes[i].ToString("X2"));
-            }
-            return sb.ToString();
-        }
+        
         [HttpPost]
         public ActionResult Login(FormCollection fc)
         {
             string taikhoan = fc[0].ToString();
-            string matkhau = CreateMD5(fc[1].ToString());
+            string matkhau = new CreateMD5().Hash((fc[1].ToString()));
             var t = db.TaiKhoans.Where(u => u.TenDangNhap == taikhoan && u.MatKhau == matkhau && u.BiXoa == false).SingleOrDefault();
             if (t != null)
             {
@@ -61,7 +47,8 @@ namespace shopthethao.Controllers
         {
             string email = fc["Email"].ToString();
             var ramdomPass = new Random().Next(10000000, 99999999);
-            var newPass = CreateMD5(ramdomPass.ToString());
+
+            var newPass = new CreateMD5().Hash((ramdomPass.ToString()));
             var u = db.TaiKhoans.Where(x => x.Email == email && x.BiXoa == false).SingleOrDefault();
             if (u != null)
             {
@@ -97,7 +84,7 @@ namespace shopthethao.Controllers
         [HttpPost]
         public ActionResult Register(FormCollection fc)
         {
-                string matKhauMaHoa = CreateMD5(fc["MatKhau"].ToString());
+                string matKhauMaHoa = new CreateMD5().Hash((fc["MatKhau"].ToString()));
                 string tenDangNhap = fc["TenDangNhap"].ToString();
                 string email = fc["Email"].ToString();
                 string dienThoai = fc["DienThoai"].ToString();

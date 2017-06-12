@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using shopthethao.Models;
 using System.Text;
 using System.Security.Cryptography;
+using Common;
 
 namespace shopthethao.Areas.Admin.Controllers
 {
@@ -17,24 +18,9 @@ namespace shopthethao.Areas.Admin.Controllers
         {
             return View(db.TaiKhoans.Where(x => x.BiXoa == false).ToList());
         }
-        public static string CreateMD5(string input)
-        {
-            //Use input string to calculate MD5 hash
-            MD5 md5 = System.Security.Cryptography.MD5.Create();
-            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
-            byte[] hashBytes = md5.ComputeHash(inputBytes);
-
-            //Convert the byte array to hexadecimal string
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < hashBytes.Length; i++)
-            {
-                sb.Append(hashBytes[i].ToString("X2"));
-            }
-            return sb.ToString();
-        }
         public ActionResult Add(FormCollection fc)
         {
-            string password = CreateMD5(fc["password"].ToString());
+            string password = new CreateMD5().Hash((fc["password"].ToString()));
             string username = fc["username"].ToString();
             string email = fc["email"].ToString();
             string phone = fc["phone"].ToString();
