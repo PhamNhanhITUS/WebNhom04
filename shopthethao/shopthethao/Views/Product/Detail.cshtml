@@ -77,7 +77,16 @@
                                                 <input type="hidden" name="price" value="@price" />
                                                 <input type="hidden" name="productId" value="@Model.MaSanPham" />
                                                 <input type="number" value="1" min="1" name="quantity" />
-                                                <button type="submit" class="btn btn-fefault cart"><i class="fa fa-shopping-cart"></i>Thêm</button>
+                                                @if (Session["TenDangNhap"] != null)
+                                                {
+                                                    <button type="submit" class="btn btn-fefault cart"><i class="fa fa-shopping-cart"></i>Thêm</button>
+                                                }
+                                                else
+                                                {
+                                                    <button type="button" data-toggle="modal" data-target="#myModalLogin" class="btn btn-fefault cart"><i class="fa fa-shopping-cart"></i>Thêm</button>
+
+                                                }
+                                                
                                             </div>
                                             
 
@@ -113,8 +122,8 @@
 
                     <div class="tab-content">
                         <div id="home" class="tab-pane fade ">
-                            <h3>HOME</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <h3>Giới thiệu sản phẩm</h3>
+                            <p>@Model.MoTa</p>
                         </div>
                         <div id="menu1" class="tab-pane fade in active">
                             <div class="fb-comments" data-href="http://localhost:8008/Product/Detail/@Model.MaSanPham" data-width="100%" data-numposts="5" data-colorscheme="light"></div>

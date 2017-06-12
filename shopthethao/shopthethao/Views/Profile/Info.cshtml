@@ -32,7 +32,12 @@
                             <div class="form-group row" style="margin-bottom:0px;">
                                 <label for="example-text-input" class="col-2 col-form-label">Ngày sinh</label>
                                 <div class="col-10">
-                                    <input class="form-control" type="datetime" name="birthday" value="@Model.NgaySinh" style="width:200px;" max="2017-12-31" data-error="Ngày sinh đúng định dạng" required>
+                                    @{ 
+
+                                        var src = @Model.NgaySinh.Value;
+                                        var s = src.Year + "-" + (src.Month > 9 ? src.Month.ToString() : "0" + src.Month) +"-"+ (src.Day > 9 ? src.Day.ToString() : "0" + src.Day);
+                                    }
+                                    <input class="form-control" type="date" name="birthday" value="@s" style="width:160px;" max="2017-06-20" data-error="Ngày sinh đúng định dạng" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>

@@ -81,7 +81,7 @@ namespace shopthethao.Controllers
         public ActionResult HistoryOrder(int? page)
         {
             var ID = (int)Session["MaTaiKhoan"];
-            var listOrder = db.DonDatHangs.Where(x => x.MaTaiKhoan == ID && x.BiXoa == false).ToList();
+            var listOrder = db.DonDatHangs.Where(x => x.MaTaiKhoan == ID && x.BiXoa == false).OrderByDescending(x=>x.NgayLap).ToList();
             int pageSize = 5;
             int pageNumber = (page ?? 1);
             return View(listOrder.ToPagedList(pageNumber, pageSize));

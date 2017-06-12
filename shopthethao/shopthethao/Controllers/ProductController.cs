@@ -33,7 +33,7 @@ namespace shopthethao.Controllers
                 var p = db.SanPhams.First(x => x.MaSanPham == id);
                 p.SoLuongXem++;
                 db.SaveChanges();
-                ViewBag.Detail = db.SanPhams.Where(x => x.MaLoaiSanPham == p.MaLoaiSanPham).Take(4).ToList();
+                ViewBag.Detail = db.SanPhams.Where(x => x.MaLoaiSanPham == p.MaLoaiSanPham && x.BiXoa == false).Take(4).ToList();
                 return View(p);
             }
             
@@ -50,7 +50,7 @@ namespace shopthethao.Controllers
         {
             ViewBag.ShowCategory = ShowCategory();
             ViewBag.ShowManufacturer = ShowManufacturer();
-            var list = db.SanPhams.Where(u => u.MaLoaiSanPham == id).ToList();
+            var list = db.SanPhams.Where(u => u.MaLoaiSanPham == id && u.BiXoa == false).ToList();
             int pageSize = 9;
             int pageNumber = (page ?? 1);
             return View(list.ToPagedList(pageNumber, pageSize));
@@ -63,7 +63,7 @@ namespace shopthethao.Controllers
         {
             ViewBag.ShowCategory = ShowCategory();
             ViewBag.ShowManufacturer = ShowManufacturer();
-            var list = db.SanPhams.Where(u => u.MaHangSanXuat == id).ToList();
+            var list = db.SanPhams.Where(u => u.MaHangSanXuat == id && u.BiXoa == false).ToList();
             int pageSize = 9;
             int pageNumber = (page ?? 1);
             return View(list.ToPagedList(pageNumber, pageSize));
@@ -75,7 +75,7 @@ namespace shopthethao.Controllers
             ViewBag.ShowCategory = ShowCategory();
             ViewBag.ShowManufacturer = ShowManufacturer();
 
-            var list = db.SanPhams.Where(x => x.TenSanPham.ToLower().Contains(Keyword) || x.TenSanPham.Contains(Keyword) || x.TenSanPham.ToLower().StartsWith(Keyword) || x.TenSanPham.StartsWith(Keyword)).ToList();
+            var list = db.SanPhams.Where(x => x.TenSanPham.ToLower().Contains(Keyword) || x.TenSanPham.Contains(Keyword) || x.TenSanPham.ToLower().StartsWith(Keyword) || x.TenSanPham.StartsWith(Keyword) && x.BiXoa == false).ToList();
 
             int pageSize = 9;
             int pageNumber = (page ?? 1);
@@ -98,9 +98,9 @@ namespace shopthethao.Controllers
             
             var list = db.SanPhams.Where(x => x.GiaSanPham >= toPrice && x.GiaSanPham <= formPrice).ToList();
             if (category != 0)
-                list = list.Where(x=>x.MaLoaiSanPham==category).ToList();
+                list = list.Where(x=>x.MaLoaiSanPham==category && x.BiXoa == false).ToList();
             if (manufacturer != 0)
-                list = list.Where(x=>x.MaHangSanXuat==manufacturer).ToList();
+                list = list.Where(x=>x.MaHangSanXuat== manufacturer && x.BiXoa == false).ToList();
             int pageSize = 9;
             int pageNumber = (page ?? 1);
             return View(list.ToPagedList(pageNumber, pageSize));
