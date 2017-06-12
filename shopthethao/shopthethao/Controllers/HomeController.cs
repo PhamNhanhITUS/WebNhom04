@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using shopthethao.Models;
 using System.Security.Cryptography;
 using System.Text;
+using System.Configuration;
+using Common;
 
 namespace shopthethao.Controllers
 {
@@ -58,15 +60,30 @@ namespace shopthethao.Controllers
         public ActionResult ResetPass(FormCollection fc)
         {
             string email = fc["Email"].ToString();
-
-            if(db.TaiKhoans.Where(x => x.Email == email && x.BiXoa == false).SingleOrDefault() != null)
+            var ramdomPass = new Random().Next(10000000, 99999999);
+            var newPass = CreateMD5(ramdomPass.ToString());
+            var u = db.TaiKhoans.Where(x => x.Email == email && x.BiXoa == false).SingleOrDefault();
+            if (u != null)
             {
-                Session["MailKhongTonTai"] = "Mail chưa được đăng kí!";
+                var name = u.TenHienThi;
+                var username = u.TenDangNhap;
+                string content = System.IO.File.ReadAllText(Server.MapPath("~/Assets/Client/Template/ResetPass.html"));
+
+                content = content.Replace("{{CustomerName}}", name);
+                content = content.Replace("{{Username}}", username);
+                content = content.Replace("{{Password}}", ramdomPass.ToString());
+                var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
+
+                new MailHelper().SendMail(email, "Yêu cầu cấp lại mật khẩu đăng nhập shopthethao.com", content);
+                new MailHelper().SendMail(toEmail, "Yêu cầu cấp lại mật khẩu đăng nhập shopthethao.com", content);
+
+                u.MatKhau = newPass;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             else
             {
-                
+                Session["MailKhongTonTai"] = "Mail chưa được đăng kí!";
                 return RedirectToAction("Index");
             }
             
