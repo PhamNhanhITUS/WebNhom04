@@ -220,15 +220,21 @@
 
     @if (Session["DangNhapThanhCong"] != null) 
     {
-        < script >
+        <script>
             $('#SuLogin').modal('show')
-        </ script >
+        </script>
     }
     @if(Session["LoiDangNhap"] != null)
     {
     <script>
         $('#myModalLogin').modal('show')
     </script>
+    }
+    @if (Session["MailKhongTonTai"] != null)
+    {
+        <script>
+        $('#myModalResetPass').modal('show')
+        </script>
     }
     @if (Session["KTDangKy"] != null)
     {
@@ -266,6 +272,7 @@
             $('#ChangePassword').modal('show')
         </script>
     }
+
     <script>
         $('#SuLogin').on('hide.bs.modal', function (e) {
             @{
@@ -275,6 +282,11 @@
         $('#myModalLogin').on('hide.bs.modal', function (e) {
             @{
                 Session.Remove("LoiDangNhap");
+            }
+        })
+        $('#myModalResetPass').on('hide.bs.modal', function (e) {
+            @{
+                Session.Remove("MailKhongTonTai");
             }
         })
         $('#myModalRegis').on('hide.bs.modal', function (e) {
@@ -307,6 +319,8 @@
               Session.Remove("DoiMatKhauThanhCong");
           }
         })
+
+
     </script>
 </body>
 </html>

@@ -5,7 +5,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel">Đăng ký tài khoản</h4>
-                <p style="margin:0px;">Bạn đã có tài khoản. Nhấn vào đây để <a>Đăng nhập</a></p>
+                <p style="margin:0px;">Bạn đã có tài khoản. Nhấn vào đây để <button type="button" onclick="$('#myModalRegis').modal('hide'); $('#myModalLogin').modal('show');" class="btn btn-default" style="background-color:white;color:#fe980f; padding:0px;border:0px;">Đăng nhập</button></p></p>
             </div>
             <div class="modal-body">
                 <form data-toggle="validator" role="form" action="@Url.Action("Register", "Home")" method="post">

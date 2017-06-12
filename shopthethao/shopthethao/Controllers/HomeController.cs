@@ -55,6 +55,24 @@ namespace shopthethao.Controllers
             }
 
         }
+        public ActionResult ResetPass(FormCollection fc)
+        {
+            string email = fc["Email"].ToString();
+
+            if(db.TaiKhoans.Where(x => x.Email == email && x.BiXoa == false).SingleOrDefault() != null)
+            {
+                Session["MailKhongTonTai"] = "Mail chưa được đăng kí!";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                
+                return RedirectToAction("Index");
+            }
+            
+
+        }
+        
         [HttpPost]
         public ActionResult Register(FormCollection fc)
         {
