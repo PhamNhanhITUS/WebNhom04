@@ -235,6 +235,11 @@
         <script>
         $('#myModalResetPass').modal('show')
         </script>
+    }@if (Session["GuiMailThanhCong"] != null)
+    {
+        <script>
+        $('#myModalSendMail').modal('show')
+        </script>
     }
     @if (Session["KTDangKy"] != null)
     {
@@ -287,6 +292,11 @@
         $('#myModalResetPass').on('hide.bs.modal', function (e) {
             @{
                 Session.Remove("MailKhongTonTai");
+            }
+        })
+        $('#myModalSendMail').on('hide.bs.modal', function (e) {
+            @{
+                Session.Remove("GuiMailThanhCong");
             }
         })
         $('#myModalRegis').on('hide.bs.modal', function (e) {

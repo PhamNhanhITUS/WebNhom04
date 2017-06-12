@@ -78,7 +78,11 @@ namespace shopthethao.Controllers
                 new MailHelper().SendMail(toEmail, "Yêu cầu cấp lại mật khẩu đăng nhập shopthethao.com", content);
 
                 u.MatKhau = newPass;
-                db.SaveChanges();
+                if(db.SaveChanges() == 0)
+                {
+                    Session["GuiMailThanhCong"] = "";
+                    return RedirectToAction("Index");
+                }
                 return RedirectToAction("Index");
             }
             else
