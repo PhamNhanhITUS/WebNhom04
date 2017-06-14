@@ -48,7 +48,7 @@ namespace shopthethao.Areas.Admin.Controllers
             ViewBag.totalProduct = db.SanPhams.Count();
             ViewBag.totalWraning = db.DonDatHangs.Where(x=>x.MaTinhTrang == 1).Count();
             ViewBag.totalUser = db.TaiKhoans.Count();
-            var ddh = db.DonDatHangs.OrderByDescending(s => s.NgayLap.Value.Year).Select(s => s.NgayLap.Value.Year).Distinct();
+            var ddh = db.DonDatHangs.Select(s => s.NgayLap.Value.Year).Distinct().OrderByDescending(s=>s);
             List<int> lstyear = new List<int>();
             foreach (var item in ddh)
             {
@@ -126,6 +126,7 @@ namespace shopthethao.Areas.Admin.Controllers
         //Thống kê doanh thu theo tháng trong năm
         public JsonResult thongkeTheoThang(int id)
         {
+            id = id == 0 ? DateTime.Now.Year:id;
             var mix = (from ddh in db.DonDatHangs
                        where ddh.MaTinhTrang == 3 && ddh.NgayLap.Value.Year == id
                        select new { NgayLap = ddh.NgayLap, Gia = ddh.TongThanhTien }

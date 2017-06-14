@@ -203,15 +203,6 @@
         var ctx = document.getElementById("canvasNam").getContext("2d");
         window.myLine = new Chart(ctx, config);
     }
-    $.ajax({
-        url: "@Url.Action("thongKeTheoThang")",
-        method: "POST",
-    async: false,
-    data: { id: 2017 },
-    success: OnSuccess1,
-    });
-</script>
-<script>
     function OnSuccess_(reponse) {
         //console.log(reponse);
         var arrLabel = new Array();
@@ -267,12 +258,12 @@
                         "#a04000", "#d7bde2", "#fcf3cf", "#27ae60", "#6e2c00", "#d4efdf", "#7d6608",
                         "#ebdef0", "#f0b27a", "#884ea0", "#1b4f72"
 
-                ],
+                    ],
             }],
             labels: arrLabel,
-        
+
         };
-        var options= {
+        var options = {
             responsive: true,
             title: {
                 display: true,
@@ -284,7 +275,7 @@
         var myDoughnutChart = new Chart(canvas, {
             type: 'doughnut',
             data: data,
-            options:options
+            options: options
         });
 
         //swal("Good", "Thành công", "success");
@@ -292,21 +283,57 @@
     function OnErrorCall_(repo) {
         swal("Error", "Lỗi không kết nối Sever", "error");
     }
+
+</script>
+<script>
+    $.ajax({
+        url: "@Url.Action("thongKeTheoThang")",
+        method: "POST",
+    async: false,
+    data: { id:  0},
+    success: OnSuccess1,
+    });
+
     $.ajax({
         url: "@Url.Action("thongKeDoanhThu")",
         method: "POST",
+
     async: false,
     data: { id: 1},
     success: OnSuccess_,
-        error: OnErrorCall_
+        error: OnErrorCall_,
     });
-
+    $('#dropNam').change(function (e){
+        $('#canvasNam').remove();
+        $('#canvas').remove();
+        $('#divthongketheonam').append('<canvas id="canvasNam" height="130"></canvas>');
+        $('#divthongketheodanhmuc').append('<canvas id="canvas" height="300"></canvas>');
+        var nam=$('#dropNam').val();
+        var thang=$('#dropThang').val();
+        var value=$('#dropThongKe').val();
+        $.ajax({
+            url: "@Url.Action("thongKeTheoThang")",
+            method: "POST",
+            async:false,
+            data: {id: nam},
+            success: OnSuccess1,
+            error: OnErrorCall_
+        });
+        $.ajax({
+            url: "@Url.Action("thongKeDoanhThu")",
+            method: "POST",
+            async: false,
+            data: { id: value, nam: nam,thang:thang},
+            success: OnSuccess_,
+            error: OnErrorCall_
+        });
+    });
     $('#dropThongKe').change(function (e) {
         $('#canvas').remove(); // this is my <canvas> element
-        $('#divthongketheodanhmuc').append('<canvas id="canvas" height="300"><canvas>');
+        $('#divthongketheodanhmuc').append('<canvas id="canvas" height="300"></canvas>');
         var value = $('#dropThongKe').val();
-        var nam=$('dropNam').val();
-        var thang=$('dropThang').val();
+        var nam=$('#dropNam').val();
+        var thang=$('#dropThang').val();
         //Thống kế doanh thu 
         $.ajax({
             url: "@Url.Action("thongKeDoanhThu")",
@@ -319,7 +346,7 @@
     });
     $('#dropThang').change(function (e) {
         $('#canvas').remove(); // this is my <canvas> element
-        $('#divthongketheodanhmuc').append('<canvas id="canvas" height="300"><canvas>');
+        $('#divthongketheodanhmuc').append('<canvas id="canvas" height="300"></canvas>');
         var value = $('#dropThongKe').val();
         var nam=$('#dropNam').val();
         var thang=$('#dropThang').val();
