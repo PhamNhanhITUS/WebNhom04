@@ -38,10 +38,14 @@ namespace shopthethao.Areas.Admin.Controllers
         {
             var id = (fc["id"]).ToString();
             var p = db.DonDatHangs.First(x => x.MaDonDatHang == id);
-            p.MaTinhTrang = int.Parse(fc["status"]);
-            if (db.SaveChanges() == 0)
+            if (p.ChiTietDonDatHangs.Where(ct => ct.SoLuong <= ct.SanPham.SoLuongTon).Count() == p.ChiTietDonDatHangs.Count)
             {
-                return RedirectToAction("Index");
+                p.MaTinhTrang = int.Parse(fc["status"]);
+                if (db.SaveChanges() == 0)
+                {
+                    return RedirectToAction("Index");
+                }
+                return RedirectToAction("Change");
             }
             return RedirectToAction("Change");
         }
